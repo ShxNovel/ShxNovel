@@ -1,10 +1,5 @@
 import { mainRenderer } from './scene/mainRenderer';
 
-import './scene/actions';
-import './scene/renderLoop';
-import './scene/cameraBunch';
-import './scene/sceneBunch';
-
 export * from './scene/actions';
 export * from './scene/renderLoop';
 export * from './scene/mainRenderer';

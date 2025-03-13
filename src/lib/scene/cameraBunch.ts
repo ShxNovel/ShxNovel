@@ -1,26 +1,58 @@
-import { PerspectiveCamera, OrthographicCamera } from 'three';
+import {
+    PerspectiveCamera,
+    OrthographicCamera,
+    PerspectiveCameraJSON,
+    OrthographicCameraJSON,
+    // PerspectiveCameraJSONObject as PCJO,
+    // OrthographicCameraJSONObject as OCJO,
+    ObjectLoader,
+} from 'three';
 
-type TCamera = PerspectiveCamera | OrthographicCamera;
-type CameraBunchJson = Record<string, TCamera>;
+export type TCamera = PerspectiveCamera | OrthographicCamera;
+export type TCameraJSON = PerspectiveCameraJSON | OrthographicCameraJSON;
 
-class CameraBunch extends Map<string, TCamera> {
-    toJson(): CameraBunchJson {
-        const res = {};
-        this.forEach((value, key) => {
-            res[key] = value.toJSON();
-        });
-        return res;
+export type CameraBunchJSON = {
+    mainName: string;
+    content: Record<string, TCameraJSON>;
+};
+
+const loader = new ObjectLoader();
+// window.objectLoader = loader;
+
+export class CameraBunch extends Map<string, TCamera> {
+    mainName: string;
+
+    get mainCamera() {
+        return this.get(this.mainName);
     }
 
-    remake(obj: CameraBunchJson) {
+    toJSON(): CameraBunchJSON {
+        const content = {};
+        const result = { mainName: this.mainName, content };
+
+        this.forEach((value, key) => {
+            content[key] = value.toJSON();
+        });
+
+        return result;
+    }
+
+    remake(data: CameraBunchJSON) {
         super.clear();
-        Object.entries(obj).forEach(([key, value]) => {
-            super.set(key, value);
+
+        const { mainName, content } = data;
+
+        this.mainName = mainName;
+
+        Object.entries(content).forEach(([key, value]) => {
+            super.set(key, loader.parse(value) as TCamera);
         });
     }
 }
 
 export const cameraBunch = new CameraBunch();
+cameraBunch.mainName = 'main';
+window.cameraBunch = cameraBunch;
 
 const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientHeight;
@@ -31,7 +63,7 @@ const camera = new OrthographicCamera(
     height / 2,
     height / -2,
     1,
-    1000
+    1024
 );
 
 cameraBunch.set('main', camera);

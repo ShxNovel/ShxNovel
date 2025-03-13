@@ -15,12 +15,6 @@ _camera.position.x = 0;
 
 mainRenderer.setClearColor(0x1e2226, 1);
 
-resize(getMediaRotateSize());
-hookEvent('resize', (data: ResizeInfoType) => {
-    resize(data);
-    rendSomeFrames();
-});
-
 function resize(data: ResizeInfoType) {
     const mainCamera = cameraBunch.get('main') as OrthographicCamera;
 
@@ -50,3 +44,9 @@ function resize(data: ResizeInfoType) {
     mainCamera.updateProjectionMatrix();
     mainRenderer.setSize(w, h);
 }
+
+resize(getMediaRotateSize());
+hookEvent('resize', (data: ResizeInfoType) => {
+    resize(data);
+    rendSomeFrames();
+});

@@ -9,10 +9,10 @@ import { HotFix } from './HotFix';
 
 @customElement('global-element')
 export class GlobalElement extends LitElement {
-    @query('page-transition')
+    @query('page-transition', true)
     pageTansition: PageTransition;
 
-    @query('hot-fix')
+    @query('hot-fix', true)
     hotFix: HotFix;
 
     render() {

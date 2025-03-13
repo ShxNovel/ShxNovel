@@ -1,16 +1,30 @@
-import { isObject } from '@/lib/core/typeCheck';
+import { isObject, isTexture } from '@/lib/core/typeCheck';
 import { ShxCollections } from '../Shx';
 import { Texture } from 'three';
 
 export class TextureFetcher {
-    /** check valid */
-    fetchTexture(item: unknown, result: Texture[] = []) {
+    fetchTexture(
+        item: unknown,
+        seen = new WeakSet(),
+        result: Texture[] = []
+    ): Texture[] {
+        /** check valid */
         if (!isObject(item)) return;
+
+        /** duplicated */
+        if (seen.has(item)) return;
+        seen.add(item);
+
+        /** SPJ */
+        if (isTexture(item)) {
+            result.push(item);
+            return result;
+        }
 
         /** solve child */
         if (Array.isArray(item.children)) {
             for (const child of item.children) {
-                this.fetchTexture(child, result);
+                this.fetchTexture(child, seen, result);
             }
         }
 
@@ -23,7 +37,7 @@ export class TextureFetcher {
             item.userData.type in ShxCollections
         ) {
             ShxCollections[item.userData.type]?.fetchTexture(item, result);
-            return;
+            return result;
         }
 
         /**
@@ -35,10 +49,16 @@ export class TextureFetcher {
         if (typeof type !== 'string') return result;
 
         switch (type) {
-            case 'Mesh':
-                break;
+            // case 'Mesh':
+            //     break;
 
             default:
+                for (const attr in item) {
+                    if (Object.prototype.hasOwnProperty.call(item, attr)) {
+                        const element = item[attr];
+                        this.fetchTexture(element, seen, result);
+                    }
+                }
                 break;
         }
 

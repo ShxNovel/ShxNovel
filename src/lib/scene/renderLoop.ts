@@ -33,7 +33,7 @@ engine.useDefaultMainLoop = false;
 
 let mainRendererBehaviour = function () {
     mainRenderer.setRenderTarget(null);
-    mainRenderer.render(sceneBunch.get('main'), cameraBunch.get('main'));
+    mainRenderer.render(sceneBunch.mainScene, cameraBunch.mainCamera);
 };
 
 // maybe switch into some data-structure

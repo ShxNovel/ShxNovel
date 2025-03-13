@@ -4,6 +4,7 @@ import { TextureCache } from '@/lib/scene/TextureCache';
 
 export type AllShxItem = ShxObject | ShxScene;
 
+/** */
 export type ShxObjectUserData = Record<string, any> & {
     type?: 'shxObject';
 
@@ -20,6 +21,7 @@ export interface ShxObject extends THREE.Mesh {
     };
 }
 
+/** */
 export type ShxSceneUserData = Record<string, any> & {
     type?: 'shxScene';
 

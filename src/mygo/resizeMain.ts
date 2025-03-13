@@ -18,15 +18,6 @@ const W = 1920,
     H = 1080,
     A = W / H;
 
-solveResize(core.getMediaRotateSize());
-window.addEventListener('DOMContentLoaded', () => {
-    solveResize(core.getMediaRotateSize());
-});
-
-core.hookEvent('resize', (data: core.ResizeInfoType) => {
-    solveResize(data);
-});
-
 function solveResize(data: core.ResizeInfoType) {
     const { width, height, imarginTop, imarginLeft, iwidth, iheight } = data;
     const rootStyle = document.documentElement.style;
@@ -61,5 +52,14 @@ function solveResize(data: core.ResizeInfoType) {
     rootStyle.setProperty('--var-iheight', `${iheight}px`);
     rootStyle.setProperty('font-size', `${(16 * iwidth) / 1920}px`);
 }
+
+solveResize(core.getMediaRotateSize());
+window.addEventListener('DOMContentLoaded', () => {
+    solveResize(core.getMediaRotateSize());
+});
+
+core.hookEvent('resize', (data: core.ResizeInfoType) => {
+    solveResize(data);
+});
 
 export { solveResize };

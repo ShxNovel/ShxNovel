@@ -1,24 +1,45 @@
-import { Scene } from 'three';
+import { Scene, SceneJSON, ObjectLoader } from 'three';
 
-type SceneBunchJson = Record<string, Scene>;
+export type SceneBunchJSON = {
+    mainName: string;
+    content: Record<string, SceneJSON>;
+};
 
-class SceneBunch extends Map<string, Scene> {
-    toJson(): SceneBunchJson {
-        const res = {};
-        this.forEach((value, key) => {
-            res[key] = value.toJSON();
-        });
-        return res;
+const loader = new ObjectLoader();
+
+export class SceneBunch extends Map<string, Scene> {
+    mainName: string;
+
+    get mainScene() {
+        return this.get(this.mainName);
     }
 
-    remake(obj: SceneBunchJson) {
+    toJSON(): SceneBunchJSON {
+        const content = {};
+        const result = { mainName: this.mainName, content };
+
+        this.forEach((value, key) => {
+            content[key] = value.toJSON();
+        });
+
+        return result;
+    }
+
+    remake(data: SceneBunchJSON) {
         super.clear();
-        Object.entries(obj).forEach(([key, value]) => {
-            super.set(key, value);
+
+        const { mainName, content } = data;
+
+        this.mainName = mainName;
+
+        Object.entries(content).forEach(([key, value]) => {
+            super.set(key, loader.parse(value) as Scene);
         });
     }
 }
+
 export const sceneBunch = new SceneBunch();
+sceneBunch.mainName = 'main';
 
 const scene = new Scene();
 sceneBunch.set('main', scene);

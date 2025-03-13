@@ -26,3 +26,5 @@ dist-ssr
 #
 
 .npmrc
+docs
+typedoc.json

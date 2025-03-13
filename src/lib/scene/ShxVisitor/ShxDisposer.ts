@@ -1,4 +1,4 @@
-import { isFunction, isObject } from '@/lib/core/typeCheck';
+import { isFunction, isObject, isTexture } from '@/lib/core/typeCheck';
 import { ShxCollections } from '../Shx';
 import { dispose as MeshDispose } from '../THREE/dispose/Mesh';
 import { Mesh, Object3D } from 'three';
@@ -7,14 +7,24 @@ import { Mesh, Object3D } from 'three';
  * @todo
  */
 export class ShxDisposer {
-    dispose(item: unknown) {
+    dispose(item: unknown, seen = new WeakSet()) {
         /** check valid */
         if (!isObject(item)) return;
+
+        /** duplicated */
+        if (seen.has(item)) return;
+        seen.add(item);
+
+        /** SPJ */
+        if (isTexture(item)) {
+            item.dispose();
+            return;
+        }
 
         /** solve child */
         if (Array.isArray(item.children)) {
             for (const child of item.children) {
-                this.dispose(child);
+                this.dispose(child, seen);
             }
 
             // clear child references
@@ -49,6 +59,12 @@ export class ShxDisposer {
                 break;
 
             default:
+                for (const attr in item) {
+                    if (Object.prototype.hasOwnProperty.call(item, attr)) {
+                        const element = item[attr];
+                        this.dispose(element, seen);
+                    }
+                }
                 break;
         }
     }

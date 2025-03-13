@@ -28,15 +28,23 @@
     - [x] Hookable Render Loop
       - [x] timing-hook (before, on, after, main-renderer)
       - [x] post-process (composer, pass)
-  -  [ ] Scene Objects
-     -  [ ] motion animation
-     -  [ ] shader animation
-  -  [ ] Timeline with **Anime**
-     -  [ ] Replay
-     -  [ ] Fast
-  -  [ ] Parser
-     -  [ ] motion
-     -  [ ] sound
+  - [ ] Objects wrapper
+    - [ ] camera
+        - [ ] Serialization, deserialization
+        - [ ] motion animation
+    - [ ] shxScene
+        - [ ] Serialization, deserialization
+        - [ ] Assets management
+    - [ ] shxObject(mesh)
+      - [ ] Serialization, deserialization
+      - [ ] motion animation
+      - [ ] shader animation
+  - [ ] Timeline with **Anime**
+      - [ ] Replay
+      - [ ] Fast
+  - [ ] Parser
+      - [ ] motion
+      - [ ] sound
 - [ ] Persistency
   - [ ] StroyBus
   - [ ] Visited Dialogue
@@ -56,11 +64,13 @@
 
 我们的目标是制作一个视觉小说项目模版，具有较好的可扩展性，能简单地支持用户插件，一定程度上开箱即用。  
 
-我们的项目实现或集成了较多的功能，并且内置了一些平凡算法，包括：
-* 支持按需渲染、离屏渲染、后处理的简易管线，以及一些着色器包装。
-* 演出时间轴，复杂动画，分支跳跃，存档。
+我们的项目 **实现或集成** 了较多的功能，并且内置了一些平凡算法，包括：
+* 按需渲染、离屏渲染、后处理的简易管线，以及一些着色器包装。
+* 演出时间轴，复杂动画，分支跳跃，变量。
 * 脚本转译器，自定义指令，解析时 hook。
 * 复杂华丽的页面切换动画，页面路由。
+
+本质上，这个项目是基于一系列开源库的上层应用，试图验证技术栈的可行性
 
 ## 文档（WIP）
 
@@ -91,8 +101,8 @@ npx tauri dev
 我们采用非主流的混合技术栈
 * 采用 tauri2 完成跨平台，支持 `Windows`, `Linux`, `macOS`, `Android`, `IOS`。    
 * 页面元素主要使用 Web Component 标准，避免过度水合。
-  * 原生语法，开发/学习成本较低，组件黑盒化。
-  * 可以较低成本地引入现代流行框架。
+  * 原生语法，开发/学习成本较低，响应式，组件黑盒化。
+  * 可以较低成本地与现代流行框架集成。
 * 通过 Pjax 实现 SPA，按需分片加载，利用本地 IO 提速，同时降低内存负担。
 * 使用 Three.js，很好用（很难用）。
 
@@ -124,11 +134,35 @@ npx tauri dev
 
 ## 已知问题
 
-### A
+### T
 
-由于 Three 的序列化并不容易使用，我们人为地修改了一些内置行为（以插件的形式）。   
+由于 Three 的序列化并不容易使用，我们人为地修改了一些内置行为（以插件的外部形式）。   
 
 目前对 Three 的资产处理比较 naive，可能存在一些轻微的内存泄露，我们会在 release 前解决这一问题。
+
+
+#### T0
+
+THREE 的序列化会把 image 变成 URI（以 base64 形式），而没有办法生成基于本地/网络地址的 URL。
+
+我们在提 issue 无果后，只能手动在外部进行了简短的 hack，不影响其他任何模块的可用性。
+
+#### T1
+
+THREE 的 Camera 没有自带的反序列化，目前我们的 `cameraBunch.parse` 只提供了常用的属性的反序列化。
+
+如果您在使用时发现缺少属性，欢迎立刻联系我们 / 提 isuuse / 发 pr。
+
+
+### B
+
+@Barba 的 types 文件放错了地方，我们在外部 hack 了一下，据说这一问题会在去年年底(?)修复。
+
+~~但如果上游对这个问题进行修复，我们依然需要一次 breaking 的更新。~~
+
+在一周（不是）的努力下，现在可以在导入路径不变的情况下 hack 类型提示，目前只要等待上游修复。。。
+
+
 
 ### F
 

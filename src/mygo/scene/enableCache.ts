@@ -1,4 +1,4 @@
-import { Cache, ImageLoader, ImageBitmapLoader } from 'three';
+import { Cache, ImageLoader, ImageBitmapLoader, FileLoader } from 'three';
 
 /**
  * Make sure before any THREE operation.

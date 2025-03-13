@@ -7,11 +7,13 @@
         "dev": "vite build && vite dev --port=1420 ./dist",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "tauri": "tauri"
+        "tauri": "tauri",
+        "docs": "typedoc --options ./typedoc.json"
     },
     "dependencies": {
         "@barba/core": "^2.10.3",
         "@barba/prefetch": "^2.2.0",
+        "@barba/router": "^2.1.11",
         "@juliangarnierorg/anime-beta": "^4.0.0-rc.5",
         "@lit/context": "^1.1.4",
         "@shoelace-style/shoelace": "^2.20.0",
@@ -26,14 +28,20 @@
         "typewriter-effect": "^2.21.0"
     },
     "devDependencies": {
+        "@babel/plugin-syntax-top-level-await": "^7.14.5",
         "@lit-labs/compiler": "^1.1.1",
+        "@rollup/plugin-babel": "^6.0.4",
         "@rollup/plugin-typescript": "^12.1.2",
         "@tauri-apps/cli": "^2",
         "@types/node": "^22.13.8",
         "@types/three": "^0.174.0",
+        "@vitejs/plugin-legacy": "^6.0.2",
         "glob": "^11.0.0",
+        "terser": "^5.39.0",
         "tslib": "^2.8.1",
+        "typedoc": "^0.27.9",
         "typescript": "~5.5.0",
-        "vite": "^6.2.0"
+        "vite": "^6.2.1",
+        "vite-plugin-top-level-await": "^1.5.0"
     }
 }

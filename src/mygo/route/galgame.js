@@ -1,4 +1,4 @@
-import * as nuiBase from '../../lib/core';
+import * as nuiBase from '@/lib/core';
 
 nuiBase.regView({
     namespace: 'galgame',

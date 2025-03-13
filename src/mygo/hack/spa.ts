@@ -14,7 +14,7 @@ const myHackClassName = 'thisIsMygoInsteadOfAve_mujica';
 // call same hooks behaves like a queue, will NOT overload
 
 barba.hooks.afterLeave((data) => {
-    const Styles = data.current.container.querySelectorAll('style');
+    const Styles = data!.current.container.querySelectorAll('style');
     for (const style of Styles) {
         // fix for <style>
         style.remove();
@@ -22,7 +22,7 @@ barba.hooks.afterLeave((data) => {
 });
 
 barba.hooks.beforeEnter((data) => {
-    const htmlString = data.next.html;
+    const htmlString = data!.next.html;
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlString, 'text/html');
 
@@ -48,14 +48,14 @@ barba.hooks.beforeEnter((data) => {
         }
         const one = document.createElement('link');
         const href = style.getAttribute('href');
-        one.href = href;
+        if (typeof href === 'string') one.href = href;
         one.rel = 'stylesheet';
         one.classList.add(myHackClassName);
         fragment.appendChild(one);
     }
 
     /// process container style
-    const containerStyles = data.next.container.querySelectorAll('style');
+    const containerStyles = data!.next.container.querySelectorAll('style');
     for (const style of containerStyles) {
         if (style.className === myHackClassName) {
             continue;
@@ -77,6 +77,7 @@ barba.hooks.beforeEnter((data) => {
 
         if (script.hasAttribute('src')) {
             const src = script.getAttribute('src');
+            if (typeof src !== 'string') continue;
             if (src.includes('@vite')) {
                 continue;
             } // skip src="/@vite/client"
@@ -91,7 +92,7 @@ barba.hooks.beforeEnter((data) => {
     }
 
     /// process container script
-    let js = data.next.container.querySelectorAll('main script');
+    let js = data!.next.container.querySelectorAll('main script');
     for (const script of js) {
         const one = document.createElement('script');
 
@@ -99,6 +100,7 @@ barba.hooks.beforeEnter((data) => {
             if (window.VITE_HMR_DEBUG !== 1) continue;
 
             const src = script.getAttribute('src');
+            if (typeof src !== 'string') continue;
             if (src.includes('@vite')) {
                 continue;
             } // skip src="/@vite/client"
@@ -115,7 +117,7 @@ barba.hooks.beforeEnter((data) => {
     }
 
     // fix for <link>
-    data.current.container.remove();
+    data!.current.container.remove();
 
     // [finish] inejction
     document.head.appendChild(fragment);

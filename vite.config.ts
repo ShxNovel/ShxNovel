@@ -1,4 +1,7 @@
 import { defineConfig } from 'vite';
+import topLevelAwait from 'vite-plugin-top-level-await';
+import legacy from '@vitejs/plugin-legacy';
+import babel from '@rollup/plugin-babel';
 
 import { glob } from 'glob';
 import { resolve, dirname, basename, normalize } from 'path';
@@ -33,8 +36,17 @@ export default defineConfig({
         },
     },
     envPrefix: ['VITE_', 'TAURI_ENV_*'],
+
+    // windows platform dont need topLevelAwait
+    plugins: [
+        legacy({
+            renderLegacyChunks: false,
+        }),
+        topLevelAwait(),
+    ],
+
     build: {
-        target: 'esnext',
+        target: 'es2017',
 
         minify: !process.env.TAURI_ENV_DEBUG ? 'esbuild' : false,
         sourcemap: !!process.env.TAURI_ENV_DEBUG,
@@ -50,6 +62,7 @@ export default defineConfig({
             ],
         },
     },
+
     resolve: {
         alias: {
             '@/': resolve(__dirname, 'src'),

@@ -1,23 +1,35 @@
 import barba from '@barba/core';
-import { ITransitionPage, IView } from '@barba/core/dist/core/src/src/defs';
+import { IView, ITransitionPage } from '@barba/core';
+import barbaRouter from '@barba/router';
+// import barbaPrefetch from '@barba/prefetch';
 
-const pageView = [];
-const pageTransition = [];
+/** f*** barba lost types/def */
+interface IRoute {
+    name?: string;
+    path?: string;
+}
+
+const pageView: IView[] = [];
+const pageTransition: ITransitionPage[] = [];
+const pageRoutes: IRoute[] = [];
 
 export let _internal_block_spa = false;
 
-// import barbaPrefetch from '@barba/prefetch';
+export function setSPAInternalBlock(status = true) {
+    _internal_block_spa = status;
+}
+
 // barba.use(barbaPrefetch);
 
-export function prefetch(data: String) {
-    let href = undefined;
+// export function prefetch(data: String) {
+//     let href = undefined;
 
-    if (typeof data === 'string') {
-        href = data;
-    }
+//     if (typeof data === 'string') {
+//         href = data;
+//     }
 
-    barba.prefetch(href);
-}
+//     barba.prefetch(href);
+// }
 
 export function regView(obj: IView | IView[]) {
     if (Array.isArray(obj)) {
@@ -27,7 +39,7 @@ export function regView(obj: IView | IView[]) {
     }
 }
 
-export function regTransition(obj: ITransitionPage | ITransitionPage[]) {
+export function addTransition(obj: ITransitionPage | ITransitionPage[]) {
     if (Array.isArray(obj)) {
         pageTransition.push(...obj);
         return;
@@ -35,7 +47,19 @@ export function regTransition(obj: ITransitionPage | ITransitionPage[]) {
     pageTransition.push(obj);
 }
 
+export function addRoute(obj: IRoute | IRoute[]) {
+    if (Array.isArray(obj)) {
+        pageRoutes.push(...obj);
+        return;
+    }
+    pageRoutes.push(obj);
+}
+
 export function initSPA(prefix = 'spa') {
+    barba.use(barbaRouter, {
+        routes: pageRoutes,
+    });
+
     barba.init({
         schema: { prefix: `data-${prefix}` },
         transitions: pageTransition,
@@ -45,17 +69,13 @@ export function initSPA(prefix = 'spa') {
     });
 }
 
-export function setSPAInternalBlock(status = true) {
-    _internal_block_spa = status;
-}
-
 export function changeUrl(url: string, cb: Function = null): void {
     if (_internal_block_spa) return;
     if (cb instanceof Function) cb();
     barba.go(url);
 }
 
-export async function changeUrlAsync(url, f = null) {
+export async function changeUrlAsync(url: string, f = null) {
     if (_internal_block_spa) return;
     if (f instanceof Function) await f();
     barba.go(url);
