@@ -5,6 +5,7 @@ interface Window {
     objectLoader: any;
     cameraBunch: any;
     sceneBunch: any;
+    loader: any;
 }
 
 /** wtf */

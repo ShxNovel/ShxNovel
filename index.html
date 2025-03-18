@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/web/css/common.css">
 </head>
 
-<script type="module" src="/index.ts"></script>
+<script type="module" src="./index.ts"></script>
 
 <body>
 
@@ -43,7 +43,10 @@
 <script type="module">
 
   import { changeUrl } from './src/lib/core.ts';
-  // await import('/index.ts');
+  import { init } from './index.ts';
+
+  await init();
+
   // changeUrl('/src/logo.html');
   changeUrl('/src/home.html')
 

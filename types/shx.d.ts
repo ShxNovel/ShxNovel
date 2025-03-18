@@ -11,8 +11,17 @@ export type ShxObjectUserData = Record<string, any> & {
     vertexShader?: string;
     fragmentShader?: string;
 
+    /**
+     * one-scene anime
+     * no persistence
+     */
     runningID?: number;
     timeline?: Timeline | string;
+
+    /**
+     * long-scenes anime
+     * need persistence
+     */
 };
 
 export interface ShxObject extends THREE.Mesh {

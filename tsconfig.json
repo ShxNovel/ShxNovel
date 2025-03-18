@@ -25,7 +25,9 @@
         "baseUrl": ".",
         "paths": {
             "@barba/core": ["./node_modules/@barba/core/dist/core/src/src"],
-            "@barba/route": ["./node_modules/@barba/router/dist/router/src/src"],
+            "@barba/route": [
+                "./node_modules/@barba/router/dist/router/src/src"
+            ],
             "@/*": ["./src/*"],
             "/*": ["./public/*"]
         }
