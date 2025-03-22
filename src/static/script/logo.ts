@@ -1,5 +1,5 @@
-import { engine, createSpring, createTimeline } from '@juliangarnierorg/anime-beta';
-import { changeUrl } from '../../lib/core';
+import { createSpring, createTimeline } from '@juliangarnierorg/anime-beta';
+import { changeUrl } from '@/lib/core';
 
 var textWrapper = document.querySelector('.ml9 .letters');
 textWrapper.innerHTML = textWrapper.textContent.replace(
@@ -74,7 +74,12 @@ tl.add({ duration: 500 })
         // ease:
         // elasticity: 600,
         // ease: 'outElastic',
-        ease: createSpring(1, 100, 10, 0),
+        ease: createSpring({
+            mass: 1,
+            stiffness: 100,
+            damping: 10,
+            velocity: 0,
+        }),
         delay: (el, i) => 45 * (i + 1),
     })
     .add('.ml9', {
@@ -90,7 +95,12 @@ tl.add({ duration: 500 })
             duration: 1500,
             // elasticity: 600,
             // ease: 'outElastic',
-            ease: createSpring(1, 100, 10, 0),
+            ease: createSpring({
+                mass: 1,
+                stiffness: 100,
+                damping: 10,
+                velocity: 0,
+            }),
             delay: (el, i) => 45 * (i + 1),
         },
         '-=1000'

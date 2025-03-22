@@ -1,0 +1,14 @@
+{
+    "type": "texture",
+    "image": "/images/default.png",
+    "filter": {
+        "magFilter": 1006,
+        "minFilter": 1008,
+        "useConfig": true
+    },
+    "anisotropy": 1,
+    "generateMipmaps": true,
+    "premultiplyAlpha": true,
+    "flipY": true,
+    "unpackAlignment": 4
+}

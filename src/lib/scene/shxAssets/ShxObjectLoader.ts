@@ -1,10 +1,10 @@
 import { isObject } from '@/lib/core/typeCheck';
 import { ObjectLoader, Texture, Source, Object3D } from 'three';
-import { shxTexturePool, TextureCache } from './ShxTexturePool';
+import { shxTexturePool, TexturePool } from './ShxTexturePool';
 
 //
-// @types/three is a lier.
-// Dont belive it, it gives wrong types, wrong parameters ...
+// For internal hacks, dont care about @types/three
+// Many internal arguments are not typed/exposed
 //
 
 interface SomeHackJSON {
@@ -61,6 +61,10 @@ class ShxObjectLoader extends ObjectLoader {
         const textures = {};
 
         if (json !== undefined) {
+            const defaultTextureData = [];
+            const shxTextureData = [];
+            const promises = [];
+
             // @ts-expect-error
             for (let i = 0, l = json.length; i < l; i++) {
                 const data: Record<string, string> = json[i];
@@ -82,36 +86,46 @@ class ShxObjectLoader extends ObjectLoader {
                 const source = images[data.image];
                 const image = source.data;
 
-                let texture: Texture;
-
-                function defaultSolve(data) {
-                    const one = internalLoader.parse(data);
-                    textures[data.uuid] = one;
-                }
-
                 if (Array.isArray(image)) {
                     // CubeTexture
-                    defaultSolve(data);
+                    defaultTextureData.push(data);
                 } else {
                     if (image && image.data) {
                         // DataTexture
-                        defaultSolve(data);
+                        defaultTextureData.push(data);
                     } else {
                         if (
                             isObject(data.userData) &&
-                            data.userData.url !== undefined
+                            data.userData.image !== undefined
                         ) {
                             // SHX SOLUTION
-                            texture = await shxTexturePool.loadAsync(
-                                data.userData.url as string
-                            );
+                            shxTextureData.push(data);
                         } else {
-                            // Texture
-                            defaultSolve(data);
+                            // normal Texture
+                            defaultTextureData.push(data);
                         }
                     }
                 }
             }
+
+            // default
+            Object.assign(
+                textures,
+                internalLoader.parseTextures(defaultTextureData, images)
+            );
+
+            // shx
+            for (const data of shxTextureData) {
+                promises.push(
+                    shxTexturePool
+                        .loadAsync(data.userData.url as string)
+                        .then((texture) => {
+                            textures[data.uuid] = texture;
+                        })
+                );
+            }
+
+            await Promise.all(promises);
         }
 
         return textures;
@@ -119,4 +133,6 @@ class ShxObjectLoader extends ObjectLoader {
 }
 
 const internalLoader = new ObjectLoader();
+
 export const shxObjectLoader = new ShxObjectLoader();
+window.loader = shxObjectLoader;

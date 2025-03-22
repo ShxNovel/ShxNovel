@@ -1,11 +1,10 @@
-import { Scene, SceneJSON, ObjectLoader } from 'three';
+import { Scene, SceneJSON } from 'three';
+import { shxObjectLoader } from './ShxAssets/ShxObjectLoader';
 
 export type SceneBunchJSON = {
     mainName: string;
     content: Record<string, SceneJSON>;
 };
-
-const loader = new ObjectLoader();
 
 export class SceneBunch extends Map<string, Scene> {
     mainName: string;
@@ -33,13 +32,14 @@ export class SceneBunch extends Map<string, Scene> {
         this.mainName = mainName;
 
         Object.entries(content).forEach(([key, value]) => {
-            super.set(key, loader.parse(value) as Scene);
+            super.set(key, shxObjectLoader.parse(value) as Scene);
         });
     }
 }
 
 export const sceneBunch = new SceneBunch();
 sceneBunch.mainName = 'main';
+window.sceneBunch = sceneBunch;
 
 const scene = new Scene();
 sceneBunch.set('main', scene);

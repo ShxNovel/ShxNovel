@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { initSPA } from './src/lib/core';
 import '@shoelace-style/shoelace/dist/themes/light.css';
-import { shxObjectLoader } from '@/lib/scene/shxAssets/ShxObjectLoader.ts';
 
 /**
  *
@@ -13,10 +12,9 @@ import { shxObjectLoader } from '@/lib/scene/shxAssets/ShxObjectLoader.ts';
  *
  */
 export async function init() {
-    // make sure before any THREE operation
-    THREE.Cache.enabled = true;
-
-    window.loader = shxObjectLoader;
+    // Should cache all Images?
+    // If enabled, had better set before any THREE operation
+    await import('./src/mygo/scene/enableCache');
 
     // hack
     await import('./src/mygo/hack/spa');
@@ -29,11 +27,12 @@ export async function init() {
 
     // scene
     await import('./src/mygo/scene/showFPS');
+    await import('./src/mygo/scene/systemScene');
 
     // route
     await import('./src/mygo/route/transition/init');
     await import('./src/mygo/route/transition/default');
-    await import('./src/mygo/route/others');
+    await import('./src/mygo/route/view/default');
     // await import('./src/mygo/route/galgame');
 
     initSPA('spa');

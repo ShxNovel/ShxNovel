@@ -1,5 +1,5 @@
 import barba from '@barba/core';
-import { IView, ITransitionPage } from '@barba/core';
+import type { IView, ITransitionPage } from '@barba/core';
 import barbaRouter from '@barba/router';
 // import barbaPrefetch from '@barba/prefetch';
 

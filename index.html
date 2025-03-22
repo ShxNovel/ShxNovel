@@ -45,10 +45,10 @@
   import { changeUrl } from './src/lib/core.ts';
   import { init } from './index.ts';
 
-  await init();
-
-  // changeUrl('/src/logo.html');
-  changeUrl('/src/home.html')
+  init().then(() => {
+    // changeUrl('/src/logo.html');
+    changeUrl('/src/home.html')
+  });
 
 </script>
 

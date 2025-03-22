@@ -1,7 +1,8 @@
-import { shxObjectLoader } from './shxObjectLoader';
+import type { shxObjectLoader } from './ShxObjectLoader';
+import type { MothTextureJSON } from 'types/MothTextureJSON';
+
 import { Texture, TextureLoader, WebGLRenderer } from 'three';
 import { isObject, isTexture } from '../../core/typeCheck';
-import { MothTextureJSON } from 'types/MothTextureJSON';
 
 /**
  * A texture cache.
@@ -9,12 +10,18 @@ import { MothTextureJSON } from 'types/MothTextureJSON';
  *
  * used internally by {@link shxObjectLoader}
  */
-export class TextureCache {
-    cache: Map<string, Texture> = new Map();
+export class TexturePool {
+    private cache: Map<string, Texture> = new Map();
 
-    textureLoader = new TextureLoader();
+    private textureLoader = new TextureLoader();
+
+    useTexture(texture: Texture) {
+        texture.userData.time = Date.now();
+    }
 
     wrapTexture(texture: Texture, data: MothTextureJSON) {
+        // lets make some three.js falvor ...
+
         const filter = data.filter;
         if (filter && filter.useConfig) {
             texture.userData.filter_useConfig = true;
@@ -34,25 +41,39 @@ export class TextureCache {
         texture.needsUpdate = true;
     }
 
+    /**
+     * fetch a texture from a url. \
+     * Causes side effect {@link useTexture}
+     */
     async loadAsync(url: string) {
         if (this.cache.has(url)) {
             const texture = this.cache.get(url);
+
+            this.useTexture(texture);
             return Promise.resolve(texture);
         }
 
-        const href = new URL(url, window.location.origin + '/textures').href;
+        // E.G.  from http://localhost/:url
+        // url = /textures/texture.json
+        const href = new URL(url, window.location.origin).href;
 
         try {
-            const response = await fetch(href);
+            const response = await fetch(href, { cache: 'no-store' });
             if (!response.ok) {
                 throw new Error(`no such file: ${href}`);
             }
 
             const data = (await response.json()) as MothTextureJSON;
-            const texture = await this.textureLoader.loadAsync(data.image);
+
+            // E.G.  from http://localhost/textures/texture.json
+            // url = ../images/image.png
+            const imgHref = new URL(data.image, href).href;
+
+            const texture = await this.textureLoader.loadAsync(imgHref);
             this.wrapTexture(texture, data);
 
             this.cache.set(url, texture);
+            this.useTexture(texture);
             return texture;
         } catch (error) {
             console.error(
@@ -62,15 +83,13 @@ export class TextureCache {
         }
     }
 
-    /**
-     * Dispose all texture, then clear the container.
-     */
-    clear() {
+    evict() {}
+
+    forceDispose() {
         this.cache.forEach((texture) => {
             texture.dispose();
         });
-        this.cache.clear();
     }
 }
 
-export const shxTexturePool = new TextureCache();
+export const shxTexturePool = new TexturePool();

@@ -2,7 +2,7 @@ import { ImageUtils } from 'three';
 
 /**
  * Plugin `hack/ImageUtils` is an official plugin for dummy Three behaviour.
- * This modified the performance during serialization.
+ * This modified the performance & performance(~100x) during serialization.
  */
 
 const origionMethod = ImageUtils.getDataURL;

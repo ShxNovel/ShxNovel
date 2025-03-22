@@ -39,24 +39,24 @@ export const actions: Map<number, Action> = new Map();
 window.actions = actions;
 
 /** internal couter */
-let _actionsUUID = 0;
+let __actionsUID = 0;
 
 /**
  * @param {Action} [cb=true]
- * @returns {number} this action UUID
+ * @returns {number} this action UID
  */
 export function addAction(cb: Action = true): number {
-    _actionsUUID++;
-    actions.set(_actionsUUID, cb);
-    return _actionsUUID;
+    __actionsUID++;
+    actions.set(__actionsUID, cb);
+    return __actionsUID;
 }
 
 /**
  * Accept Any value, but only number UUID will be accepted.
- * @param {any | number} thisActionsUUID
+ * @param {any | number} thisActionUID
  */
-export function rmvAction(thisActionsUUID: any | number) {
-    return actions.delete(thisActionsUUID);
+export function rmvAction(thisActionUID: any | number) {
+    return actions.delete(thisActionUID);
 }
 
 export function callActions(): boolean[] {

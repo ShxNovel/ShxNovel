@@ -33,6 +33,7 @@ engine.useDefaultMainLoop = false;
 
 let mainRendererBehaviour = function () {
     mainRenderer.setRenderTarget(null);
+    // console.log(1)
     mainRenderer.render(sceneBunch.mainScene, cameraBunch.mainCamera);
 };
 

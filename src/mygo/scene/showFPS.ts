@@ -1,5 +1,5 @@
 import Stats from 'stats.js';
-import { addAction } from '@/lib/scene/actions';
+import { addAction } from '@/lib/scene';
 
 const stats = new Stats();
 document.body.appendChild(stats.dom);

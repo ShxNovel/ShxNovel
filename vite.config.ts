@@ -39,9 +39,9 @@ export default defineConfig({
 
     // windows platform dont need topLevelAwait
     plugins: [
-        legacy({
-            renderLegacyChunks: false,
-        }),
+        // legacy({
+        //     renderLegacyChunks: false,
+        // }),
         topLevelAwait(),
     ],
 

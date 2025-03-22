@@ -1,12 +1,12 @@
-import {
-    PerspectiveCamera,
-    OrthographicCamera,
+import type {
     PerspectiveCameraJSON,
     OrthographicCameraJSON,
     // PerspectiveCameraJSONObject as PCJO,
     // OrthographicCameraJSONObject as OCJO,
-    ObjectLoader,
 } from 'three';
+
+import { PerspectiveCamera, OrthographicCamera } from 'three';
+import { shxObjectLoader } from './ShxAssets/ShxObjectLoader';
 
 export type TCamera = PerspectiveCamera | OrthographicCamera;
 export type TCameraJSON = PerspectiveCameraJSON | OrthographicCameraJSON;
@@ -15,9 +15,6 @@ export type CameraBunchJSON = {
     mainName: string;
     content: Record<string, TCameraJSON>;
 };
-
-const loader = new ObjectLoader();
-// window.objectLoader = loader;
 
 export class CameraBunch extends Map<string, TCamera> {
     mainName: string;
@@ -45,7 +42,7 @@ export class CameraBunch extends Map<string, TCamera> {
         this.mainName = mainName;
 
         Object.entries(content).forEach(([key, value]) => {
-            super.set(key, loader.parse(value) as TCamera);
+            super.set(key, shxObjectLoader.parse(value) as TCamera);
         });
     }
 }
@@ -62,8 +59,8 @@ const camera = new OrthographicCamera(
     width / 2,
     height / 2,
     height / -2,
-    1,
-    1024
+    0.1,
+    2000
 );
 
 cameraBunch.set('main', camera);
