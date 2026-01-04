@@ -1,0 +1,34 @@
+{
+    "name": "@shxnovel/rewrite",
+    "version": "0.0.1",
+    "type": "module",
+    "files": [
+        "dist",
+        "types"
+    ],
+    "main": "./dist/rewrite.umd.cjs",
+    "module": "./dist/rewrite.js",
+    "types": "./types/index.d.ts",
+    "exports": {
+        "types": "./types/index.d.ts",
+        "import": "./dist/rewrite.js",
+        "require": "./dist/rewrite.umd.cjs"
+    },
+    "scripts": {
+        "test": "vitest --typecheck",
+        "clean:types": "rimraf types",
+        "build": "pnpm run clean:types && tsc && vite build"
+    },
+    "license": "MIT",
+    "packageManager": "pnpm@10.8.0",
+    "devDependencies": {
+        "@types/node": "*",
+        "rimraf": "*",
+        "typescript": "*",
+        "vite": "*",
+        "vitest": "*"
+    },
+    "peerDependencies": {
+        "gsap": "*"
+    }
+}

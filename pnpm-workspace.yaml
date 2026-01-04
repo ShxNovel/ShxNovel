@@ -1,0 +1,8 @@
+packages:
+  - packages/canoe
+  # - packages/pages
+  - packages/rewrite
+  - shxnovel
+
+ignoredBuiltDependencies:
+  - esbuild

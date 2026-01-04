@@ -1,0 +1,33 @@
+{
+    "name": "shxnovel",
+    "private": true,
+    "version": "0.7.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "tauri": "tauri"
+    },
+    "packageManager": "pnpm@10.8.0",
+    "dependencies": {
+        "@barba/core": "*",
+        "@barba/prefetch": "*",
+        "@barba/router": "*",
+        "@awesome.me/webawesome": "*",
+        "@shxnovel/rewrite": "workspace:*",
+        "@tauri-apps/api": "^2",
+        "@tauri-apps/plugin-opener": "^2",
+        "@tauri-apps/plugin-store": "^2.2.0",
+        "gsap": "*",
+        "lit": "*",
+        "stats.js": "*",
+        "three": "*",
+        "typewriter-effect": "*"
+    },
+    "devDependencies": {
+        "@tauri-apps/cli": "^2",
+        "typescript": "*",
+        "vite": "*"
+    }
+}
