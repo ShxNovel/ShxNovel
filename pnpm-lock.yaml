@@ -44,6 +44,25 @@ importers:
         specifier: ^4
         version: 4.0.16(@types/node@22.19.3)
 
+  packages/canoe:
+    dependencies:
+      gsap:
+        specifier: ^3
+        version: 3.14.2
+      stats.js:
+        specifier: ^0.17.0
+        version: 0.17.0
+      three:
+        specifier: ^0.182.0
+        version: 0.182.0
+    devDependencies:
+      '@types/three':
+        specifier: ^0.182.0
+        version: 0.182.0
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
+
   packages/rewrite:
     dependencies:
       gsap:
