@@ -1,0 +1,10 @@
+{
+    "name": "@shxnovel/assets",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "scripts": {
+        "build": "pnpx tsx ../packages/assets/src/index.ts"
+    },
+    "packageManager": "pnpm@10.8.0"
+}

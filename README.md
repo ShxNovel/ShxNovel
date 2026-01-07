@@ -6,13 +6,13 @@
 仓库结构
 ├── ./shxnovel
 └── ./packages
+    ├── ./canoe
     ├── ./rewrite
-    ├── ./world
-    └── ./canoe
+    └── ./world
 ```
 
 shxnovel 是流水线上最后一个包，负责添加用户界面，以及打包。
-packages 包括多个包 `rewrite`，`canoe`，用于支持 shxnovel 的开发工作。
+packages 包括多个包 `canoe`，`rewrite`, `world`，用于支持 shxnovel 的开发工作。
 
 ### packages
 
@@ -25,3 +25,19 @@ packages 包括多个包 `rewrite`，`canoe`，用于支持 shxnovel 的开发�
 -   canoe
     -   负责 Runtime 运行时部分
         职责为接触 render loop / frame scheduling / scene orchestration 等
+
+```mermaid
+graph LR
+    User -->|注册资源| world
+    User -->|编写脚本| rewrite
+
+    subgraph Build Time
+        world -->|类型 & Schema| rewrite
+        rewrite -->|章节 IR| world
+    end
+
+    subgraph Runtime
+        world -->|Runtime Scene / Assets| canoe
+    end
+
+```

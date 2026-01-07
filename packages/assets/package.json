@@ -1,0 +1,14 @@
+{
+    "name": "@shxnovel/assets",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "packageManager": "pnpm@10.8.0",
+    "devDependencies": {
+        "@types/node": "*",
+        "rimraf": "*",
+        "typescript": "*",
+        "vite": "*",
+        "vitest": "*"
+    }
+}

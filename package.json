@@ -5,7 +5,9 @@
     "scripts": {
         "dev": "pnpm --filter=* dev",
         "build": "pnpm --filter=* build",
-        "preview": "pnpm --filter=* preview"
+        "preview": "pnpm --filter=* preview",
+        "test": "pnpm --filter=* test",
+        "scan": "pnpm --filter=* scan"
     },
     "author": "shxnovel",
     "license": "MIT",

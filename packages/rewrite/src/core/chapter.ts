@@ -1,5 +1,5 @@
-import type { RewriteText, Text } from './text';
-import { ChapterSystem, chapterSystem } from './chapterSystem';
+import type { Text } from './text';
+import { Collector, collector } from './collector';
 import { BuildCharacter, InitLinkText } from './character';
 
 export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
@@ -17,11 +17,10 @@ export interface BasicChapter {
 
     // ink(some: TemplateStringsArray, ...values: RewriteInk[]): LinkInk;
     // prompt(some: TemplateStringsArray, ...values: RewritePrompt[]): LinkPrompt;
-
-    // lable(name: string): void;
+    label(name: string): void;
 }
 
-export function useChapter(name: string, source: ChapterSystem = chapterSystem) {
+export function useChapter(name: string, source: Collector = collector) {
     const _cache = source.newChapter(name);
 
     if (!_cache) {
@@ -36,6 +35,10 @@ export function useChapter(name: string, source: ChapterSystem = chapterSystem) 
         },
 
         character: BuildCharacter(cache),
+
+        label: (name: string) => {
+            cache.push({ type: 'label', args: { name } });
+        },
     };
 
     return ChapterImpl;

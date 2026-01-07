@@ -16,6 +16,7 @@
         "@barba/router": "*",
         "@awesome.me/webawesome": "*",
         "@shxnovel/rewrite": "workspace:*",
+        "@shxnovel/world": "workspace:*",
         "@tauri-apps/api": "^2",
         "@tauri-apps/plugin-opener": "^2",
         "@tauri-apps/plugin-store": "^2.2.0",

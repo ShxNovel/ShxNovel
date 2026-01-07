@@ -1,4 +1,5 @@
 export * from './chapter';
-export * from './chapterSystem';
+export * from './collector';
+
 export * from './character';
 export * from './text';

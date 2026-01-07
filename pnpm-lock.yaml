@@ -44,6 +44,26 @@ importers:
         specifier: ^4
         version: 4.0.16(@types/node@22.19.3)
 
+  assets: {}
+
+  packages/assets:
+    devDependencies:
+      '@types/node':
+        specifier: ^22
+        version: 22.19.3
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
+      typescript:
+        specifier: ~5.5.0
+        version: 5.5.4
+      vite:
+        specifier: ^7
+        version: 7.3.0(@types/node@22.19.3)
+      vitest:
+        specifier: ^4
+        version: 4.0.16(@types/node@22.19.3)
+
   packages/canoe:
     dependencies:
       gsap:
@@ -85,6 +105,28 @@ importers:
         specifier: ^4
         version: 4.0.16(@types/node@22.19.3)
 
+  packages/world:
+    dependencies:
+      gsap:
+        specifier: ^3
+        version: 3.14.2
+    devDependencies:
+      '@types/node':
+        specifier: ^22
+        version: 22.19.3
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
+      typescript:
+        specifier: ~5.5.0
+        version: 5.5.4
+      vite:
+        specifier: ^7
+        version: 7.3.0(@types/node@22.19.3)
+      vitest:
+        specifier: ^4
+        version: 4.0.16(@types/node@22.19.3)
+
   shxnovel:
     dependencies:
       '@awesome.me/webawesome':
@@ -102,6 +144,9 @@ importers:
       '@shxnovel/rewrite':
         specifier: workspace:*
         version: link:../packages/rewrite
+      '@shxnovel/world':
+        specifier: workspace:*
+        version: link:../packages/world
       '@tauri-apps/api':
         specifier: ^2
         version: 2.9.1

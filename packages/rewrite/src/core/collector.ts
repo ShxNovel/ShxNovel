@@ -1,6 +1,6 @@
 import { ChapterUnit } from './chapter';
 
-export class ChapterSystem {
+export class Collector {
     chapters: Map<string, ChapterUnit[]> = new Map();
     contentCache: ChapterUnit[] = [];
 
@@ -17,4 +17,4 @@ export class ChapterSystem {
     }
 }
 
-export const chapterSystem = new ChapterSystem();
+export const collector = new Collector();

@@ -1,12 +1,14 @@
 import { assert, expectTypeOf, assertType, expect, test, describe } from 'vitest';
 import { useChapter } from '../../src/core/chapter';
 
-test('plain character', () => {
-    const { dump, character } = useChapter('1.1.1');
+test('plain label', () => {
+    const { dump, character, label } = useChapter('1.1.1');
 
     const aside = character(null);
     const me = character('me');
 
+
+    label('label1');
 
     me  `11`
 
@@ -19,6 +21,8 @@ test('plain character', () => {
         .pause(1000)
         `44`;
 
+    label('label2')
+
     aside() 
         .fast('yyyy');
 
@@ -28,18 +32,4 @@ test('plain character', () => {
     console.dir(dump(), { depth: null });
 
     expect(dump()).toMatchSnapshot();
-});
-
-test('overide character', () => {
-
-    try {
-
-        const { dump, character } = useChapter('1.1.1');
-        assert(false);
-
-    } catch(e) {
-
-    }
-
-
 });
