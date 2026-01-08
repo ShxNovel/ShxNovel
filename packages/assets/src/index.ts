@@ -1,8 +1,6 @@
 /**
- *
  * @TODO
- * Make it a cli
- *
+ * Make it a CLI
  */
 
 import * as fs from 'fs';
@@ -11,16 +9,16 @@ import { generateDeclarationFile } from './generateDeclarationFile';
 
 const arg = process.argv[2] ? process.argv[2] : '';
 
-const inputPath = path.resolve(process.cwd(), arg);
-const outputPath = path.resolve(process.cwd(), arg, './types');
+const inputPath = path.resolve(process.cwd(), arg, './assets');
+const outputPath = path.resolve(process.cwd(), arg, './.vn');
+
+console.log(outputPath);
 
 const audioPath = path.join(inputPath, 'audio');
 const texturePath = path.join(inputPath, 'texture');
 
 const audioFiles = fs.readdirSync(audioPath);
 const textureFiles = fs.readdirSync(texturePath);
-
-console.log(outputPath);
 
 export type AssetList = {
     audio: string[];

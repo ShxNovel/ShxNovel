@@ -3,6 +3,15 @@
     "private": true,
     "version": "0.1.0",
     "type": "module",
+    "bin": {
+        "shx-assets": "./dist/assets-cli.js"
+    },
+    "scripts": {
+        "test": "vitest --typecheck",
+        "clean:types": "rimraf types",
+        "build": "pnpm run clean:types && tsc && vite build"
+    },
+    "license": "MIT",
     "packageManager": "pnpm@10.8.0",
     "devDependencies": {
         "@types/node": "*",

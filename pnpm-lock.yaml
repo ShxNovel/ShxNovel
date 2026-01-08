@@ -44,8 +44,6 @@ importers:
         specifier: ^4
         version: 4.0.16(@types/node@22.19.3)
 
-  assets: {}
-
   packages/assets:
     devDependencies:
       '@types/node':
@@ -126,6 +124,12 @@ importers:
       vitest:
         specifier: ^4
         version: 4.0.16(@types/node@22.19.3)
+
+  projects/demo:
+    dependencies:
+      '@shxnovel/assets':
+        specifier: workspace:*
+        version: link:../../packages/assets
 
   shxnovel:
     dependencies:

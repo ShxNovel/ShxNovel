@@ -1,0 +1,17 @@
+{
+    "name": "demo",
+    "private": true,
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build:assets": "shx-assets",
+        "build": "",
+        "init": "pnpm i"
+    },
+    "dependencies": {
+        "@shxnovel/assets": "workspace:*"
+    },
+    "keywords": [],
+    "packageManager": "pnpm@10.8.0"
+}
