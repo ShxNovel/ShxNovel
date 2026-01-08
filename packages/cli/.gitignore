@@ -1,5 +1,4 @@
-/audio/*
-/texture/*
+/types
 *.tgz
 
 # Logs

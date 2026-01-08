@@ -1,5 +1,27 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`extend character 1`] = `
+[
+  {
+    "content": [
+      "11",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "content": [
+      "aa",
+      "bb",
+    ],
+    "name": null,
+    "quote": false,
+    "type": "text",
+  },
+]
+`;
+
 exports[`plain character 1`] = `
 {
   "cache": [
@@ -17,7 +39,7 @@ exports[`plain character 1`] = `
         "bb",
       ],
       "name": null,
-      "quote": true,
+      "quote": false,
       "type": "text",
     },
     {
@@ -52,7 +74,7 @@ exports[`plain character 1`] = `
         },
       ],
       "name": null,
-      "quote": true,
+      "quote": false,
       "type": "text",
     },
     {

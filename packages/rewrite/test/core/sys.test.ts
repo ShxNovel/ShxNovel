@@ -1,25 +1,24 @@
 import { assert, expectTypeOf, assertType, expect, test, describe } from 'vitest';
 import { useChapter } from '../../src/core/chapter';
 
-test('plain label', () => {
-    const { dump, character, label } = useChapter('1.1.1');
+test('plain ink', () => {
+    const { dump, character, system, label } = useChapter('1.1.1');
 
     const aside = character(null);
     const me = character('me');
 
-    label('label1');
-
     me`11`;
 
-    aside`aa``bb`;
+    system().cut().cut();
+    system().cut();
 
-    me`22`.fast('xxxx')`33`.pause(1000)`44`;
+    me`122`;
 
-    label('label2');
+    system().cut().cut();
 
-    aside().fast('yyyy');
+    aside`22`;
 
-    me``.pause(1000);
+    system().cut();
 
     console.dir(dump(), { depth: null });
 

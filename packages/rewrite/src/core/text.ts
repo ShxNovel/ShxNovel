@@ -19,8 +19,6 @@ type DefaultRewriteTextType = {
 };
 
 export interface RewriteTextType extends DefaultRewriteTextType {
-    pause: never;
-    fast: never;
     until: never;
 }
 

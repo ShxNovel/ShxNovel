@@ -112,6 +112,9 @@ importers:
       '@types/node':
         specifier: ^22
         version: 22.19.3
+      '@types/three':
+        specifier: ^0.182.0
+        version: 0.182.0
       rimraf:
         specifier: ^6.1.2
         version: 6.1.2
@@ -130,6 +133,12 @@ importers:
       '@shxnovel/cli':
         specifier: workspace:*
         version: link:../../packages/cli
+      '@shxnovel/rewrite':
+        specifier: workspace:*
+        version: link:../../packages/rewrite
+      '@shxnovel/world':
+        specifier: workspace:*
+        version: link:../../packages/world
 
   shxnovel:
     dependencies:

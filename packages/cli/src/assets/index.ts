@@ -13,7 +13,7 @@ export function assetsCLI() {
     const inputPath = path.resolve(process.cwd(), arg, './assets');
     const outputPath = path.resolve(process.cwd(), arg, './.vn');
 
-    console.log(outputPath);
+    console.log(`asset: ${outputPath}`);
 
     const audioPath = path.join(inputPath, 'audio');
     const texturePath = path.join(inputPath, 'texture');
@@ -27,6 +27,14 @@ export function assetsCLI() {
     };
 
     const output = generateDeclarationFile(assetList);
+
+    /**
+     * Write output to file
+     */
+
+    if (!fs.existsSync(outputPath)) {
+        fs.mkdirSync(outputPath);
+    }
 
     fs.writeFileSync(path.join(outputPath, './assets.d.ts'), output);
 }

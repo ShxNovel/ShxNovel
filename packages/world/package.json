@@ -23,6 +23,7 @@
     "packageManager": "pnpm@10.8.0",
     "devDependencies": {
         "@types/node": "*",
+        "@types/three": "^0.182.0",
         "rimraf": "*",
         "typescript": "*",
         "vite": "*",

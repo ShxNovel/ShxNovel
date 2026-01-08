@@ -6,8 +6,7 @@
         "dev": "pnpm --filter=* dev",
         "build": "pnpm --filter=* build",
         "preview": "pnpm --filter=* preview",
-        "test": "pnpm --filter=* test",
-        "scan": "pnpm --filter=* scan"
+        "test": "pnpm --filter=* test"
     },
     "author": "shxnovel",
     "license": "MIT",
@@ -15,15 +14,15 @@
     "pnpm": {
         "overrides": {
             "@types/node": "^22",
+            "typescript": "~5.5.0",
             "vite": "^7",
             "vitest": "^4",
+            "rimraf": "^6.1.2",
             "three": "^0.182.0",
             "@types/three": "^0.182.0",
             "stats.js": "^0.17.0",
             "gsap": "^3",
             "typewriter-effect": "^2.22.0",
-            "typescript": "~5.5.0",
-            "rimraf": "^6.1.2",
             "@barba/core": "^2.10.3",
             "@barba/prefetch": "^2.2.0",
             "@barba/router": "^2.1.11",
@@ -33,10 +32,10 @@
     },
     "devDependencies": {
         "@types/node": "^22",
-        "@types/three": "^0.182.0",
-        "rimraf": "^6.1.2",
         "typescript": "~5.5.0",
+        "@types/three": "^0.182.0",
         "vite": "^7",
-        "vitest": "^4"
+        "vitest": "^4",
+        "rimraf": "^6.1.2"
     }
 }

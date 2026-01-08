@@ -23,7 +23,7 @@ exports[`plain label 1`] = `
         "bb",
       ],
       "name": null,
-      "quote": true,
+      "quote": false,
       "type": "text",
     },
     {
@@ -64,7 +64,7 @@ exports[`plain label 1`] = `
         },
       ],
       "name": null,
-      "quote": true,
+      "quote": false,
       "type": "text",
     },
     {
