@@ -44,24 +44,6 @@ importers:
         specifier: ^4
         version: 4.0.16(@types/node@22.19.3)
 
-  packages/assets:
-    devDependencies:
-      '@types/node':
-        specifier: ^22
-        version: 22.19.3
-      rimraf:
-        specifier: ^6.1.2
-        version: 6.1.2
-      typescript:
-        specifier: ~5.5.0
-        version: 5.5.4
-      vite:
-        specifier: ^7
-        version: 7.3.0(@types/node@22.19.3)
-      vitest:
-        specifier: ^4
-        version: 4.0.16(@types/node@22.19.3)
-
   packages/canoe:
     dependencies:
       gsap:
@@ -80,6 +62,24 @@ importers:
       rimraf:
         specifier: ^6.1.2
         version: 6.1.2
+
+  packages/cli:
+    devDependencies:
+      '@types/node':
+        specifier: ^22
+        version: 22.19.3
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
+      typescript:
+        specifier: ~5.5.0
+        version: 5.5.4
+      vite:
+        specifier: ^7
+        version: 7.3.0(@types/node@22.19.3)
+      vitest:
+        specifier: ^4
+        version: 4.0.16(@types/node@22.19.3)
 
   packages/rewrite:
     dependencies:
@@ -127,9 +127,9 @@ importers:
 
   projects/demo:
     dependencies:
-      '@shxnovel/assets':
+      '@shxnovel/cli':
         specifier: workspace:*
-        version: link:../../packages/assets
+        version: link:../../packages/cli
 
   shxnovel:
     dependencies:

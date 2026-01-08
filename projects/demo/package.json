@@ -5,12 +5,14 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build:assets": "shx-assets",
-        "build": "",
+        "build:assets": "shx-cli assets",
+        "build:story": "shx-cli story",
+        "build:world": "shx-cli world",
+        "build": "pnpm run build:assets && pnpm run build:story && pnpm run build:world",
         "init": "pnpm i"
     },
     "dependencies": {
-        "@shxnovel/assets": "workspace:*"
+        "@shxnovel/cli": "workspace:*"
     },
     "keywords": [],
     "packageManager": "pnpm@10.8.0"

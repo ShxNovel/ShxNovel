@@ -1,10 +1,10 @@
 {
-    "name": "@shxnovel/assets",
+    "name": "@shxnovel/cli",
     "private": true,
     "version": "0.1.0",
     "type": "module",
     "bin": {
-        "shx-assets": "./dist/assets-cli.js"
+        "shx-cli": "./dist/cli.js"
     },
     "scripts": {
         "test": "vitest --typecheck",

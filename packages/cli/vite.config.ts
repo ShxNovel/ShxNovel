@@ -14,8 +14,8 @@ export default defineConfig({
         target: 'node18',
         lib: {
             entry: './src/index.ts',
-            name: 'assets-cli',
-            fileName: 'assets-cli',
+            name: 'cli',
+            fileName: 'cli',
             formats: ['es'],
         },
 
