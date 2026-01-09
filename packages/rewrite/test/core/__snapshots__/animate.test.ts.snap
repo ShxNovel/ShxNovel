@@ -12,9 +12,12 @@ exports[`plain animate 1`] = `
       "type": "text",
     },
     {
-      "args": {
-        "timelabel": "a",
-      },
+      "content": [
+        {
+          "id": "a",
+          "kind": "timelabel",
+        },
+      ],
       "type": "animate",
     },
     {

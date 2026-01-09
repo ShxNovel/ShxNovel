@@ -17,6 +17,7 @@ export interface EntityRefKind {
     stand: never;
     bg: never;
     camera: never;
+    timelabel: never;
 }
 
 export interface AnimateArgs {

@@ -1,5 +1,5 @@
 import { collector } from '../collector';
-import { AnimateArgs, RewriteAnimate } from './animate';
+import { AnimateArgs, AnimateUnit, RewriteAnimate } from './animate';
 
 export interface StandMethods {
     animate(args: AnimateArgs): void;
@@ -24,7 +24,7 @@ export class StandImpl implements StandMethods {
         collector.push({
             type: 'animate',
             content: [Item],
-        });
+        } satisfies AnimateUnit);
     }
 }
 

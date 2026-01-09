@@ -1,10 +1,10 @@
 import { collector } from '../collector';
+import { AnimateUnit } from './animate';
 
 export function tl(timelabel: string) {
-    collector.push({
+    const item: AnimateUnit = {
         type: 'animate',
-        args: {
-            timelabel,
-        },
-    });
+        content: [{ kind: 'timelabel', id: timelabel }],
+    };
+    collector.push(item satisfies AnimateUnit);
 }
