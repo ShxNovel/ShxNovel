@@ -1,9 +1,8 @@
 import { assert, expectTypeOf, assertType, expect, test, describe } from 'vitest';
-import { fail } from 'assert';
-import { useChapter, character, system } from '../../src/core';
+import { useChapter } from '../../src/core/chapter';
 
 test('plain sys', () => {
-    const { dump } = useChapter('1.1.1');
+    const { dump, character, system, label } = useChapter('1.1.1');
 
     const aside = character(null);
     const me = character('me');

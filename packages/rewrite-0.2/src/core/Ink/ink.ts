@@ -1,12 +1,24 @@
 import { ChapterUnit } from '../chapter';
 import { buildbg } from './bg';
 import { buildstand } from './stand';
-import { buildtp } from './tp';
+import { buildtl } from './tl';
+
+export interface Ink {
+    type: 'ink';
+    content: RewriteInk[];
+}
+
+export interface RewriteInk {
+    type: keyof RewriteInkType;
+    args?: Record<PropertyKey, unknown>;
+}
+
+export type RewriteInkType = InkInterface;
 
 export interface InkInterface {
     bg: ReturnType<typeof buildbg>;
     stand: ReturnType<typeof buildstand>;
-    tp: ReturnType<typeof buildtp>;
+    tl: ReturnType<typeof buildtl>;
 }
 
 type InkMethodFactory = (cache: ChapterUnit[]) => any;
@@ -14,7 +26,7 @@ type InkMethodFactory = (cache: ChapterUnit[]) => any;
 export const inkMethods: Record<keyof InkInterface, InkMethodFactory> = {
     bg: buildbg,
     stand: buildstand,
-    tp: buildtp,
+    tl: buildtl,
 };
 
 export function BuildInk(cache: ChapterUnit[]): InkInterface {

@@ -3,7 +3,7 @@ import { useChapter } from '../../src/core/chapter';
 
 test('plain ink', () => {
     const { dump, character, system, label, ink } = useChapter('1.1.1');
-    const { bg, stand, tp } = ink;
+    const { bg, stand, tl } = ink;
 
     const aside = character(null);
     const me = character('me');
@@ -12,7 +12,7 @@ test('plain ink', () => {
 
     bg('bg-x').change('aaa');
 
-    tp('f1');
+    tl('f1');
 
     stand('stand')
         .ease('bounce.in')

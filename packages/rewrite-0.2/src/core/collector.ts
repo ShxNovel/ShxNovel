@@ -15,10 +15,6 @@ export class Collector {
 
         return this.contentCache;
     }
-
-    push(unit: ChapterUnit) {
-        this.contentCache.push(unit);
-    }
 }
 
 export const collector = new Collector();

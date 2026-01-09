@@ -1,25 +1,151 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`extend character 1`] = `
-[
-  {
-    "content": [
-      "11",
-    ],
-    "name": "me",
-    "quote": true,
-    "type": "text",
-  },
-  {
-    "content": [
-      "aa",
-      "bb",
-    ],
-    "name": null,
-    "quote": false,
-    "type": "text",
-  },
-]
+exports[`multi character 1`] = `
+{
+  "cache": [
+    {
+      "content": [
+        "11",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        "aa",
+        "bb",
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        "22",
+        {
+          "args": {
+            "str": "xxxx",
+          },
+          "type": "fast",
+        },
+        "33",
+        {
+          "args": {
+            "ms": 1000,
+          },
+          "type": "pause",
+        },
+        "44",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "args": {
+            "str": "yyyy",
+          },
+          "type": "fast",
+        },
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        "",
+        {
+          "args": {
+            "ms": 1000,
+          },
+          "type": "pause",
+        },
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+  ],
+  "name": "1.1.2",
+}
+`;
+
+exports[`multiple character 1`] = `
+{
+  "cache": [
+    {
+      "content": [
+        "11",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        "aa",
+        "bb",
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        "22",
+        {
+          "args": {
+            "str": "xxxx",
+          },
+          "type": "fast",
+        },
+        "33",
+        {
+          "args": {
+            "ms": 1000,
+          },
+          "type": "pause",
+        },
+        "44",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "args": {
+            "str": "yyyy",
+          },
+          "type": "fast",
+        },
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        "",
+        {
+          "args": {
+            "ms": 1000,
+          },
+          "type": "pause",
+        },
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+  ],
+  "name": "1.1.2",
+}
 `;
 
 exports[`plain character 1`] = `
@@ -93,5 +219,79 @@ exports[`plain character 1`] = `
     },
   ],
   "name": "1.1.1",
+}
+`;
+
+exports[`plain character 2`] = `
+{
+  "cache": [
+    {
+      "content": [
+        "11",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        "aa",
+        "bb",
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        "22",
+        {
+          "args": {
+            "str": "xxxx",
+          },
+          "type": "fast",
+        },
+        "33",
+        {
+          "args": {
+            "ms": 1000,
+          },
+          "type": "pause",
+        },
+        "44",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "args": {
+            "str": "yyyy",
+          },
+          "type": "fast",
+        },
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        "",
+        {
+          "args": {
+            "ms": 1000,
+          },
+          "type": "pause",
+        },
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+  ],
+  "name": "1.1.2",
 }
 `;

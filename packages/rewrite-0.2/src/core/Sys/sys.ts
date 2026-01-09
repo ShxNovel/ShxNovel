@@ -1,6 +1,6 @@
-import { Collector, collector } from '../collector';
+import { ChapterUnit } from '../chapter';
 
-export interface SysUnit {
+export interface Sys {
     type: 'sys';
     content: RewriteSys[];
 }
@@ -16,7 +16,7 @@ export type RewriteSys = {
 
 export interface SysContext {
     args: Record<PropertyKey, unknown>;
-    collector: Collector;
+    cache: ChapterUnit[];
 }
 
 export interface SysInterface {
@@ -31,13 +31,15 @@ export class sysImpl implements SysInterface {
     }
 
     cut() {
-        this.ctx.collector.push({ type: 'sys', content: [{ type: 'cut' }] });
+        this.ctx.cache.push({ type: 'sys', content: [{ type: 'cut' }] });
         return this;
     }
 }
 
-export function system() {
-    const args = {};
+export function BuildSys(cache: ChapterUnit[]) {
+    return () => {
+        const args = {};
 
-    return new sysImpl({ args, collector }) as SysInterface;
+        return new sysImpl({ args, cache }) as SysInterface;
+    };
 }

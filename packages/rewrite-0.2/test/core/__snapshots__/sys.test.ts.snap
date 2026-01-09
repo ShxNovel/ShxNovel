@@ -1,0 +1,241 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plain ink 1`] = `
+{
+  "cache": [
+    {
+      "content": [
+        "11",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        "122",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        "22",
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+  ],
+  "name": "1.1.1",
+}
+`;
+
+exports[`plain label 1`] = `
+{
+  "cache": [
+    {
+      "content": [
+        "11",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        "122",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        "22",
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+  ],
+  "name": "1.1.1",
+}
+`;
+
+exports[`plain sys 1`] = `
+{
+  "cache": [
+    {
+      "content": [
+        "11",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        "122",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+    {
+      "content": [
+        "22",
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "content": [
+        {
+          "type": "cut",
+        },
+      ],
+      "type": "sys",
+    },
+  ],
+  "name": "1.1.1",
+}
+`;

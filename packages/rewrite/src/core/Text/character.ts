@@ -1,16 +1,7 @@
-import type { RewriteText, Text } from './text';
-import { ChapterUnit } from './chapter';
-import { CleanFunction, bindContent, addChainableMethods } from '../utils';
-
-/**
- * The current implementation is very cumbersome (both in code and type system).
- *
- * The `character` should be
- *  - a function which accepts `TemplateString`
- *  - an object with methods to manipulate text
- *
- * We look forward to your contribution.
- */
+import type { RewriteText, TextUnit } from './text';
+import type { ChapterUnit } from '../chapter';
+import { CleanFunction, bindContent, addChainableMethods } from '../../utils';
+import { Collector, collector } from '../collector';
 
 /* Before initialization */
 export type InitLinkText = CleanFunction<_InitLinkText>;
@@ -20,7 +11,7 @@ export interface InitTextMethod {
     useQuote: (quote: boolean) => InitLinkText;
 }
 
-/** After initialization */
+/* After initialization */
 export type LinkText = CleanFunction<_LinkText>;
 type _LinkTextFn = (some?: TemplateStringsArray, ...values: RewriteText[]) => LinkText;
 type _LinkText = _LinkTextFn & TextMethod;
@@ -57,32 +48,30 @@ function CreateLink(content: RewriteText[]): LinkText {
     return addChainableMethods(methods)(link) as LinkText;
 }
 
-export function BuildCharacter(cache: ChapterUnit[]) {
-    const character = (name_: string | boolean | null = null, quote: boolean = false): InitLinkText => {
-        let name: string | null = null;
+export function character(name_: string | boolean | null = null, quote: boolean = false): InitLinkText {
+    const cache: Collector = collector;
 
-        if (typeof name_ === 'boolean') quote = name_;
-        else if (typeof name_ === 'string') (name = name_), (quote = true);
+    let name: string | null = null;
 
-        function init(some?: TemplateStringsArray, ...values: RewriteText[]): LinkText {
-            const content: RewriteText[] = [];
-            const talk: Text = { type: 'text', name, quote, content };
+    if (typeof name_ === 'boolean') quote = name_;
+    else if (typeof name_ === 'string') (name = name_), (quote = true);
 
-            cache.push(talk);
+    function init(some?: TemplateStringsArray, ...values: RewriteText[]): LinkText {
+        const content: RewriteText[] = [];
+        const talk: TextUnit = { type: 'text', name, quote, content };
 
-            const link = CreateLink(content);
+        cache.push(talk);
 
-            if (!some) return link as LinkText;
+        const link = CreateLink(content);
 
-            return link(some, ...values) as LinkText;
-        }
+        if (!some) return link as LinkText;
 
-        init.useQuote = (quote_: boolean): InitLinkText => {
-            return character(name, quote_);
-        };
+        return link(some, ...values) as LinkText;
+    }
 
-        return init as InitLinkText;
+    init.useQuote = (quote_: boolean): InitLinkText => {
+        return character(name, quote_);
     };
 
-    return character;
+    return init as InitLinkText;
 }

@@ -44,7 +44,7 @@ export function buildbg(cache: ChapterUnit[]) {
     return (name: string): BgInterface => {
         const args = { name };
 
-        cache.push({ type: 'bg', args });
+        cache.push({ type: 'ink', content: [{ type: 'bg', args }] });
 
         return new bgImpl({ args, cache });
     };
