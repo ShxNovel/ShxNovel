@@ -2,6 +2,16 @@ import type { RewriteText, Text } from './text';
 import { ChapterUnit } from './chapter';
 import { CleanFunction, bindContent, addChainableMethods } from '../utils';
 
+/**
+ * The current implementation is very cumbersome (both in code and type system).
+ *
+ * The `character` should be
+ *  - a function which accepts `TemplateString`
+ *  - an object with methods to manipulate text
+ *
+ * We look forward to your contribution.
+ */
+
 /* Before initialization */
 export type InitLinkText = CleanFunction<_InitLinkText>;
 type _InitLinkText = _LinkTextFn & InitTextMethod;
@@ -29,7 +39,6 @@ export const textMethods: Record<keyof TextMethod, (this: LinkText, ...args: any
     fast: (str: string) => {
         return { type: 'fast', args: { str } };
     },
-    // for user addons
 };
 
 function CreateLink(content: RewriteText[]): LinkText {

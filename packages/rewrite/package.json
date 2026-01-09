@@ -26,9 +26,8 @@
         "rimraf": "*",
         "typescript": "*",
         "vite": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
-        "gsap": "*"
+        "vitest": "*",
+        "gsap": "*",
+        "@types/three": "*"
     }
 }

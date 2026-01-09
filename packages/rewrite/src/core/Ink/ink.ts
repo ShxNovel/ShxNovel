@@ -1,15 +1,28 @@
-export interface Ink {
-    type: 'ink';
-    content: RewriteInk[];
+import { ChapterUnit } from '../chapter';
+import { buildbg } from './bg';
+import { buildstand } from './stand';
+import { buildtp } from './tp';
+
+export interface InkInterface {
+    bg: ReturnType<typeof buildbg>;
+    stand: ReturnType<typeof buildstand>;
+    tp: ReturnType<typeof buildtp>;
 }
 
-export type RewriteInk = {
-    type: keyof RewriteInkType;
-    args: Record<PropertyKey, unknown>;
+type InkMethodFactory = (cache: ChapterUnit[]) => any;
+
+export const inkMethods: Record<keyof InkInterface, InkMethodFactory> = {
+    bg: buildbg,
+    stand: buildstand,
+    tp: buildtp,
 };
 
-type DefaultRewriteInkType = {
-    [K in keyof InkMethod]: never;
-};
+export function BuildInk(cache: ChapterUnit[]): InkInterface {
+    const ink = {} as InkInterface;
 
-export interface RewriteInkType extends DefaultRewriteInkType {}
+    (Object.keys(inkMethods) as Array<keyof InkInterface>).forEach((key) => {
+        ink[key] = inkMethods[key](cache);
+    });
+
+    return ink;
+}

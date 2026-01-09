@@ -1,7 +1,8 @@
 import type { Text } from './text';
 import { Collector, collector } from './collector';
 import { BuildCharacter, InitLinkText } from './character';
-import { BuildSys, LinkSys, Sys } from './Sys';
+import { BuildSys, Sys } from './Sys';
+import { BuildInk } from './Ink';
 
 export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
 export type ChapterUnit = Text | Sys | UnitLike;
@@ -18,9 +19,9 @@ export interface BasicChapter {
     character(quote: boolean): InitLinkText;
     character(): InitLinkText;
 
-    system(): LinkSys;
-    // ink(some: TemplateStringsArray, ...values: RewriteInk[]): LinkInk;
-    // prompt(some: TemplateStringsArray, ...values: RewritePrompt[]): LinkPrompt;
+    ink: ReturnType<typeof BuildInk>;
+
+    system: ReturnType<typeof BuildSys>;
     label(name: string): void;
 }
 
@@ -31,20 +32,24 @@ export function useChapter(name: string, source: Collector = collector) {
         throw new Error(`Chapter ${name} is blank, or already exists`);
     }
 
+    const cache = _cache;
+
     const ChapterImpl: BasicChapter = {
         name: name,
-        cache: _cache,
+        cache: cache,
 
         dump() {
-            return { name: name, cache: _cache };
+            return { name, cache };
         },
 
-        character: BuildCharacter(_cache),
+        character: BuildCharacter(cache),
 
-        system: BuildSys(_cache),
+        ink: BuildInk(cache),
+
+        system: BuildSys(cache),
 
         label(name: string) {
-            _cache.push({ type: 'label', args: { name } });
+            cache.push({ type: 'label', args: { name } });
         },
 
         ...ExtChapterImpl,
