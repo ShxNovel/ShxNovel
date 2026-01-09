@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plain animate 1`] = `
+{
+  "cache": [
+    {
+      "content": [
+        "say aside",
+      ],
+      "name": null,
+      "quote": false,
+      "type": "text",
+    },
+    {
+      "args": {
+        "timelabel": "a",
+      },
+      "type": "animate",
+    },
+    {
+      "content": [
+        {
+          "args": {
+            "duration": 1000,
+            "position": {
+              "x": 0,
+              "y": 0,
+            },
+            "tl": "a",
+          },
+          "id": "sofa",
+          "kind": "stand",
+        },
+      ],
+      "type": "animate",
+    },
+    {
+      "content": [
+        "say me",
+      ],
+      "name": "me",
+      "quote": true,
+      "type": "text",
+    },
+  ],
+  "name": "1.1.1",
+}
+`;

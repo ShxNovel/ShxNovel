@@ -1,9 +1,10 @@
+import { AnimateUnit } from './Animate';
 import { collector } from './collector';
 import { SysUnit } from './Sys';
 import { TextUnit } from './Text';
 
 export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
-export type ChapterUnit = TextUnit | SysUnit | UnitLike;
+export type ChapterUnit = TextUnit | SysUnit | AnimateUnit | UnitLike;
 
 export function useChapter(name: string) {
     const _cache = collector.newChapter(name);

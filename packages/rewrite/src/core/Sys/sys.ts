@@ -1,4 +1,4 @@
-import { Collector, collector } from '../collector';
+import { collector } from '../collector';
 
 export interface SysUnit {
     type: 'sys';
@@ -14,30 +14,17 @@ export type RewriteSys = {
  * Sys system methods
  */
 
-export interface SysContext {
-    args: Record<PropertyKey, unknown>;
-    collector: Collector;
-}
-
 export interface SysInterface {
     cut(): this;
 }
 
-export class sysImpl implements SysInterface {
-    ctx: SysContext;
-
-    constructor(ctx: SysContext) {
-        this.ctx = ctx;
-    }
-
+export class SysImpl implements SysInterface {
     cut() {
-        this.ctx.collector.push({ type: 'sys', content: [{ type: 'cut' }] });
+        collector.push({ type: 'sys', content: [{ type: 'cut' }] });
         return this;
     }
 }
 
 export function system() {
-    const args = {};
-
-    return new sysImpl({ args, collector }) as SysInterface;
+    return new SysImpl() as SysInterface;
 }

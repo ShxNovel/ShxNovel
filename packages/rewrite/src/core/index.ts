@@ -3,4 +3,4 @@ export * from './collector';
 
 export * from './Text';
 export * from './Sys';
-export * from './Anime';
+export * from './Animate';

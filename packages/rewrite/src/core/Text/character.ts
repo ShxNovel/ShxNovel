@@ -1,5 +1,4 @@
 import type { RewriteText, TextUnit } from './text';
-import type { ChapterUnit } from '../chapter';
 import { CleanFunction, bindContent, addChainableMethods } from '../../utils';
 import { Collector, collector } from '../collector';
 
