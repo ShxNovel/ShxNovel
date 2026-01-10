@@ -14,7 +14,8 @@
     "dependencies": {
         "@shxnovel/cli": "workspace:*",
         "@shxnovel/rewrite": "workspace:*",
-        "@shxnovel/world": "workspace:*"
+        "@shxnovel/world": "workspace:*",
+        "tsx": "*"
     },
     "keywords": [],
     "packageManager": "pnpm@10.8.0"

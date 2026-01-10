@@ -27,6 +27,7 @@ export interface AnimateArgs {
     rotation?: Vector3 | Quaternion;
     ease?: EaseType;
     duration?: number;
+    delay?: number;
     tl?: number | string;
 }
 

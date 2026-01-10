@@ -1,4 +1,6 @@
 import { ChapterUnit, AnimateUnit, SysUnit, TextUnit, UnitLike } from '../core';
+import { LabelUnit } from '../core/Label';
+import { labelTable } from './labelTable';
 
 export class RewriteIR {
     text: TextUnit[] = [];
@@ -8,9 +10,9 @@ export class RewriteIR {
 
 export class RewriteParser {
     cache: Map<string, RewriteIR[]> = new Map();
-    stack: ChapterUnit[] = [];
 
     ctx = {
+        name: '',
         ir: new RewriteIR(),
         irs: [] as RewriteIR[],
     };
@@ -36,6 +38,8 @@ export class RewriteParser {
     }
 
     solveOne(name: string, units: ChapterUnit[]) {
+        this.ctx.name = name;
+
         function isUnitLike(unit: ChapterUnit): unit is UnitLike {
             return (unit as UnitLike).args !== undefined;
         }
@@ -49,6 +53,8 @@ export class RewriteParser {
             } else if (unit.type === 'sys' && !isUnitLike(unit)) {
                 if (this.beforeSys(unit) === false) continue;
                 if (this.onSys(unit) === false) continue;
+            } else if (unit.type === 'label' && !isUnitLike(unit)) {
+                this.onLabel(unit);
             } else {
                 if (this.onOthers(unit as UnitLike) === false) continue;
             }
@@ -58,6 +64,7 @@ export class RewriteParser {
 
         this.cache.set(name, this.ctx.irs);
         this.ctx = {
+            name: '',
             ir: new RewriteIR(),
             irs: [] as RewriteIR[],
         };
@@ -93,6 +100,12 @@ export class RewriteParser {
     }
     onSys(unit: SysUnit): boolean | void {
         this.ctx.ir.sys.push(unit);
+    }
+
+    /* Label */
+
+    onLabel(unit: LabelUnit): boolean | void {
+        labelTable.add(unit.name, this.ctx.name);
     }
 
     /* Others */

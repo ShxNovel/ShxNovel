@@ -1,13 +1,13 @@
 import { useChapter, collector } from '@shxnovel/rewrite';
 
-const { character, label, bg, stand } = useChapter('1.1.1');
+const { character, label, bg, stand } = useChapter('1.1.2');
 
 const aside = character(null);
-const me = character('卡咖喱');
+const me = character('卡咖喱2');
 
 const s_sofa = stand('sofa');
 
-label('start');
+label('start2');
 {
     aside`你好!`.pause(2000)`罚抄`.fast('!!!');
 

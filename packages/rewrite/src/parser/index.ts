@@ -1,2 +1,2 @@
 export * from './rewriteParser';
-export * from './label';
+export * from './labelTable';

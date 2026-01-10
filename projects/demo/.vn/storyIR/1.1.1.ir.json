@@ -1,0 +1,28 @@
+[
+  {
+    "text": [
+      {
+        "type": "text",
+        "name": null,
+        "quote": false,
+        "content": ["你好!", {"type": "pause", "args": {"ms": 2000}}, "罚抄", {"type": "fast", "args": {"str": "!!!"}}]
+      }
+    ],
+    "animate": [],
+    "sys": []
+  },
+  {
+    "text": [
+      {
+        "type": "text",
+        "name": "卡咖喱",
+        "quote": true,
+        "content": ["今天为什么罚抄？", {"type": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"]
+      }
+    ],
+    "animate": [
+      {"type": "animate", "content": [{"id": "sofa", "kind": "stand", "args": {"opacity": 1, "duration": 1000}}]}
+    ],
+    "sys": []
+  }
+]

@@ -13,15 +13,18 @@ export default defineConfig({
     build: {
         target: 'node18',
         lib: {
-            entry: './src/index.ts',
+            entry: {
+                bin: './bin.js',
+                cli: './src/index.ts',
+            },
             name: 'cli',
-            fileName: 'cli',
+            // fileName: (format, entryName) => `${entryName}.js`,
             formats: ['es'],
         },
 
-        // 将 Node.js 内置模块标记为外部依赖
+        // 外部依赖
         rollupOptions: {
-            external: [...builtinModules, ...builtinModules.map((m) => `node:${m}`)],
+            external: ['tsx', '@shxnovel/rewrite', ...builtinModules, ...builtinModules.map((m) => `node:${m}`)],
         },
     },
 });

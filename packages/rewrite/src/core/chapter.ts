@@ -1,10 +1,11 @@
-import { AnimateUnit } from './Animate';
+import { AnimateUnit, bg, stand, tl } from './Animate';
+import { label, LabelUnit } from './Label';
+import { system, SysUnit } from './Sys';
+import { character, TextUnit } from './Text';
 import { collector } from './collector';
-import { SysUnit } from './Sys';
-import { TextUnit } from './Text';
 
 export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
-export type ChapterUnit = TextUnit | SysUnit | AnimateUnit | UnitLike;
+export type ChapterUnit = TextUnit | SysUnit | AnimateUnit | LabelUnit | UnitLike;
 
 export function useChapter(name: string) {
     const _cache = collector.newChapter(name);
@@ -19,6 +20,20 @@ export function useChapter(name: string) {
         dump() {
             return { name, cache };
         },
+
+        // character
+        character,
+
+        // system
+        system,
+
+        // animate
+        stand,
+        bg,
+        tl,
+
+        // label
+        label,
     };
 
     return ChapterImpl;

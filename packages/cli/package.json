@@ -4,7 +4,14 @@
     "version": "0.1.0",
     "type": "module",
     "bin": {
-        "shx-cli": "./dist/cli.js"
+        "shx-cli": "bin.js"
+    },
+    "files": [
+        "dist",
+        "bin.js"
+    ],
+    "engines": {
+        "node": ">=20.6.0"
     },
     "scripts": {
         "test": "vitest --typecheck",
@@ -13,11 +20,19 @@
     },
     "license": "MIT",
     "packageManager": "pnpm@10.8.0",
+    "peerDependencies": {
+        "@shxnovel/cli": "workspace:*",
+        "@shxnovel/rewrite": "workspace:*",
+        "@shxnovel/world": "workspace:*"
+    },
     "devDependencies": {
         "@types/node": "*",
         "rimraf": "*",
         "typescript": "*",
         "vite": "*",
         "vitest": "*"
+    },
+    "dependencies": {
+        "json-stringify-pretty-compact": "^4.0.0"
     }
 }

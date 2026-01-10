@@ -1,6 +1,7 @@
 import { ChapterUnit } from './chapter';
 
 export class Collector {
+    id = Math.random();
     chapters: Map<string, ChapterUnit[]> = new Map();
     contentCache: ChapterUnit[] = [];
 
@@ -9,11 +10,9 @@ export class Collector {
 
         if (this.chapters.has(name)) return false;
 
-        this.chapters.set(name, this.contentCache);
-
         this.contentCache = [];
 
-        return this.contentCache;
+        return this.chapters.set(name, this.contentCache);
     }
 
     push(unit: ChapterUnit) {
