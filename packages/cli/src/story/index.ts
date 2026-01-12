@@ -9,7 +9,7 @@ async function makeImport(path: string) {
 }
 
 const { collector, rewriteParser } =
-    // some hack
+    // some hack, sync with user::runtime
     (await makeImport(createRequire(import.meta.url).resolve('@shxnovel/rewrite')))
         .default as typeof import('@shxnovel/rewrite');
 

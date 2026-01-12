@@ -2,24 +2,23 @@ import { AssetList } from '.';
 
 export function generateDeclarationFile(assetList: AssetList): string {
     const formatType = (files: string[]): string => {
-        if (files.length === 0) return '    type Key = never;';
-        return `    type Key =\n${files.map((f) => `      | '${f}'`).join('\n')};`;
-        // return `    type Key =\n${files.map((f) => `      | '${f.replace(/\.[^.]+$/, '')}'`).join('\n')};`;
+        if (files.length === 0) return ' ';
+        return files.map((f) => `        '${f}': never;`).join('\n');
     };
 
     const sections: string[] = [];
 
     if (assetList.texture.length > 0) {
-        sections.push(`  namespace Texture {\n${formatType(assetList.texture)}\n  }`);
+        sections.push(`    namespace Texture {\n      interface Key {\n${formatType(assetList.texture)}\n      }\n    }`);
     } else {
-        sections.push(`  namespace Texture {\n    type Key = never;\n  }`);
+        sections.push(`    namespace Texture {\n      interface Key { }\n    }`);
     }
 
     if (assetList.audio.length > 0) {
-        sections.push(`  namespace Audio {\n${formatType(assetList.audio)}\n  }`);
+        sections.push(`    namespace Audio {\n      interface Key {\n${formatType(assetList.audio)}\n      }\n    }`);
     } else {
-        sections.push(`  namespace Audio {\n    type Key = never;\n  }`);
+        sections.push(`    namespace Audio {\n      interface Key { }\n    }`);
     }
 
-    return `export declare namespace Assets {\n${sections.join('\n\n')}\n}\n`;
+    return `declare module "@shxnovel/world" {\n  namespace Assets {\n\n${sections.join('\n\n')}\n\n  }\n}\n`;
 }

@@ -1,9 +1,13 @@
-export declare namespace Assets {
-  namespace Texture {
-    type Key = never;
-  }
+declare module "@shxnovel/world" {
+  namespace Assets {
 
-  namespace Audio {
-    type Key = never;
+    namespace Texture {
+      interface Key { }
+    }
+
+    namespace Audio {
+      interface Key { }
+    }
+
   }
 }
