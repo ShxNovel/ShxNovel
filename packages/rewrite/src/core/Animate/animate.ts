@@ -14,9 +14,10 @@ export interface AnimateUnit {
 }
 
 export interface EntityRefKind {
-    stand: never;
-    bg: never;
-    camera: never;
+    // stand: never;
+    // bg: never;
+    // camera: never;
+    visual: never;
     timelabel: never;
 }
 

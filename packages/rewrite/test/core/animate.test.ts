@@ -1,6 +1,6 @@
 import { assert, expectTypeOf, assertType, expect, test, describe } from 'vitest';
 import { fail } from 'assert';
-import { useChapter, character, system, stand, tl } from '../../src/core';
+import { useChapter, character, system, visual, tl } from '../../src/core';
 
 test('plain animate', () => {
     const { dump } = useChapter('1.1.1');
@@ -8,7 +8,7 @@ test('plain animate', () => {
     const aside = character(null);
     const me = character('me');
 
-    const s_sofa = stand('sofa');
+    const s_sofa = visual('stand:sofa');
 
     {
         aside`say aside`;

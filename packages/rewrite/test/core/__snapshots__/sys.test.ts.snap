@@ -2,80 +2,82 @@
 
 exports[`plain sys 1`] = `
 {
-  "cache": [
-    {
-      "content": [
-        "11",
-      ],
-      "name": "me",
-      "quote": true,
-      "type": "text",
-    },
-    {
-      "content": [
-        {
-          "type": "cut",
-        },
-      ],
-      "type": "sys",
-    },
-    {
-      "content": [
-        {
-          "type": "cut",
-        },
-      ],
-      "type": "sys",
-    },
-    {
-      "content": [
-        {
-          "type": "cut",
-        },
-      ],
-      "type": "sys",
-    },
-    {
-      "content": [
-        "122",
-      ],
-      "name": "me",
-      "quote": true,
-      "type": "text",
-    },
-    {
-      "content": [
-        {
-          "type": "cut",
-        },
-      ],
-      "type": "sys",
-    },
-    {
-      "content": [
-        {
-          "type": "cut",
-        },
-      ],
-      "type": "sys",
-    },
-    {
-      "content": [
-        "22",
-      ],
-      "name": null,
-      "quote": false,
-      "type": "text",
-    },
-    {
-      "content": [
-        {
-          "type": "cut",
-        },
-      ],
-      "type": "sys",
-    },
-  ],
+  "cache": Map {
+    "1.1.1" => [
+      {
+        "content": [
+          "11",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "type": "cut",
+          },
+        ],
+        "type": "sys",
+      },
+      {
+        "content": [
+          {
+            "type": "cut",
+          },
+        ],
+        "type": "sys",
+      },
+      {
+        "content": [
+          {
+            "type": "cut",
+          },
+        ],
+        "type": "sys",
+      },
+      {
+        "content": [
+          "122",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "type": "cut",
+          },
+        ],
+        "type": "sys",
+      },
+      {
+        "content": [
+          {
+            "type": "cut",
+          },
+        ],
+        "type": "sys",
+      },
+      {
+        "content": [
+          "22",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "type": "cut",
+          },
+        ],
+        "type": "sys",
+      },
+    ],
+  },
   "name": "1.1.1",
 }
 `;

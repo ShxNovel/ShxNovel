@@ -6,9 +6,10 @@
     "main": "index.js",
     "scripts": {
         "build:asset": "shx-cli asset",
-        "build:story": "shx-cli story",
         "build:world": "shx-cli world",
-        "build": "pnpm build:asset && pnpm build:story && pnpm build:world",
+        "build:story": "shx-cli story",
+        "build:final": "shx-cli final",
+        "build": "pnpm build:asset && pnpm build:world && pnpm build:story && pnpm build:final",
         "init": "pnpm i"
     },
     "dependencies": {

@@ -7,7 +7,7 @@ export type AssetList = {
     texture: string[];
 };
 
-export function assetCLI() {
+export async function assetCLI() {
     const arg = process.argv[3] ? process.argv[3] : '';
 
     const inputPath = path.resolve(process.cwd(), arg, './assets');

@@ -1,8 +1,8 @@
 import { VisualNodesSpec, VisualPosesSpec, VisualExpressionsSpec, VisualIR } from './types';
-import { WorldContext } from '../WorldContext';
+import { VisualContext } from './VisualContext';
 import { VisualKind } from './types';
 
-export const visualWorldContext = new WorldContext<VisualIR>('Visual');
+export const visualWorldContext = new VisualContext<VisualIR>('Visual');
 
 export function useVisual<K extends VisualKind>(name: string, kind: K) {
     // rename

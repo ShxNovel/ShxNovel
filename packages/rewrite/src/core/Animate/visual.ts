@@ -1,21 +1,21 @@
 import { rewriteContext } from '../RewriteContext';
 import { AnimateArgs, AnimateUnit, RewriteAnimate } from './animate';
 
-export interface BgMethods {
+export interface VisualMethods {
     animate(args: AnimateArgs): void;
 }
 
-export class BgImpl implements BgMethods {
+export class VisualImpl implements VisualMethods {
     id: string;
 
     constructor(id: string) {
         this.id = id;
     }
 
-    animate(args: AnimateArgs) {
+    animate(args?: AnimateArgs) {
         const Item: RewriteAnimate = {
             id: this.id,
-            kind: 'bg',
+            kind: 'visual',
             args: {
                 ...args,
             },
@@ -28,6 +28,6 @@ export class BgImpl implements BgMethods {
     }
 }
 
-export function bg(name: string) {
-    return new BgImpl(name) as BgMethods;
+export function visual(name: string) {
+    return new VisualImpl(name) as VisualMethods;
 }

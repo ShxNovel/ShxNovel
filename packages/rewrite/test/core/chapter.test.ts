@@ -26,10 +26,9 @@ test('overide character', () => {
         fail();
     } catch (e) {
         const m = (e as Error).message;
-        expect(m).toEqual(`Chapter ${name} is blank, or already exists`);
+        expect(m).toEqual(`Chapter ${name} already exists`);
     }
 });
-
 
 test('multiple character', () => {
     const { dump } = useChapter('1.1.2');

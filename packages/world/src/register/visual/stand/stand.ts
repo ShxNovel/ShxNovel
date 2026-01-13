@@ -1,4 +1,4 @@
-import { useVisual } from '../visual';
+import { useVisual } from '..';
 
 /**
  *

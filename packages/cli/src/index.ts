@@ -17,13 +17,13 @@ if (!arg2) {
 
 switch (arg2) {
     case 'asset':
-        assetCLI();
+        await assetCLI();
         break;
     case 'story':
-        storyCLI();
+        await storyCLI();
         break;
     case 'world':
-        worldCLI();
+        await worldCLI();
         break;
     default:
         bad();

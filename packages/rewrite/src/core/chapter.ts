@@ -1,4 +1,4 @@
-import { AnimateUnit, bg, stand, tl } from './Animate';
+import { AnimateUnit, visual, tl } from './Animate';
 import { label, LabelUnit } from './Label';
 import { system, SysUnit } from './Sys';
 import { character, TextUnit } from './Text';
@@ -10,9 +10,9 @@ export type ChapterUnit = TextUnit | SysUnit | AnimateUnit | LabelUnit | UnitLik
 export function useChapter(name: string) {
     const _cache = rewriteContext.newChapter(name);
 
-    if (!_cache) {
-        throw new Error(`Chapter ${name} is blank, or already exists`);
-    }
+    // if (!_cache) {
+    //     throw new Error(`Chapter ${name} is blank, or already exists`);
+    // }
 
     const cache = _cache;
 
@@ -28,8 +28,7 @@ export function useChapter(name: string) {
         system,
 
         // animate
-        stand,
-        bg,
+        visual,
         tl,
 
         // label
