@@ -1,4 +1,4 @@
-import { collector } from '../collector';
+import { rewriteContext } from '../RewriteContext';
 
 export interface SysUnit {
     type: 'sys';
@@ -20,7 +20,7 @@ export interface SysInterface {
 
 export class SysImpl implements SysInterface {
     cut() {
-        collector.push({ type: 'sys', content: [{ type: 'cut' }] });
+        rewriteContext.push({ type: 'sys', content: [{ type: 'cut' }] });
         return this;
     }
 }

@@ -1,4 +1,4 @@
-import { useChapter, collector } from '@shxnovel/rewrite';
+import { useChapter } from '@shxnovel/rewrite';
 
 const { character, label, bg, stand } = useChapter('1.1.2');
 

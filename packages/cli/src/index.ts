@@ -1,13 +1,13 @@
 import { exit } from 'process';
-import { assetsCLI } from './assets';
+import { assetCLI } from './asset';
 import { storyCLI } from './story';
 import { worldCLI } from './world';
 
 const arg2 = process.argv[2];
 
 function bad() {
-    console.log('Usage: shx-cli <type> <?dir>');
-    console.log('type: assets | story | world');
+    console.log('Usage: shx-cli <type> <?base-dir>');
+    console.log('type: asset | story | world');
     exit(1);
 }
 
@@ -16,8 +16,8 @@ if (!arg2) {
 }
 
 switch (arg2) {
-    case 'assets':
-        assetsCLI();
+    case 'asset':
+        assetCLI();
         break;
     case 'story':
         storyCLI();

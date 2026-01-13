@@ -1,4 +1,4 @@
-import { collector } from '../collector';
+import { rewriteContext } from '../RewriteContext';
 import { AnimateArgs, AnimateUnit, RewriteAnimate } from './animate';
 
 export interface BgMethods {
@@ -21,7 +21,7 @@ export class BgImpl implements BgMethods {
             },
         };
 
-        collector.push({
+        rewriteContext.push({
             type: 'animate',
             content: [Item],
         } satisfies AnimateUnit);

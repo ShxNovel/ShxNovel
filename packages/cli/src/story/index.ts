@@ -1,19 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { pathToFileURL } from 'url';
-import { createRequire } from 'module';
 import format from 'json-stringify-pretty-compact';
+import { fileImport, libImport } from '../tools';
 
-async function makeImport(path: string) {
-    return await import(pathToFileURL(path).href);
-}
+const { rewriteContext, rewriteParser } =
+    // sync with user runtime
+    (await libImport('@shxnovel/rewrite')).default as typeof import('@shxnovel/rewrite');
 
-const { collector, rewriteParser } =
-    // some hack, sync with user::runtime
-    (await makeImport(createRequire(import.meta.url).resolve('@shxnovel/rewrite')))
-        .default as typeof import('@shxnovel/rewrite');
-
-/** @todo */
 export async function storyCLI() {
     const arg = process.argv[3] ? process.argv[3] : '';
 
@@ -30,11 +23,11 @@ export async function storyCLI() {
 
     for (const file of storyFiles) {
         const filePath = path.join(inputPath, file);
-        await makeImport(filePath);
+        await fileImport(filePath);
     }
 
-    // 处理每个章节
-    collector.chapters.forEach((chapter, name) => {
+    // solve chapters
+    rewriteContext.chapters.forEach((chapter, name) => {
         rewriteParser.solveOne(name, chapter);
     });
 
@@ -70,7 +63,7 @@ async function getConfig(files: string[], inputPath: string) {
 
         if (fileName === 'config') {
             const arg_path = path.join(inputPath, file);
-            const result = (await makeImport(arg_path)) as { default: any };
+            const result = (await fileImport(arg_path)) as { default: any };
             Object.assign(config, result.default);
             continue;
         }
@@ -81,13 +74,12 @@ async function getConfig(files: string[], inputPath: string) {
     // 正规化
     config.entry = path.join(config.entry);
 
-    // 如果入口文件不存在，则重置入口配置
-    console.log(path.join(inputPath, config.entry));
+    // 如果入口文件不存在：重置入口配置
     if (!fs.existsSync(path.join(inputPath, config.entry))) {
         config.entry = '';
     }
 
-    // 如果没有 config 文件，则默认使用第一个文件作为入口文件
+    // 如果没有 config 文件：默认使用第一个文件作为入口文件
     if (config.entry === '' && storyFiles[0]) {
         config.entry = storyFiles[0];
     }

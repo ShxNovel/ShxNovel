@@ -1,6 +1,6 @@
 import type { RewriteText, TextUnit } from './text';
 import { CleanFunction, bindContent, addChainableMethods } from '../../utils';
-import { Collector, collector } from '../collector';
+import { RewriteContext, rewriteContext } from '../RewriteContext';
 
 /* Before initialization */
 export type InitLinkText = CleanFunction<_InitLinkText>;
@@ -48,7 +48,7 @@ function CreateLink(content: RewriteText[]): LinkText {
 }
 
 export function character(name_: string | boolean | null = null, quote: boolean = false): InitLinkText {
-    const cache: Collector = collector;
+    const cache: RewriteContext = rewriteContext;
 
     let name: string | null = null;
 

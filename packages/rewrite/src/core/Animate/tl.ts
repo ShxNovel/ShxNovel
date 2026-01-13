@@ -1,4 +1,4 @@
-import { collector } from '../collector';
+import { rewriteContext } from '../RewriteContext';
 import { AnimateUnit } from './animate';
 
 export function tl(timelabel: string) {
@@ -6,5 +6,5 @@ export function tl(timelabel: string) {
         type: 'animate',
         content: [{ kind: 'timelabel', id: timelabel }],
     };
-    collector.push(item satisfies AnimateUnit);
+    rewriteContext.push(item satisfies AnimateUnit);
 }

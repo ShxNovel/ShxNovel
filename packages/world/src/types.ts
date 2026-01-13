@@ -8,9 +8,5 @@ export declare namespace Assets {
     }
 }
 
-export type TextureKey = keyof Assets.Texture.Key;
-export type AudioKey = keyof Assets.Audio.Key;
-
-
-
-
+export type TextureKey = keyof Assets.Texture.Key | undefined;
+export type AudioKey = keyof Assets.Audio.Key | undefined;

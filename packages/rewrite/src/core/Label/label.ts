@@ -1,4 +1,4 @@
-import { collector } from '../collector';
+import { rewriteContext } from '../RewriteContext';
 
 export interface LabelUnit {
     type: 'label';
@@ -6,7 +6,7 @@ export interface LabelUnit {
 }
 
 export function label(name: string) {
-    collector.push({
+    rewriteContext.push({
         type: 'label',
         name,
     } satisfies LabelUnit);

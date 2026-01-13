@@ -1,14 +1,17 @@
 import { ChapterUnit } from './chapter';
 
-export class Collector {
-    id = Math.random();
+export class RewriteContext {
     chapters: Map<string, ChapterUnit[]> = new Map();
     contentCache: ChapterUnit[] = [];
 
     newChapter(name: string) {
-        if (name === '') return false;
+        if (name === '') {
+            throw new Error('Chapter name cannot be empty');
+        }
 
-        if (this.chapters.has(name)) return false;
+        if (this.chapters.has(name)) {
+            throw new Error(`Chapter ${name} already exists`);
+        }
 
         this.contentCache = [];
 
@@ -20,4 +23,4 @@ export class Collector {
     }
 }
 
-export const collector = new Collector();
+export const rewriteContext = new RewriteContext();
