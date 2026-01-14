@@ -8,8 +8,8 @@
         "build:asset": "shx-cli asset",
         "build:world": "shx-cli world",
         "build:story": "shx-cli story",
-        "build:final": "shx-cli final",
-        "build": "pnpm build:asset && pnpm build:world && pnpm build:story && pnpm build:final",
+        "build:bound": "shx-cli bound",
+        "build": "pnpm build:asset && pnpm build:world && pnpm build:story && pnpm build:bound",
         "init": "pnpm i"
     },
     "dependencies": {

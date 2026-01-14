@@ -21,7 +21,7 @@
       }
     ],
     "animate": [
-      {"type": "animate", "content": [{"id": "sofa", "kind": "stand", "args": {"opacity": 1, "duration": 1000}}]}
+      {"type": "animate", "content": [{"id": "stand:sofa", "kind": "patch", "args": {"opacity": 1, "duration": 1000}}]}
     ],
     "sys": []
   }

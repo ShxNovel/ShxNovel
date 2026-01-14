@@ -1,33 +1,69 @@
 import { rewriteContext } from '../RewriteContext';
-import { AnimateArgs, AnimateUnit, RewriteAnimate } from './animate';
+import { AnimatePatchs, AnimateUnit, RewriteAnimate } from './animate';
 
-export interface VisualMethods {
-    animate(args: AnimateArgs): void;
+export interface VisualMap {
+    // _test: 'a' | 'b' | 'c';     
 }
 
-export class VisualImpl implements VisualMethods {
+type labelFn = (timelabel: string) => void;
+type onLabel = { onlabel: labelFn };
+
+export interface VisualMethods<T> {
+    patch(args: AnimatePatchs): onLabel;
+    expr(...args: VisualExpressionArgs<T>[]): onLabel;
+}
+
+export type VisualExpressionArgs<T> = //
+    T extends keyof VisualMap //
+        ? VisualMap[T]
+        : string;
+
+export class VisualImpl<T> implements VisualMethods<T> {
     id: string;
 
     constructor(id: string) {
         this.id = id;
     }
 
-    animate(args?: AnimateArgs) {
+    patch(args: AnimatePatchs) {
         const Item: RewriteAnimate = {
             id: this.id,
-            kind: 'visual',
-            args: {
-                ...args,
-            },
+            kind: 'patch',
+            args,
         };
 
         rewriteContext.push({
             type: 'animate',
             content: [Item],
         } satisfies AnimateUnit);
+
+        const onlabel = buildTL(Item);
+        return { onlabel };
+    }
+
+    expr(...args: VisualExpressionArgs<T>[]) {
+        const Item: RewriteAnimate = {
+            id: this.id,
+            kind: 'expression',
+            args,
+        };
+
+        rewriteContext.push({
+            type: 'animate',
+            content: [Item],
+        } satisfies AnimateUnit);
+
+        const onlabel = buildTL(Item);
+        return { onlabel };
     }
 }
 
-export function visual(name: string) {
-    return new VisualImpl(name) as VisualMethods;
+function buildTL<T extends Record<string, unknown>>(item: T) {
+    return (timelabel: string) => {
+        Object.assign(item, { timelabel });
+    };
+}
+
+export function visual<T extends keyof VisualMap | (string & {}) /* magic */>(name: T) {
+    return new VisualImpl<T>(name) as VisualMethods<T>;
 }

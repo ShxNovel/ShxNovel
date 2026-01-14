@@ -1,8 +1,8 @@
 import { assert, expectTypeOf, assertType, expect, test, describe } from 'vitest';
 import { fail } from 'assert';
-import { useChapter, character, system, visual, tl } from '../../src/core';
+import { useChapter, character, system, visual, timelabel } from '../../src/core';
 
-test('plain animate', () => {
+test('plain patch', () => {
     const { dump } = useChapter('1.1.1');
 
     const aside = character(null);
@@ -13,13 +13,14 @@ test('plain animate', () => {
     {
         aside`say aside`;
 
-        tl('a');
+        timelabel('a');
 
-        s_sofa.animate({
-            position: { x: 0, y: 0 },
-            duration: 1000,
-            tl: 'a',
-        });
+        s_sofa
+            .patch({
+                position: { x: 0, y: 0 },
+                duration: 1000,
+            })
+            .onlabel('a');
     }
 
     me`say me`;

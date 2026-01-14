@@ -6,22 +6,19 @@ import * as THREE from 'three';
 // };
 // export type some = OmitFunctionsCompact<Parameters<typeof gsap.to>[1]>;
 
-type EaseType = NonNullable<Parameters<typeof gsap.to>[1]>['ease'];
-
 export interface AnimateUnit {
     type: 'animate';
     content: RewriteAnimate[];
 }
 
 export interface EntityRefKind {
-    // stand: never;
-    // bg: never;
-    // camera: never;
-    visual: never;
-    timelabel: never;
+    expression: any;
+    patch: any;
+    timelabel: any;
 }
 
-export interface AnimateArgs {
+type EaseType = NonNullable<Parameters<typeof gsap.to>[1]>['ease'];
+export interface AnimatePatchs {
     opacity?: number;
     position?: Vector3;
     scale?: Vector3;
@@ -29,13 +26,13 @@ export interface AnimateArgs {
     ease?: EaseType;
     duration?: number;
     delay?: number;
-    tl?: number | string;
 }
 
 export type RewriteAnimate = {
     kind: keyof EntityRefKind;
     id: string;
-    args?: Record<PropertyKey, unknown> & AnimateArgs;
+    timelabel?: string;
+    args?: Array<unknown> | Record<PropertyKey, unknown> | AnimatePatchs;
 };
 
 //

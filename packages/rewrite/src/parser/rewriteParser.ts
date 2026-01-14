@@ -1,5 +1,5 @@
 import { ChapterUnit, AnimateUnit, SysUnit, TextUnit, UnitLike } from '../core';
-import { LabelUnit } from '../core/Label';
+import { FlagUnit } from '../core/Flag';
 import { labelTable } from './labelTable';
 
 export class RewriteIR {
@@ -104,7 +104,7 @@ export class RewriteParser {
 
     /* Label */
 
-    onLabel(unit: LabelUnit): boolean | void {
+    onLabel(unit: FlagUnit): boolean | void {
         labelTable.add(unit.name, this.ctx.name);
     }
 

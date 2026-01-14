@@ -1,11 +1,11 @@
-import { AnimateUnit, visual, tl } from './Animate';
-import { label, LabelUnit } from './Label';
+import { AnimateUnit, visual, timelabel } from './Animate';
+import { flag, FlagUnit } from './Flag';
 import { system, SysUnit } from './Sys';
 import { character, TextUnit } from './Text';
 import { rewriteContext } from './RewriteContext';
 
 export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
-export type ChapterUnit = TextUnit | SysUnit | AnimateUnit | LabelUnit | UnitLike;
+export type ChapterUnit = TextUnit | SysUnit | AnimateUnit | FlagUnit | UnitLike;
 
 export function useChapter(name: string) {
     const _cache = rewriteContext.newChapter(name);
@@ -29,10 +29,10 @@ export function useChapter(name: string) {
 
         // animate
         visual,
-        tl,
+        timelabel,
 
-        // label
-        label,
+        // flag
+        flag,
     };
 
     return ChapterImpl;
