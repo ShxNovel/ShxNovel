@@ -25,7 +25,7 @@ useCamera('main')
                 amplitude: 12,
                 frequency: 25,
             },
-            duration: 0.4,
+            $duration: 0.4,
         },
 
         normal: { blur: 0, vignette: 0 },

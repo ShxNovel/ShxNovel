@@ -1,4 +1,3 @@
 export default {
-    entry: '1.1.1.ts',
+    entry: '1.1.1',
 };
-

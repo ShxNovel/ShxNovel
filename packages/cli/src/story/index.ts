@@ -3,11 +3,17 @@ import * as path from 'path';
 import format from 'json-stringify-pretty-compact';
 import { fileImport, libImport } from '../tools';
 
-const { rewriteContext, rewriteParser } =
+const { rewriteContext, rewriteParser, useChapter } =
     // sync with user runtime
     (await libImport('@shxnovel/rewrite')).default as typeof import('@shxnovel/rewrite');
 
+function inject() {
+    (global as any).useChapter = useChapter;
+}
+
 export async function storyCLI() {
+    inject();
+
     const arg = process.argv[3] ? process.argv[3] : '';
 
     const inputPath = path.resolve(process.cwd(), arg, './story');

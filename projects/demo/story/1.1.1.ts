@@ -1,6 +1,4 @@
-import { useChapter } from '@shxnovel/rewrite';
-
-const { character, flag, visual } = useChapter('1.1.1');
+const { character, flag, visual, timelabel, system } = useChapter('1.1.1');
 
 const aside = character(null);
 const me = character('卡咖喱');

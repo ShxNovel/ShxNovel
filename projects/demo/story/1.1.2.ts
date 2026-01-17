@@ -1,5 +1,3 @@
-import { useChapter } from '@shxnovel/rewrite';
-
 const { character, flag, visual } = useChapter('1.1.2');
 
 const aside = character(null);
