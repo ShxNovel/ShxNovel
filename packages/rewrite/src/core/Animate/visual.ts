@@ -1,9 +1,6 @@
 import { rewriteContext } from '../RewriteContext';
 import { AnimatePatchs, AnimateUnit, RewriteAnimate } from './animate';
-
-export interface VisualMap {
-    // _test: 'a' | 'b' | 'c';     
-}
+import { Animate, VisualKey } from '../../types';
 
 type labelFn = (timelabel: string) => void;
 type onLabel = { onlabel: labelFn };
@@ -14,8 +11,8 @@ export interface VisualMethods<T> {
 }
 
 export type VisualExpressionArgs<T> = //
-    T extends keyof VisualMap //
-        ? VisualMap[T]
+    T extends keyof Animate.VisualMap //
+        ? Animate.VisualMap[T]
         : string;
 
 export class VisualImpl<T> implements VisualMethods<T> {
@@ -64,6 +61,8 @@ function buildTL<T extends Record<string, unknown>>(item: T) {
     };
 }
 
-export function visual<T extends keyof VisualMap | (string & {}) /* magic */>(name: T) {
+export function visual<T extends VisualKey>(name: T) {
     return new VisualImpl<T>(name) as VisualMethods<T>;
 }
+
+// visual('_test').expr('a');

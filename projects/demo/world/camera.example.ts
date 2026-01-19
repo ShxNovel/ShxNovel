@@ -1,4 +1,4 @@
-import { useCamera } from '@shxnovel/world';
+// import { useCamera } from '@shxnovel/world';
 
 useCamera('main')
     //

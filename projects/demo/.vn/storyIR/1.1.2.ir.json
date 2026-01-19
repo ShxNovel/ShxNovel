@@ -1,12 +1,7 @@
 [
   {
     "text": [
-      {
-        "type": "text",
-        "name": null,
-        "quote": false,
-        "content": ["你好!", {"type": "pause", "args": {"ms": 2000}}, "罚抄", {"type": "fast", "args": {"str": "!!!"}}]
-      }
+      {"type": "text", "name": null, "quote": false, "content": ["你好! 罚抄!", {"type": "fast", "args": {"str": "!!!"}}]}
     ],
     "animate": [],
     "sys": []

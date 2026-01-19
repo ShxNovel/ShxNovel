@@ -1,4 +1,4 @@
-class LabelTable {
+class FlagTable {
     table = new Map<string, string>();
 
     add(label: string, where: string) {
@@ -10,4 +10,4 @@ class LabelTable {
     }
 }
 
-export const labelTable = new LabelTable();
+export const flagTable = new FlagTable();

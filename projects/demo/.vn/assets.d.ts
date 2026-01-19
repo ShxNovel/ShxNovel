@@ -1,8 +1,12 @@
+import '@shxnovel/world';
+
 declare module "@shxnovel/world" {
   namespace Assets {
 
     namespace Texture {
-      interface Key { }
+      interface Key {
+        'a.jpg': never;
+      }
     }
 
     namespace Audio {

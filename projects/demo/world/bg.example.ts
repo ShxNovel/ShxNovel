@@ -1,10 +1,8 @@
-import { useBg } from '@shxnovel/world';
-
 useBg('school')
     .nodes({
         body: {
             variants: {
-                bright: undefined,
+                bright: 'a.jpg',
                 dark: undefined,
             },
         },
@@ -13,7 +11,7 @@ useBg('school')
     .expressions({
         dayLight: {
             body: {
-                variant: 'bright',
+                variant: 'dark',
                 material: { uniforms: { lightMap: 1.0 } },
             },
         },

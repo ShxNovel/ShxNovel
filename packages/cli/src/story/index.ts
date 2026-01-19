@@ -39,6 +39,10 @@ export async function storyCLI() {
 
     console.log(rewriteParser.cache);
 
+    if (!rewriteParser.cache.has(config.entry)) {
+        throw new Error(`Entry Chapter not found: ${config.entry}`);
+    }
+
     /**
      * Write output to file
      */
@@ -74,20 +78,10 @@ async function getConfig(files: string[], inputPath: string) {
             continue;
         }
 
-        storyFiles.push(file);
-    }
-
-    // 正规化
-    config.entry = path.join(config.entry);
-
-    // 如果入口文件不存在：重置入口配置
-    if (!fs.existsSync(path.join(inputPath, config.entry))) {
-        config.entry = '';
-    }
-
-    // 如果没有 config 文件：默认使用第一个文件作为入口文件
-    if (config.entry === '' && storyFiles[0]) {
-        config.entry = storyFiles[0];
+        // ts 和 js 文件
+        if (file.endsWith('.ts') || file.endsWith('.js')) {
+            storyFiles.push(file);
+        }
     }
 
     return { config, storyFiles };

@@ -1,10 +1,12 @@
 {
     "name": "@shxnovel/monorepo",
+    "version": "0.8.0",
     "private": true,
     "type": "module",
     "scripts": {
         "dev": "pnpm --filter=* dev",
         "build": "pnpm --filter=* build",
+        "build:pack": "pnpm --filter=\"./packages/**\" build",
         "preview": "pnpm --filter=* preview",
         "test": "pnpm --filter=* test"
     },

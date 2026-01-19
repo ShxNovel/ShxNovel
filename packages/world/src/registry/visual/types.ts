@@ -61,7 +61,7 @@ export type VisualPosesSpec<N extends VisualNodesSpec> = {
         [K in keyof N]?: {
             x?: number;
             y?: number;
-            zIndex?: number;
+            // zIndex?: number;
         };
     };
 };
@@ -72,20 +72,18 @@ export type VisualPosesSpec<N extends VisualNodesSpec> = {
 
 export type VisualExpressionsSpec<N extends VisualNodesSpec> = {
     [expressionName: string]: ExpressionMeta & {
-        // K := nodeName
         [K in keyof N]?: N[K]['variants'] extends Record<infer V, any>
             ?
                   | V // variant ; user-convenient
                   | boolean // visible ; user-convenient
                   | NodeExpressionsPatch<V & string>
-            : NodeExpressionsPatch;
+            : never;
     };
 };
 
-export interface ExpressionMeta {
-    $priority?: number;
+export type ExpressionMeta = {
     $duration?: number;
-}
+};
 
 export interface NodeExpressionsPatch<V extends string = string> {
     variant?: V;

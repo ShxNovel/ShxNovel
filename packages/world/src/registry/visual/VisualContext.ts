@@ -48,11 +48,11 @@ export class VisualContext<T extends VisualIR> {
             });
 
             // 不显示
-            Object.entries(variants).forEach(([variantName, _variant]) => {
-                const key = `${nodeName}:${variantName}:hidden`;
-                const value = { [nodeName]: variantName };
+            {
+                const key = `#${nodeName}`;
+                const value = { [nodeName]: false };
                 expressionMap[key] = value;
-            });
+            }
         });
 
         const common = getCommonProperties(expressionMap, expressions);

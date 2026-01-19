@@ -1,5 +1,3 @@
-import { useStand } from '@shxnovel/world';
-
 useStand('Rinne')
     .nodes({
         body: {
@@ -34,12 +32,12 @@ useStand('Rinne')
         },
 
         front: {
-            extends: 'base',
+            $extends: 'base',
             normal_eye: { x: -20, y: 10 },
         },
 
         side: {
-            extends: 'base',
+            $extends: 'base',
             side_eye: { y: -10 },
         },
     })
@@ -48,7 +46,6 @@ useStand('Rinne')
             body: 'normal',
             normal_eye: 'close',
         },
-
         side_shame: {
             body: 'side',
             side_eye: 'close',

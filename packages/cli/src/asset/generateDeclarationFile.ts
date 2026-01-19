@@ -20,5 +20,5 @@ export function generateDeclarationFile(assetList: AssetList): string {
         sections.push(`    namespace Audio {\n      interface Key { }\n    }`);
     }
 
-    return `declare module "@shxnovel/world" {\n  namespace Assets {\n\n${sections.join('\n\n')}\n\n  }\n}\n`;
+    return `import '@shxnovel/world';\n\ndeclare module "@shxnovel/world" {\n  namespace Assets {\n\n${sections.join('\n\n')}\n\n  }\n}\n`;
 }
