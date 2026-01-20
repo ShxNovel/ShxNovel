@@ -26,5 +26,5 @@
     // "noUncheckedSideEffectImports": true,
     "noImplicitAny": true
   },
-  "include": ["./.vn/*", "./story", "./world"]
+  "include": ["./.vn/*", "./plugins/*", "./story", "./world"]
 }

@@ -52,7 +52,7 @@ export async function storyCLI() {
     }
 
     rewriteParser.cache.forEach((irs, name) => {
-        const filePath = path.join(outputPath, `${name}.ir.json`);
+        const filePath = path.join(outputPath, encodeURIComponent(`${name}.ir.json`));
         const json = format(irs, {
             indent: 2,
             maxLength: 120,

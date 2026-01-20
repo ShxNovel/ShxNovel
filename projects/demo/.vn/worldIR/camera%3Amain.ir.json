@@ -1,0 +1,15 @@
+{
+  "name": "camera:main",
+  "kind": "camera",
+  "nodes": {},
+  "poses": {
+    "default": {"x": 0, "y": 0, "zoom": 1},
+    "charA_closeup": {"x": -200, "y": 100, "zoom": 1.5, "transition": {"duration": 800, "ease": "power2.out"}}
+  },
+  "expressions": {
+    "reset": {"position": {"x": 0, "y": 0}, "zoom": 1},
+    "shake": {"shake": {"amplitude": 12, "frequency": 25}, "$duration": 0.4},
+    "normal": {"blur": 0, "vignette": 0},
+    "dizzy": {"blur": 5, "vignette": 0.5, "chromaticAbberation": 0.02}
+  }
+}

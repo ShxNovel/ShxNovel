@@ -3,7 +3,7 @@ const { character, flag, visual } = useChapter('1.1.2');
 const aside = character(null);
 const me = character('卡咖喱2');
 
-const s_sofa = visual("bg:school");
+const s_sofa = visual("bg:school").expr("#body");
 
 flag('start2');
 {

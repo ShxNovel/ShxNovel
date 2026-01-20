@@ -21,7 +21,8 @@
     "license": "MIT",
     "packageManager": "pnpm@10.8.0",
     "dependencies": {
-        "json-stringify-pretty-compact": "^4.0.0"
+        "json-stringify-pretty-compact": "^4",
+        "json-to-ts": "^2"
     },
     "devDependencies": {
         "@types/node": "*",

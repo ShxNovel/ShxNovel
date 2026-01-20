@@ -24,6 +24,11 @@ export default defineConfig({
 
         // 外部依赖
         rollupOptions: {
+            output: {
+                manualChunks: {
+                    'json-to-ts': ['json-to-ts'],
+                },
+            },
             external: ['tsx', '@shxnovel/rewrite', ...builtinModules, ...builtinModules.map((m) => `node:${m}`)],
         },
     },

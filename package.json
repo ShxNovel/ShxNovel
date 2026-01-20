@@ -15,11 +15,6 @@
     "packageManager": "pnpm@10.8.0",
     "pnpm": {
         "overrides": {
-            "@types/node": "^22",
-            "typescript": "~5.5.0",
-            "vite": "^7",
-            "vitest": "^4",
-            "rimraf": "^6.1.2",
             "three": "^0.182.0",
             "@types/three": "^0.182.0",
             "stats.js": "^0.17.0",
@@ -30,6 +25,11 @@
             "@barba/router": "^2.1.11",
             "lit": "^3.3.2",
             "@awesome.me/webawesome": "^3.1.0",
+            "@types/node": "^22",
+            "typescript": "~5.5.0",
+            "vite": "^7",
+            "vitest": "^4",
+            "rimraf": "^6.1.2",
             "tsx": "^4"
         }
     },

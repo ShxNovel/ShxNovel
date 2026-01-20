@@ -1,3 +1,4 @@
+// assets
 export declare namespace Assets {
     namespace Texture {
         interface Key {}

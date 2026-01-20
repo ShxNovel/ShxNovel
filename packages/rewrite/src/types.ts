@@ -1,3 +1,11 @@
+// data
+export declare namespace GameData {
+    interface InGame {}
+
+    interface Global {}
+}
+
+//
 export declare namespace Animate {
     interface VisualMap {}
 }

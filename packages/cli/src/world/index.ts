@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-// import format from 'json-stringify-pretty-compact';
+import format from 'json-stringify-pretty-compact';
 import { fileImport, libImport } from '../tools';
-import { solveVisualMap } from './solveVisualMap';
+import { solveDeclare } from './solveVisualMap';
 // import { useBg, useCamera, useStand, useVisual } from '@shxnovel/world';
 
 const { registry, useVisual, useBg, useCamera, useStand } =
@@ -19,19 +19,22 @@ function inject() {
 /** @todo */
 export async function worldCLI() {
     inject();
+
     const arg = process.argv[3] ? process.argv[3] : '';
 
     const inputPath = path.resolve(process.cwd(), arg, './world');
-    const outputPath = path.resolve(process.cwd(), arg, './.vn');
+    const dtsPath = path.resolve(process.cwd(), arg, './.vn');
+    const worldIRPath = path.resolve(process.cwd(), arg, './.vn', './worldIR');
+
     // const outputPath = path.resolve(process.cwd(), arg, './.vn', './worldIR');
 
-    console.log(`world: ${outputPath}`);
+    console.log(`world: ${dtsPath}`);
 
     const dirFiles = fs.readdirSync(inputPath);
 
-    const { config, worldFiles } = await getConfig(dirFiles, inputPath);
+    const { worldFiles } = await getConfig(dirFiles, inputPath);
 
-    console.log({ config, worldFiles });
+    // console.log({ config, worldFiles });
 
     for (const file of worldFiles) {
         const filePath = path.join(inputPath, file);
@@ -40,7 +43,7 @@ export async function worldCLI() {
 
     const context = registry.visualWorldContext.finish();
 
-    const output = solveVisualMap(context);
+    const output = solveDeclare(context, registry.InGameData, registry.GlobalData);
 
     // console.dir(output, { depth: null });
 
@@ -48,11 +51,27 @@ export async function worldCLI() {
      * Write output to file
      */
 
-    if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath);
+    if (!fs.existsSync(dtsPath)) {
+        fs.mkdirSync(dtsPath);
     }
 
-    fs.writeFileSync(path.join(outputPath, './world.d.ts'), output);
+    fs.writeFileSync(path.join(dtsPath, './world.d.ts'), output);
+
+    //
+
+    if (!fs.existsSync(worldIRPath)) {
+        fs.mkdirSync(worldIRPath);
+    }
+
+    context.forEach((visual, name) => {
+        const outPath = path.join(worldIRPath, encodeURIComponent(`${name}.ir.json`));
+        // console.log(outPath);
+        const json = format(visual, {
+            indent: 2,
+            maxLength: 120,
+        });
+        fs.writeFileSync(outPath, json);
+    });
 }
 
 async function getConfig(files: string[], inputPath: string) {
