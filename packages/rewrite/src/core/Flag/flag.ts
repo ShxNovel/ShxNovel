@@ -5,25 +5,13 @@ export interface FlagUnit {
     name: string;
 }
 
-export function flag(name: string, content?: () => boolean | void) {
+export function flag(name: string, content?: () => void) {
     rewriteContext.push({
         type: 'flag',
-        name: `b:${name}`, // begin
+        name: `${name}`,
     } satisfies FlagUnit);
 
-    // if no content, just push a begin flag unit
-    if (content == undefined) {
-        return;
-    }
+    if (!content) return;
 
-    const res = content();
-
-    if (res == true) {
-        return;
-    }
-
-    rewriteContext.push({
-        type: 'flag',
-        name: `e:${name}`, // end
-    } satisfies FlagUnit);
+    content();
 }

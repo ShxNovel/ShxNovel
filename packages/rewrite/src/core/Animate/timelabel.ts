@@ -4,7 +4,7 @@ import { AnimateUnit } from './animate';
 export function timelabel(timelabel: string) {
     const item: AnimateUnit = {
         type: 'animate',
-        content: [{ kind: 'timelabel', id: timelabel }],
+        content: [{ kind: 'timelabel', target: timelabel }],
     };
     rewriteContext.push(item satisfies AnimateUnit);
 }

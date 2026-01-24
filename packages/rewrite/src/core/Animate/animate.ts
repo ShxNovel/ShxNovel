@@ -6,18 +6,29 @@ import * as THREE from 'three';
 // };
 // export type some = OmitFunctionsCompact<Parameters<typeof gsap.to>[1]>;
 
+type EaseType = NonNullable<Parameters<typeof gsap.to>[1]>['ease'];
+
 export interface AnimateUnit {
     type: 'animate';
     content: RewriteAnimate[];
 }
 
+export type RewriteAnimate = {
+    kind: keyof EntityRefKind;
+    target: string;
+    timelabel?: string;
+    args?: Array<unknown> | Record<PropertyKey, unknown> | AnimatePatchs;
+    [key: string]: unknown;
+};
 export interface EntityRefKind {
+    enter: any;
+    leave: any;
+    pose: any;
     expression: any;
-    patch: any;
     timelabel: any;
+    patch: any;
 }
 
-type EaseType = NonNullable<Parameters<typeof gsap.to>[1]>['ease'];
 export interface AnimatePatchs {
     opacity?: number;
     position?: Vector3;
@@ -28,23 +39,16 @@ export interface AnimatePatchs {
     delay?: number;
 }
 
-export type RewriteAnimate = {
-    kind: keyof EntityRefKind;
-    id: string;
-    timelabel?: string;
-    args?: Array<unknown> | Record<PropertyKey, unknown> | AnimatePatchs;
-};
-
 //
 
-type Vector3 = {
+export type Vector3 = {
     x?: number;
     y?: number;
     z?: number;
     order?: THREE.EulerOrder;
 };
 
-type Quaternion = {
+export type Quaternion = {
     x?: number;
     y?: number;
     z?: number;

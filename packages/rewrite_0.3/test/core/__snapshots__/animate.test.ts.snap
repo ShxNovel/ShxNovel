@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plain patch 1`] = `
+{
+  "cache": Map {
+    "1.1.1" => [
+      {
+        "content": [
+          "say aside",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "id": "a",
+            "kind": "timelabel",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "duration": 1000,
+              "position": {
+                "x": 0,
+                "y": 0,
+              },
+            },
+            "id": "stand:sofa",
+            "kind": "patch",
+            "timelabel": "a",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          "say me",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+    ],
+  },
+  "name": "1.1.1",
+}
+`;

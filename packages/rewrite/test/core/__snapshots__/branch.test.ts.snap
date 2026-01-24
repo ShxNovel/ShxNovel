@@ -1,0 +1,177 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`multi branch 1`] = `
+[
+  {
+    "content": [
+      "some 1",
+    ],
+    "name": null,
+    "quote": false,
+    "type": "text",
+  },
+  {
+    "ENDFLAG": "p1y83abzdc",
+    "cond": "function() {
+      return "c";
+      return "b";
+      return "a";
+    }",
+    "targets": {
+      "a": "2s7w5dukye4",
+      "b": "1 12",
+      "c": "9n8a0a4yio5",
+    },
+    "type": "branch",
+  },
+  {
+    "name": "9n8a0a4yio5",
+    "type": "flag",
+  },
+  {
+    "content": [
+      "1 cc",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "ENDFLAG": "vfv49smt1yk",
+    "cond": "() => {
+          return "cc";
+          return "bb";
+          return "aa";
+        }",
+    "targets": {
+      "aa": "rj3x1v74xbk",
+      "bb": "2 12",
+      "cc": "x8go250erpl",
+    },
+    "type": "branch",
+  },
+  {
+    "name": "x8go250erpl",
+    "type": "flag",
+  },
+  {
+    "content": [
+      "2 cc",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "target": "vfv49smt1yk",
+    "type": "jump",
+  },
+  {
+    "name": "rj3x1v74xbk",
+    "type": "flag",
+  },
+  {
+    "content": [
+      "2 aa",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "target": "vfv49smt1yk",
+    "type": "jump",
+  },
+  {
+    "name": "vfv49smt1yk",
+    "type": "flag",
+  },
+  {
+    "target": "p1y83abzdc",
+    "type": "jump",
+  },
+  {
+    "name": "2s7w5dukye4",
+    "type": "flag",
+  },
+  {
+    "content": [
+      "1 aa",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "target": "p1y83abzdc",
+    "type": "jump",
+  },
+  {
+    "name": "p1y83abzdc",
+    "type": "flag",
+  },
+  {
+    "content": [
+      "some 2",
+    ],
+    "name": null,
+    "quote": false,
+    "type": "text",
+  },
+]
+`;
+
+exports[`single branch 1`] = `
+[
+  {
+    "ENDFLAG": "nyl8atct8de",
+    "cond": "function() {
+      return "c";
+      return "b";
+      return "a";
+    }",
+    "targets": {
+      "a": "9mb1kti1yu",
+      "b": "12",
+      "c": "cjz96fpwpls",
+    },
+    "type": "branch",
+  },
+  {
+    "name": "cjz96fpwpls",
+    "type": "flag",
+  },
+  {
+    "content": [
+      "cc",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "target": "nyl8atct8de",
+    "type": "jump",
+  },
+  {
+    "name": "9mb1kti1yu",
+    "type": "flag",
+  },
+  {
+    "content": [
+      "aa",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "target": "nyl8atct8de",
+    "type": "jump",
+  },
+  {
+    "name": "nyl8atct8de",
+    "type": "flag",
+  },
+]
+`;

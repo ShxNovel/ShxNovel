@@ -2,7 +2,7 @@ import type { RewriteText, TextUnit } from './text';
 import { CleanFunction, bindContent, addChainableMethods } from '../../utils';
 import { RewriteContext, rewriteContext } from '../RewriteContext';
 
-/* Before initialization */
+// /* Before initialization */
 export type InitLinkText = CleanFunction<_InitLinkText>;
 type _InitLinkText = _LinkTextFn & InitTextMethod;
 export interface InitTextMethod {
@@ -24,10 +24,10 @@ export interface TextMethod {
 
 export const textMethods: Record<keyof TextMethod, (this: LinkText, ...args: any[]) => RewriteText> = {
     pause: (ms: number) => {
-        return { type: 'pause', args: { ms } };
+        return { kind: 'pause', args: { ms } };
     },
     fast: (str: string) => {
-        return { type: 'fast', args: { str } };
+        return { kind: 'fast', args: { str } };
     },
 };
 
@@ -53,10 +53,11 @@ export function character(name_: string | boolean | null = null, quote: boolean 
     let name: string | null = null;
 
     if (typeof name_ === 'boolean') quote = name_;
-    else if (typeof name_ === 'string') (name = name_), (quote = true);
+    else if (typeof name_ === 'string') ((name = name_), (quote = true));
 
     function init(some?: TemplateStringsArray, ...values: RewriteText[]): LinkText {
         const content: RewriteText[] = [];
+
         const talk: TextUnit = { type: 'text', name, quote, content };
 
         cache.push(talk);

@@ -3,7 +3,7 @@ const { character, flag, visual, timelabel, system } = useChapter('1.1.1');
 const aside = character(null);
 const me = character('卡咖喱');
 
-const s_sofa = visual("stand:Rinne");
+const s_sofa = visual('stand:Rinne');
 
 flag('start');
 {

@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`jump 1`] = `
+[
+  {
+    "content": [
+      "aa",
+    ],
+    "name": null,
+    "quote": false,
+    "type": "text",
+  },
+  {
+    "content": [
+      "bb",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+  {
+    "name": "scene-bind-next",
+    "type": "directive",
+  },
+  {
+    "name": "scene-boundary",
+    "type": "directive",
+  },
+  {
+    "content": [
+      "bb",
+    ],
+    "name": "me",
+    "quote": true,
+    "type": "text",
+  },
+]
+`;

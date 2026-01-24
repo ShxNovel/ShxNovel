@@ -4,7 +4,10 @@ import JsonToTs from 'json-to-ts';
 // declare module '@shxnovel/rewrite' {
 //     namespace Animate {
 //         interface VisualMap {
-//             // _test: 'a' | 'b' | 'c';
+//             _test: {
+//                 pose: 'a' | 'b' | 'c';
+//                 expr: 'x' | 'y' | 'z';
+//             };
 //         }
 //     }
 
@@ -41,14 +44,19 @@ export function solveDeclare(
 
 function solveA(context: Map<string, VisualIR>) {
     const formatType = (item: VisualIR): string => {
+        const poseKeys = Object.keys(item.poses || {});
         const expressionKeys = Object.keys(item.expressions || {});
 
-        if (expressionKeys.length === 0) return `    ${item.name}: never;`;
+        const PoseUnionType = poseKeys.length === 0 ? 'never' : poseKeys.map((k) => `'${k}'`).join(' | ');
+        const ExprUnionType = expressionKeys.length === 0 ? 'never' : expressionKeys.map((k) => `'${k}'`).join(' | ');
 
-        const unionType = expressionKeys.map((k) => `'${k}'`).join(' | ');
-        return `      '${item.name}': ${unionType};`;
+        return (
+            `      '${item.name}': {\n` +
+            `        pose: ${PoseUnionType};\n` +
+            `        expression: ${ExprUnionType};\n` +
+            `      };\n`
+        );
     };
-
     const sections: string[] = [];
 
     context.forEach((item, _name) => {

@@ -8,6 +8,7 @@ test('plain patch', () => {
     const aside = character(null);
     const me = character('me');
 
+    // @ts-ignore
     const s_sofa = visual('stand:sofa');
 
     {

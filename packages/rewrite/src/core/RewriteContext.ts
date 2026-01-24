@@ -1,4 +1,4 @@
-import { ChapterUnit } from './chapter';
+import { ChapterUnit } from './Chapter';
 
 export class RewriteContext {
     chapters: Map<string, ChapterUnit[]> = new Map();

@@ -28,7 +28,8 @@ export class VisualContext<T extends VisualIR> {
     }
 
     /**
-     * 将每个 node 里的每个 variants 添加进 expressions
+     * [short syntax]
+     *    add each {@link VisualIR.nodes.variants} to expressions.
      */
     addNodeExpression(item: T) {
         const { nodes, expressions } = item;
@@ -40,14 +41,14 @@ export class VisualContext<T extends VisualIR> {
 
             if (!variants) return;
 
-            // 显示
+            // display
             Object.entries(variants).forEach(([variantName, _variant]) => {
                 const key = `${nodeName}:${variantName}`;
                 const value = { [nodeName]: variantName };
                 expressionMap[key] = value;
             });
 
-            // 不显示
+            // undisplay
             {
                 const key = `#${nodeName}`;
                 const value = { [nodeName]: false };

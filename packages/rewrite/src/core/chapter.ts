@@ -1,38 +1,57 @@
-import { AnimateUnit, visual, timelabel } from './Animate';
-import { flag, FlagUnit } from './Flag';
-import { system, SysUnit } from './Sys';
-import { character, TextUnit } from './Text';
+import { TextUnit, character } from './text';
+import { AnimateUnit, visual, timelabel } from './animate';
+import { SystemUnit, system } from './system';
+import { BranchUnit, branch } from './branch';
+import { ChoiceUnit, choice } from './choice';
+import { JumpUnit, jump } from './jump';
+import { FlagUnit, flag } from './flag';
+import { Directive, directive } from './directive';
 import { rewriteContext } from './RewriteContext';
 
 export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
-export type ChapterUnit = TextUnit | SysUnit | AnimateUnit | FlagUnit | UnitLike;
+
+// prettier-ignore
+
+/**
+ * The unit waiting for lowering.
+ */
+export type FlatNode = 
+    | TextUnit | AnimateUnit | SystemUnit   /* SceneBlock */ 
+    | BranchUnit | ChoiceUnit | JumpUnit | FlagUnit    /* ControlBlock */
+    | UnitLike   /* unknown */
+    ;
+
+/**
+ * The unit with directive support.
+ * {@link Directive} will not appear in the final output.
+ */
+export type ChapterUnit = FlatNode | Directive;
 
 export function useChapter(name: string) {
-    const _cache = rewriteContext.newChapter(name);
+    // chapter ctx
+    const cache = rewriteContext.newChapter(name);
 
-    // if (!_cache) {
-    //     throw new Error(`Chapter ${name} is blank, or already exists`);
-    // }
-
-    const cache = _cache;
-
+    // prettier-ignore
+    // maybe use builder
     const ChapterImpl = {
         dump() {
             return { name, cache };
         },
 
-        // character
+        // Text
         character,
 
-        // system
+        // Animate
+        visual, timelabel,
+
+        // System
         system,
 
-        // animate
-        visual,
-        timelabel,
+        /* Control */
+        branch, choice, jump, flag,
 
-        // flag
-        flag,
+        // Directive
+        directive,
     };
 
     return ChapterImpl;

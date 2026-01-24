@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sys cut 1`] = `
+{
+  "cache": Map {
+    "1.1.1" => [
+      {
+        "content": [
+          "11",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "kind": "cut",
+          },
+        ],
+        "type": "system",
+      },
+      {
+        "content": [
+          {
+            "kind": "cut",
+          },
+        ],
+        "type": "system",
+      },
+      {
+        "content": [
+          {
+            "kind": "cut",
+          },
+        ],
+        "type": "system",
+      },
+      {
+        "content": [
+          "122",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "kind": "cut",
+          },
+        ],
+        "type": "system",
+      },
+      {
+        "content": [
+          {
+            "kind": "cut",
+          },
+        ],
+        "type": "system",
+      },
+      {
+        "content": [
+          "22",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "kind": "cut",
+          },
+        ],
+        "type": "system",
+      },
+    ],
+  },
+  "name": "1.1.1",
+}
+`;

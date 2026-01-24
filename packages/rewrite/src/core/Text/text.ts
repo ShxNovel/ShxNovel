@@ -10,12 +10,12 @@ export interface TextUnit {
 export type RewriteText =
     | string
     | {
-          type: keyof RewriteTextType;
-          args: Record<PropertyKey, unknown>;
+          kind: keyof RewriteTextKind;
+          args: Record<PropertyKey, any>;
       };
 
-type DefaultRewriteTextType = {
+type DefaultRewriteTextKind = {
     [K in keyof TextMethod]: never;
 };
 
-interface RewriteTextType extends DefaultRewriteTextType {}
+interface RewriteTextKind extends DefaultRewriteTextKind {}
