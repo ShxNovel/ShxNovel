@@ -1,8 +1,15 @@
+// import { getStack } from '../../utils/getStack';
 import { rewriteContext } from '../RewriteContext';
+
+export interface DirectiveName {
+    'scene-boundary': any;
+    'scene-bind-next': any;
+}
 
 export interface Directive {
     type: 'directive';
-    name: 'scene-boundary' | 'scene-bind-next' | (string & {});
+    name: keyof DirectiveName;
+    meta?: Record<string, any>;
 }
 
 export interface LoweringDirective {
@@ -23,7 +30,7 @@ export const directive: LoweringDirective = {
             type: 'directive',
             name: 'scene-boundary',
         } satisfies Directive);
-        return () => {};
+        return () => { };
     },
 
     get SceneBindNext() {
@@ -31,6 +38,6 @@ export const directive: LoweringDirective = {
             type: 'directive',
             name: 'scene-bind-next',
         } satisfies Directive);
-        return () => {};
+        return () => { };
     },
 };

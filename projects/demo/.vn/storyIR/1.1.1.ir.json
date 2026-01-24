@@ -1,15 +1,18 @@
 [
+  {"type": "flag", "name": "start", "meta": {"debug": "1.1.1.ts:8:1"}},
   {
     "text": [
       {
         "type": "text",
         "name": null,
         "quote": false,
-        "content": ["你好!", {"type": "pause", "args": {"ms": 2000}}, "罚抄", {"type": "fast", "args": {"str": "!!!"}}]
+        "content": ["你好!", {"kind": "pause", "args": {"ms": 2000}}, "罚抄", {"kind": "fast", "args": {"str": "!!!"}}],
+        "meta": {"debug": "1.1.1.ts:3:15"}
       }
     ],
     "animate": [],
-    "sys": []
+    "system": [],
+    "meta": {}
   },
   {
     "text": [
@@ -17,12 +20,17 @@
         "type": "text",
         "name": "卡咖喱",
         "quote": true,
-        "content": ["今天为什么罚抄？", {"type": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"]
+        "content": ["今天为什么罚抄？", {"kind": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"],
+        "meta": {"debug": "1.1.1.ts:4:12"}
       }
     ],
     "animate": [
-      {"type": "animate", "content": [{"id": "stand:sofa", "kind": "patch", "args": {"opacity": 1, "duration": 1000}}]}
+      {
+        "type": "animate",
+        "content": [{"target": "bg:school", "kind": "expression", "args": ["body:dark"], "patch": {}}]
+      }
     ],
-    "sys": []
+    "system": [],
+    "meta": {}
   }
 ]

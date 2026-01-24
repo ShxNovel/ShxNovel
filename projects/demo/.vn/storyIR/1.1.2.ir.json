@@ -1,10 +1,31 @@
 [
   {
+    "text": [],
+    "animate": [
+      {
+        "type": "animate",
+        "content": [
+          {"target": "bg:school", "kind": "expression", "args": ["#body"], "patch": {"opacity": 1, "duration": 1000}}
+        ]
+      }
+    ],
+    "system": [],
+    "meta": {}
+  },
+  {"type": "flag", "name": "start2", "meta": {"debug": "1.1.2.ts:8:1"}},
+  {
     "text": [
-      {"type": "text", "name": null, "quote": false, "content": ["你好! 罚抄!", {"type": "fast", "args": {"str": "!!!"}}]}
+      {
+        "type": "text",
+        "name": null,
+        "quote": false,
+        "content": ["你好! 罚抄!", {"kind": "fast", "args": {"str": "!!!"}}],
+        "meta": {"debug": "1.1.2.ts:12:19"}
+      }
     ],
     "animate": [],
-    "sys": []
+    "system": [],
+    "meta": {}
   },
   {
     "text": [
@@ -12,12 +33,12 @@
         "type": "text",
         "name": "卡咖喱2",
         "quote": true,
-        "content": ["今天为什么罚抄？", {"type": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"]
+        "content": ["今天为什么罚抄？", {"kind": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"],
+        "meta": {"debug": "1.1.2.ts:13:16"}
       }
     ],
-    "animate": [
-      {"type": "animate", "content": [{"id": "stand:sofa", "kind": "patch", "args": {"opacity": 1, "duration": 1000}}]}
-    ],
-    "sys": []
+    "animate": [],
+    "system": [],
+    "meta": {}
   }
 ]

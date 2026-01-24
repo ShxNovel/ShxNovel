@@ -1,6 +1,9 @@
 import type { RewriteText, TextUnit } from './text';
 import { CleanFunction, bindContent, addChainableMethods } from '../../utils';
 import { RewriteContext, rewriteContext } from '../RewriteContext';
+import { getStack } from '../../utils/getStack';
+import { deepMerge } from '../../utils/deepMerge';
+import { getPathDiff } from '../../utils/getPathDiff';
 
 // /* Before initialization */
 export type InitLinkText = CleanFunction<_InitLinkText>;
@@ -55,10 +58,15 @@ export function character(name_: string | boolean | null = null, quote: boolean 
     if (typeof name_ === 'boolean') quote = name_;
     else if (typeof name_ === 'string') ((name = name_), (quote = true));
 
+    let debug: null | string = null;
+    if (process.env.RewriteInputPath) debug = getPathDiff(process.env.RewriteInputPath, getStack(character));
+
     function init(some?: TemplateStringsArray, ...values: RewriteText[]): LinkText {
         const content: RewriteText[] = [];
 
         const talk: TextUnit = { type: 'text', name, quote, content };
+
+        if (process.env.RewriteInputPath) deepMerge(talk, { meta: { debug } });
 
         cache.push(talk);
 

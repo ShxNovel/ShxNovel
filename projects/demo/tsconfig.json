@@ -24,7 +24,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     // "noUncheckedSideEffectImports": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+
+    "types": ["@shxnovel/rewrite", "@shxnovel/world"]
   },
   "include": ["./.vn/*", "./plugins/*", "./story", "./world"]
 }

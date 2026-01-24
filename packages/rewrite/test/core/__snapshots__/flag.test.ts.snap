@@ -32,14 +32,14 @@ exports[`flag 1`] = `
             "args": {
               "str": "xxxx",
             },
-            "type": "fast",
+            "kind": "fast",
           },
           "33",
           {
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
           "44",
         ],
@@ -57,7 +57,7 @@ exports[`flag 1`] = `
             "args": {
               "str": "yyyy",
             },
-            "type": "fast",
+            "kind": "fast",
           },
         ],
         "name": null,
@@ -71,7 +71,7 @@ exports[`flag 1`] = `
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
         ],
         "name": "me",

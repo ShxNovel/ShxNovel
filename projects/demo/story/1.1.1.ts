@@ -3,7 +3,7 @@ const { character, flag, visual, timelabel, system } = useChapter('1.1.1');
 const aside = character(null);
 const me = character('卡咖喱');
 
-const s_sofa = visual('stand:Rinne');
+const school = visual('bg:school');
 
 flag('start');
 {
@@ -11,5 +11,5 @@ flag('start');
 
     me`今天为什么罚抄？`.pause(1000)`是不是因为上课没听讲？`;
 
-    s_sofa.patch({ opacity: 1, duration: 1000 });
+    school.expr('body:dark').patch({});
 }

@@ -3,6 +3,9 @@ import { rewriteContext } from '../RewriteContext';
 import { flag } from '../flag';
 import { jump } from '../jump';
 import { GameData } from '../../types';
+import { getStack } from '../../utils/getStack';
+import { deepMerge } from '../../utils/deepMerge';
+import { getPathDiff } from '../../utils/getPathDiff';
 
 export interface BranchUnit {
     type: 'branch';
@@ -12,6 +15,7 @@ export interface BranchUnit {
     targets: {
         [result: string]: string;
     };
+    meta?: Record<string, any>;
 }
 
 /**
@@ -69,12 +73,17 @@ export function branch<K extends string, T extends GameData.Impl>(
 
     const ENDFLAG = getLabel();
 
+    let debug: null | string = null;
+    if (process.env.RewriteInputPath) debug = getPathDiff(process.env.RewriteInputPath, getStack(branch));
+
     const item: BranchUnit = {
         type: 'branch',
         cond: ConditionStr,
         ENDFLAG: ENDFLAG,
         targets: {},
     };
+
+    if (process.env.RewriteInputPath) deepMerge(item, { meta: { debug } });
 
     rewriteContext.push(item);
 

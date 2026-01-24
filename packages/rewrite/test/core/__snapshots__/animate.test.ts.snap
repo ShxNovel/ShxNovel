@@ -15,25 +15,8 @@ exports[`plain patch 1`] = `
       {
         "content": [
           {
-            "id": "a",
             "kind": "timelabel",
-          },
-        ],
-        "type": "animate",
-      },
-      {
-        "content": [
-          {
-            "args": {
-              "duration": 1000,
-              "position": {
-                "x": 0,
-                "y": 0,
-              },
-            },
-            "id": "stand:sofa",
-            "kind": "patch",
-            "timelabel": "a",
+            "target": "a",
           },
         ],
         "type": "animate",

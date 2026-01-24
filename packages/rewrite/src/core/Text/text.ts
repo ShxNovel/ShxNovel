@@ -5,17 +5,18 @@ export interface TextUnit {
     name: string | null;
     quote: boolean;
     content: RewriteText[];
+    meta?: Record<string, any>;
 }
 
 export type RewriteText =
     | string
     | {
-          kind: keyof RewriteTextKind;
-          args: Record<PropertyKey, any>;
-      };
+        kind: keyof RewriteTextKind;
+        args: Record<PropertyKey, any>;
+    };
 
 type DefaultRewriteTextKind = {
     [K in keyof TextMethod]: never;
 };
 
-interface RewriteTextKind extends DefaultRewriteTextKind {}
+interface RewriteTextKind extends DefaultRewriteTextKind { }

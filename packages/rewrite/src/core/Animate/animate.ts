@@ -11,6 +11,7 @@ type EaseType = NonNullable<Parameters<typeof gsap.to>[1]>['ease'];
 export interface AnimateUnit {
     type: 'animate';
     content: RewriteAnimate[];
+    meta?: Record<string, any>;
 }
 
 export type RewriteAnimate = {

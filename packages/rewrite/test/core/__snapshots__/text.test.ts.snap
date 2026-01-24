@@ -28,14 +28,14 @@ exports[`multiple character 1`] = `
             "args": {
               "str": "xxxx",
             },
-            "type": "fast",
+            "kind": "fast",
           },
           "33",
           {
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
           "44",
         ],
@@ -49,7 +49,7 @@ exports[`multiple character 1`] = `
             "args": {
               "str": "yyyy",
             },
-            "type": "fast",
+            "kind": "fast",
           },
         ],
         "name": null,
@@ -63,7 +63,7 @@ exports[`multiple character 1`] = `
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
         ],
         "name": "me",
@@ -96,14 +96,14 @@ exports[`multiple character 1`] = `
             "args": {
               "str": "xxxx",
             },
-            "type": "fast",
+            "kind": "fast",
           },
           "33",
           {
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
           "44",
         ],
@@ -117,7 +117,7 @@ exports[`multiple character 1`] = `
             "args": {
               "str": "yyyy",
             },
-            "type": "fast",
+            "kind": "fast",
           },
         ],
         "name": null,
@@ -131,7 +131,7 @@ exports[`multiple character 1`] = `
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
         ],
         "name": "me",
@@ -172,14 +172,14 @@ exports[`plain character 1`] = `
             "args": {
               "str": "xxxx",
             },
-            "type": "fast",
+            "kind": "fast",
           },
           "33",
           {
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
           "44",
         ],
@@ -193,7 +193,7 @@ exports[`plain character 1`] = `
             "args": {
               "str": "yyyy",
             },
-            "type": "fast",
+            "kind": "fast",
           },
         ],
         "name": null,
@@ -207,7 +207,7 @@ exports[`plain character 1`] = `
             "args": {
               "ms": 1000,
             },
-            "type": "pause",
+            "kind": "pause",
           },
         ],
         "name": "me",

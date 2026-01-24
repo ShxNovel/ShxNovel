@@ -19,6 +19,10 @@ export async function storyCLI() {
     const inputPath = path.resolve(process.cwd(), arg, './story');
     const outputPath = path.resolve(process.cwd(), arg, './.vn', './storyIR');
 
+    // set env
+    // remove when vite production
+    process.env.RewriteInputPath = inputPath;
+
     console.log(`story: ${outputPath}`);
 
     const dirFiles = fs.readdirSync(inputPath);

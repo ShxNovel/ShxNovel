@@ -3,6 +3,7 @@ import { rewriteContext } from '../RewriteContext';
 export interface SystemUnit {
     type: 'system';
     content: RewriteSystem[];
+    meta?: Record<string, any>;
 }
 
 export type RewriteSystem = {

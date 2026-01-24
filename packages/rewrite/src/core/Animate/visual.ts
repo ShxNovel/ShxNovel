@@ -1,11 +1,10 @@
 import { rewriteContext } from '../RewriteContext';
 import { AnimateUnit, RewriteAnimate, Vector3 } from './animate';
-import { Animate, VisualEffect, VisualKey, VisualPosition } from '../../types';
+import { Animate } from '../../types';
 
 type WhenFn = ReturnType<typeof buildWhen>;
 
 export interface VisualMethods<T> {
-    // prettier-ignore
     /**
      *
      * {@link enter} is a  of {@link effect}
@@ -18,34 +17,18 @@ export interface VisualMethods<T> {
      * }).when('label b')
      * ```
      */
-    enter(position: VisualPosition | Vector3, effect?: EffectArgs): {
+    enter(position: Animate.VisualPositionKey | Vector3, effect?: EffectArgs): { when: WhenFn };
+    leave(effect: EffectArgs): { when: WhenFn };
+    effect(name: Animate.VisualEffectKey, effect: PatchArgs): { when: WhenFn };
+    pose(name: Animate.VisualPoseName<T>, effect: EffectArgs): { when: WhenFn };
+    expr(name: Animate.VisualExpressionArgs<T>): {
         when: WhenFn;
-    };
-    leave(effect: EffectArgs): {
-        when: WhenFn;
-    };
-    // prettier-ignore
-    effect(name: VisualEffect, effect: PatchArgs): {
-        when: WhenFn;
-    };
-    pose(name: VisualPoseName<T>, effect: EffectArgs): {};
-    expr(...args: VisualExpressionArgs<T>[]): {
         patch: ReturnType<typeof buildPatch>;
+    };
+    expr(...args: Animate.VisualExpressionArgs<T>[]): {
         when: WhenFn;
     };
 }
-
-// prettier-ignore
-export type VisualPoseName<T> =
-    T extends keyof Animate.VisualMap
-        ? Animate.VisualMap[T]['pose']
-        : never;
-
-// prettier-ignore
-export type VisualExpressionArgs<T> =
-    T extends keyof Animate.VisualMap
-        ? Animate.VisualMap[T]['expr']
-        : never;
 
 export type PatchArgs = {
     patch?: Record<string, any>;
@@ -70,7 +53,7 @@ export class VisualImpl<T> implements VisualMethods<T> {
         } satisfies AnimateUnit);
     }
 
-    enter(position: VisualPosition | Vector3, effect?: EffectArgs) {
+    enter(position: Animate.VisualPositionKey | Vector3, effect?: EffectArgs) {
         const ITEM: RewriteAnimate = {
             target: this.id,
             kind: 'enter',
@@ -101,7 +84,7 @@ export class VisualImpl<T> implements VisualMethods<T> {
         return { when };
     }
 
-    effect(name: VisualEffect, effect: PatchArgs) {
+    effect(name: Animate.VisualEffectKey, effect: PatchArgs) {
         const ITEM: RewriteAnimate = {
             target: this.id,
             kind: 'pose',
@@ -117,7 +100,7 @@ export class VisualImpl<T> implements VisualMethods<T> {
         return { when };
     }
 
-    pose(name: VisualPoseName<T>, effect: EffectArgs) {
+    pose(name: Animate.VisualPoseName<T>, effect: EffectArgs) {
         const ITEM: RewriteAnimate = {
             target: this.id,
             kind: 'pose',
@@ -134,7 +117,7 @@ export class VisualImpl<T> implements VisualMethods<T> {
         return { patch, when };
     }
 
-    expr(...args: VisualExpressionArgs<T>[]) {
+    expr(...args: Animate.VisualExpressionArgs<T>[]) {
         const ITEM: RewriteAnimate = {
             target: this.id,
             kind: 'expression',
@@ -162,6 +145,6 @@ function buildWhen<T extends Record<string, any>>(item: T) {
     };
 }
 
-export function visual<T extends VisualKey>(name: T) {
+export function visual<T extends Animate.VisualKey>(name: T) {
     return new VisualImpl<T>(name) as VisualMethods<T>;
 }

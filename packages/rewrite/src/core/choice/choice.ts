@@ -4,7 +4,7 @@
 // import { jump } from '../jump';
 // import { GameData } from '../../types';
 
-interface ChoiceArgs {}
+interface ChoiceArgs { }
 
 export interface ChoiceUnit {
     type: 'choice';
@@ -14,7 +14,8 @@ export interface ChoiceUnit {
     targets: {
         [result: string]: string;
     };
+    meta?: Record<string, any>;
 }
 
 // @ts-ignore
-export function choice(args: any) {}
+export function choice(args: any) { }

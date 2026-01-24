@@ -4,9 +4,21 @@ declare module "@shxnovel/rewrite" {
 
   namespace Animate {
     interface VisualMap {
-      'bg:school': 'body:bright' | 'body:dark' | '#body' | 'dayLight' | 'nightLight';
-      'camera:main': 'reset' | 'shake' | 'normal' | 'dizzy';
-      'stand:Rinne': 'body:normal' | 'body:side' | '#body' | 'normal_eye:open' | 'normal_eye:close' | 'normal_eye:happy' | '#normal_eye' | 'side_eye:open' | 'side_eye:close' | 'side_eye:happy' | '#side_eye' | 'normal_happy' | 'side_shame';
+      'bg:school': {
+        'pose': never;
+        'expression': 'body:bright' | 'body:dark' | '#body' | 'dayLight' | 'nightLight';
+      };
+
+      'camera:main': {
+        pose: 'default' | 'charA_closeup';
+        expression: 'reset' | 'shake' | 'normal' | 'dizzy';
+      };
+
+      'stand:Rinne': {
+        pose: 'base' | 'front' | 'side';
+        expression: 'body:normal' | 'body:side' | '#body' | 'normal_eye:open' | 'normal_eye:close' | 'normal_eye:happy' | '#normal_eye' | 'side_eye:open' | 'side_eye:close' | 'side_eye:happy' | '#side_eye' | 'normal_happy' | 'side_shame';
+      };
+
     }
   }
 
