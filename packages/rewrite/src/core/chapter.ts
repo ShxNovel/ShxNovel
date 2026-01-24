@@ -8,7 +8,8 @@ import { FlagUnit, flag } from './flag';
 import { Directive, directive } from './directive';
 import { rewriteContext } from './RewriteContext';
 
-export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
+// export type UnitLike = { type: string; args: Record<PropertyKey, unknown>; [key: string]: unknown };
+export type UnitLike = never;
 
 // prettier-ignore
 

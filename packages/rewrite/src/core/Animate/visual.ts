@@ -101,8 +101,19 @@ export class VisualImpl<T> implements VisualMethods<T> {
         return { when };
     }
 
-    effect(name: PatchArgs, effect: PatchArgs) {
-        const when = buildWhen(Item);
+    effect(name: VisualEffect, effect: PatchArgs) {
+        const ITEM: RewriteAnimate = {
+            target: this.id,
+            kind: 'pose',
+            args: {
+                name,
+                effect,
+            },
+        };
+
+        this.pushItem(ITEM);
+
+        const when = buildWhen(ITEM);
         return { when };
     }
 
