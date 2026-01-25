@@ -1,13 +1,8 @@
-import { VisualNodesSpec, VisualPosesSpec, VisualExpressionsSpec, VisualIR } from './types';
-import { WorldContext } from '../worldContext';
+import { VisualNodesSpec, VisualPosesSpec, VisualExpressionsSpec } from './types';
 import { VisualKind } from './types';
-
-export const visualContext = new WorldContext<VisualIR>('Visual');
+import { visualCtx } from './visualContext';
 
 export function useVisual<K extends VisualKind>(name: string, kind: K) {
-    // rename
-    name = `${kind}:${name}`;
-
     const result = {
         name,
         kind,
@@ -16,7 +11,7 @@ export function useVisual<K extends VisualKind>(name: string, kind: K) {
         expressions: {},
     };
 
-    visualContext.add(name, result);
+    visualCtx.add(name, result);
 
     // first function
     function nodes<N extends VisualNodesSpec>(nodes: N) {

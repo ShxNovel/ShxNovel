@@ -1,5 +1,5 @@
 {
-  "name": "stand:Rinne",
+  "name": "s:Rinne",
   "kind": "stand",
   "nodes": {
     "body": {"parent": "root", "variants": {"normal": {}, "side": {}}},

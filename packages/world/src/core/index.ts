@@ -4,5 +4,6 @@ export * from './visual';
 
 export * from './scene';
 export * from './camera';
+export * from './rt';
 
 export * from './data';

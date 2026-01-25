@@ -21,6 +21,7 @@ overrides:
   vitest: ^4
   rimraf: ^6.1.2
   tsx: ^4
+  json-to-ts: ^2
 
 importers:
 
@@ -158,6 +159,9 @@ importers:
       '@shxnovel/world':
         specifier: workspace:*
         version: link:../../packages/world
+      json-to-ts:
+        specifier: ^2
+        version: 2.1.0
       tsx:
         specifier: ^4
         version: 4.21.0

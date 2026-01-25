@@ -21,8 +21,7 @@
     "license": "MIT",
     "packageManager": "pnpm@10.8.0",
     "dependencies": {
-        "json-stringify-pretty-compact": "^4",
-        "json-to-ts": "^2"
+        "json-stringify-pretty-compact": "^4"
     },
     "devDependencies": {
         "@types/node": "*",
@@ -34,6 +33,7 @@
     "peerDependencies": {
         "@shxnovel/cli": "workspace:*",
         "@shxnovel/rewrite": "workspace:*",
-        "@shxnovel/world": "workspace:*"
+        "@shxnovel/world": "workspace:*",
+        "json-to-ts": "^2"
     }
 }

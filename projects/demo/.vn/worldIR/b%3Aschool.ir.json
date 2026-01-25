@@ -1,5 +1,5 @@
 {
-  "name": "bg:school",
+  "name": "b:school",
   "kind": "bg",
   "nodes": {"body": {"variants": {"bright": "a.jpg"}}},
   "poses": {},

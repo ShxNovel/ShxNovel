@@ -17,4 +17,8 @@ export class WorldContext<T> {
 
         return this.context.set(name, item);
     }
+
+    finish() {
+        return this.context;
+    }
 }

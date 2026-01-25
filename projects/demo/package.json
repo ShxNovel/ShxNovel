@@ -16,6 +16,7 @@
         "@shxnovel/cli": "workspace:*",
         "@shxnovel/rewrite": "workspace:*",
         "@shxnovel/world": "workspace:*",
+        "json-to-ts": "*",
         "tsx": "*"
     },
     "keywords": [],

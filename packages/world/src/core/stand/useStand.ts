@@ -1,5 +1,6 @@
 import { useVisual } from '../visual';
 
 export function useStand(name: string) {
-    return useVisual(name, 'stand');
+    const visualName = `s:${name}`;
+    return useVisual(visualName, 'stand');
 }

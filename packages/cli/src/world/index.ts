@@ -3,7 +3,7 @@ import * as path from 'path';
 import format from 'json-stringify-pretty-compact';
 import { fileImport, libImport } from '../tools';
 import { solveDeclare } from './solveVisualMap';
-// import { useBg, useCamera, useStand, useVisual } from '@shxnovel/world';
+import { solveList } from './solveList';
 
 const { registry, useVisual, useBg, useCamera, useStand } =
     // sync with user runtime
@@ -41,11 +41,11 @@ export async function worldCLI() {
         await fileImport(filePath);
     }
 
-    const context = registry.visualWorldContext.finish();
+    // part 1
 
-    const output = solveDeclare(context, registry.InGameData, registry.GlobalData);
+    const context = registry.visualCtx.finish();
 
-    // console.dir(output, { depth: null });
+    const DecleareOutput = solveDeclare(context, registry.InGameData, registry.GlobalData);
 
     /**
      * Write output to file
@@ -55,23 +55,79 @@ export async function worldCLI() {
         fs.mkdirSync(dtsPath);
     }
 
-    fs.writeFileSync(path.join(dtsPath, './world.d.ts'), output);
+    fs.writeFileSync(path.join(dtsPath, './world.d.ts'), DecleareOutput);
 
-    //
+    // part 2
+
+    const resourceList = solveList(registry);
 
     if (!fs.existsSync(worldIRPath)) {
         fs.mkdirSync(worldIRPath);
     }
 
-    context.forEach((visual, name) => {
+    const worldIR = createWorldIR(resourceList, worldIRPath);
+
+    // part 3
+    const manifest = createManifest(worldIR);
+    const manifestJson = format(manifest, {
+        indent: 2,
+        maxLength: 120,
+    });
+    fs.writeFileSync(path.join(dtsPath, './manifest.json'), manifestJson);
+}
+
+function createWorldIR(some: ReturnType<typeof solveList>, worldIRPath: string) {
+    const result = {} as Record<string, any>;
+
+    Object.entries(some.rt).forEach(([name, item]) => {
         const outPath = path.join(worldIRPath, encodeURIComponent(`${name}.ir.json`));
-        // console.log(outPath);
-        const json = format(visual, {
+        const json = format(item, {
             indent: 2,
             maxLength: 120,
         });
         fs.writeFileSync(outPath, json);
+        result[name] = { type: 'rt', path: path.join('worldIR', `${name}.ir.json`) };
     });
+    Object.entries(some.camera).forEach(([name, item]) => {
+        const outPath = path.join(worldIRPath, encodeURIComponent(`${name}.ir.json`));
+        const json = format(item, {
+            indent: 2,
+            maxLength: 120,
+        });
+        fs.writeFileSync(outPath, json);
+        result[name] = { type: 'camera', path: path.join('worldIR', `${name}.ir.json`) };
+    });
+
+    Object.entries(some.scene).forEach(([name, item]) => {
+        const outPath = path.join(worldIRPath, encodeURIComponent(`${name}.ir.json`));
+        const json = format(item, {
+            indent: 2,
+            maxLength: 120,
+        });
+        fs.writeFileSync(outPath, json);
+        result[name] = { type: 'scene', path: path.join('worldIR', `${name}.ir.json`) };
+    });
+
+    Object.entries(some.visual).forEach(([name, item]) => {
+        const outPath = path.join(worldIRPath, encodeURIComponent(`${name}.ir.json`));
+        const json = format(item, {
+            indent: 2,
+            maxLength: 120,
+        });
+        fs.writeFileSync(outPath, json);
+        result[name] = { type: 'visual', path: path.join('worldIR', `${name}.ir.json`) };
+    });
+
+    return result;
+}
+
+function createManifest(resourceList: ReturnType<typeof createWorldIR>) {
+    const manifest = {
+        meta: { version: '1.0', engine: 'ShxNovel' },
+        resourceList,
+    };
+
+    return manifest;
 }
 
 async function getConfig(files: string[], inputPath: string) {

@@ -1,18 +1,5 @@
+export * as registry from './core';
+
 export * from './core';
 export * from './types';
 
-// global
-
-import {
-    useVisual as _useVisual, //
-    useBg as _useBg,
-    useStand as _useStand,
-    useCamera as _useCamera,
-} from './core';
-
-declare global {
-    const useVisual: typeof _useVisual;
-    const useBg: typeof _useBg;
-    const useCamera: typeof _useCamera;
-    const useStand: typeof _useStand;
-}
