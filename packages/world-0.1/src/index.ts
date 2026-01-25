@@ -1,4 +1,9 @@
-export * from './core';
+export * as registry from './registry';
+export * as compiler from './compiler';
+export * as shxnovel from './runtime';
+
+export * from './registry'; // convenience re-export
+
 export * from './types';
 
 // global
@@ -8,7 +13,7 @@ import {
     useBg as _useBg,
     useStand as _useStand,
     useCamera as _useCamera,
-} from './core';
+} from './registry';
 
 declare global {
     const useVisual: typeof _useVisual;

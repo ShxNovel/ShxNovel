@@ -1,4 +1,4 @@
-import type { RewriteText, TextUnit } from './text';
+import type { RewriteText, TextUnit } from './types';
 import { CleanFunction, bindContent, addChainableMethods } from '../../utils';
 import { RewriteContext, rewriteContext } from '../RewriteContext';
 import { getStack } from '../../utils/getStack';

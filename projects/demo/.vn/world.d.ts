@@ -5,8 +5,8 @@ declare module "@shxnovel/rewrite" {
   namespace Animate {
     interface VisualMap {
       'bg:school': {
-        'pose': never;
-        'expression': 'body:bright' | 'body:dark' | '#body' | 'dayLight' | 'nightLight';
+        pose: never;
+        expression: 'body:bright' | 'body:dark' | '#body' | 'dayLight' | 'nightLight';
       };
 
       'camera:main': {

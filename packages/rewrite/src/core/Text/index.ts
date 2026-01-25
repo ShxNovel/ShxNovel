@@ -1,2 +1,2 @@
 export * from './character';
-export * from './text';
+export * from './types';
