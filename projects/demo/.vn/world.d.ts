@@ -15,6 +15,19 @@ declare module "@shxnovel/rewrite" {
       };
 
     }
+
+    interface SceneMap {
+      "scene:main": any;
+    }
+
+    interface CameraMap {
+      "co:main": any;
+    }
+
+    interface RTMap {
+      "screen": any;
+    }
+
   }
 
   namespace GameData {

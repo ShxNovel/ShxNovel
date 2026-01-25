@@ -12,10 +12,16 @@ export declare namespace GameData {
 
 //
 export declare namespace Animate {
-    interface VisualMap {}
+    /* visual */
+    interface VisualMap {
+        test: {
+            pose: 'enter' | 'leave';
+            expression: 'epxr1' | 'expr2';
+        };
+    }
     type VisualKey = keyof VisualMap;
     type VisualPoseName<T> = T extends keyof VisualMap ? VisualMap[T]['pose'] : never;
-    type VisualExpressionArgs<T> = T extends keyof VisualMap ? VisualMap[T]['expression'] : never;
+    type VisualExprName<T> = T extends keyof VisualMap ? VisualMap[T]['expression'] : never;
 
     interface VisualPositionMap {}
     type VisualPositionKey = keyof VisualPositionMap;
@@ -24,6 +30,22 @@ export declare namespace Animate {
         linear: {};
     }
     type VisualEffectKey = keyof VisualEffectMap;
+
+    /* scene */
+    interface SceneMap {
+        'scene:main': any;
+    }
+    type SceneKey = keyof SceneMap;
+
+    /* camera */
+    interface CameraMap {
+        'co:main': any;
+    }
+
+    /* rt */
+    interface RTMap {
+        screen: any;
+    }
 }
 
 // | (string /* magic */ & {});

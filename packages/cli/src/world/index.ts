@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import format from 'json-stringify-pretty-compact';
 import { fileImport, libImport } from '../tools';
-import { solveDeclare } from './solveVisualMap';
+import { solveDeclare } from './solveAnimate';
 import { solveList } from './solveList';
 
 const { registry, useVisual, useBg, useCamera, useStand } =
@@ -43,9 +43,7 @@ export async function worldCLI() {
 
     // part 1
 
-    const context = registry.visualCtx.finish();
-
-    const DecleareOutput = solveDeclare(context, registry.InGameData, registry.GlobalData);
+    const DecleareOutput = solveDeclare();
 
     /**
      * Write output to file

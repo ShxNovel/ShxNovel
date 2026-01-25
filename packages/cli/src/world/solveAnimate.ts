@@ -1,0 +1,130 @@
+import { VisualIR } from '@shxnovel/world';
+import JsonToTs from 'json-to-ts';
+import { libImport } from '../tools';
+
+declare module '@shxnovel/rewrite' {
+    namespace Animate {
+        interface VisualMap {
+            _test: {
+                pose: 'a' | 'b' | 'c';
+                expr: 'x' | 'y' | 'z';
+            };
+        }
+
+        interface SceneMap {}
+
+        interface RTMap {}
+    }
+
+    namespace GameData {
+        interface InGame {}
+
+        interface Global {}
+    }
+}
+
+const { registry } = (await libImport('@shxnovel/world')).default as typeof import('@shxnovel/world');
+
+export function solveDeclare(): string {
+    const VisualSections = solveVisual(registry.visualCtx.finish());
+    const SceneSections = solveScene(registry.SceneCtx.finish());
+    const RTSections = solveRT(registry.RTCtx.finish());
+    const CameraSections = solveCamera(registry.CameraCtx.finish());
+
+    const gameDataSections = solveG(registry.InGameData, registry.GlobalData);
+
+    return (
+        `import '@shxnovel/rewrite';\n\n` +
+        `declare module "@shxnovel/rewrite" {\n\n` +
+        `  namespace Animate {\n` +
+        `    interface VisualMap {\n` +
+        `${VisualSections.join('\n')}\n` +
+        `    }\n\n` +
+        `    interface SceneMap {\n` +
+        `${SceneSections.join('\n')}\n` +
+        `    }\n\n` +
+        `    interface CameraMap {\n` +
+        `${CameraSections.join('\n')}\n` +
+        `    }\n\n` +
+        `    interface RTMap {\n` +
+        `${RTSections.join('\n')}\n` +
+        `    }\n\n` +
+        `  }\n\n` +
+        `  namespace GameData {\n` +
+        `${gameDataSections.join('\n\n')}\n` +
+        `  }\n` +
+        `}\n`
+    );
+}
+
+function solveCamera(context: ReturnType<typeof registry.CameraCtx.finish>) {
+    const sections: string[] = [];
+
+    context.forEach((_item, name) => {
+        sections.push(`      "${name}": any;`);
+    });
+
+    return sections;
+}
+
+function solveScene(context: ReturnType<typeof registry.SceneCtx.finish>) {
+    const sections: string[] = [];
+
+    context.forEach((_item, name) => {
+        sections.push(`      "${name}": any;`);
+    });
+
+    return sections;
+}
+
+function solveRT(context: ReturnType<typeof registry.RTCtx.finish>) {
+    const sections: string[] = [];
+
+    context.forEach((_item, name) => {
+        sections.push(`      "${name}": any;`);
+    });
+
+    return sections;
+}
+
+function solveVisual(context: Map<string, VisualIR>) {
+    const formatType = (item: VisualIR): string => {
+        const poseKeys = Object.keys(item.poses || {});
+        const expressionKeys = Object.keys(item.expressions || {});
+
+        const PoseUnionType = poseKeys.length === 0 ? 'never' : poseKeys.map((k) => `'${k}'`).join(' | ');
+        const ExprUnionType = expressionKeys.length === 0 ? 'never' : expressionKeys.map((k) => `'${k}'`).join(' | ');
+
+        return (
+            `      '${item.name}': {\n` +
+            `        pose: ${PoseUnionType};\n` +
+            `        expression: ${ExprUnionType};\n` +
+            `      };\n`
+        );
+    };
+    const sections: string[] = [];
+
+    context.forEach((item, _name) => {
+        sections.push(`${formatType(item)}`);
+    });
+
+    return sections;
+}
+
+function solveG(inGame: Record<string, any>, global: Record<string, any>) {
+    const sections: string[] = [];
+
+    const inGameDefinitions = JsonToTs(inGame, { rootName: `InGame` });
+    const globalDefinitions = JsonToTs(global, { rootName: `Global` });
+
+    sections.push(...inGameDefinitions);
+    sections.push(...globalDefinitions);
+
+    sections.forEach((line, index) => {
+        if (line.trim() !== '') {
+            sections[index] = '    ' + line.replace(/\n/g, '\n    ');
+        }
+    });
+
+    return sections;
+}

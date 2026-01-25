@@ -1,5 +1,5 @@
 import { rewriteContext } from '../RewriteContext';
-import { AnimateUnit } from './animate';
+import { AnimateUnit } from './types';
 
 export function timelabel(timelabel: string) {
     const item: AnimateUnit = {
