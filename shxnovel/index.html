@@ -2,54 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>My Galgame</title>
-  <link rel="stylesheet" href="/web/css/media.css">
-  <link rel="stylesheet" href="/web/css/common.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>My Galgame</title>
+    <link rel="stylesheet" href="/web/css/media.css">
+    <link rel="stylesheet" href="/web/css/common.css">
 </head>
 
 <script type="module" src="./index.ts"></script>
+<script type="module" src="./src/router.ts"></script>
 
 <body>
 
-  <div class="innerBody" data-spa="wrapper">
+    <script type="module" src="./src/components/vn-confirm-dialog.ts"></script>
+    <vn-confirm-dialog></vn-confirm-dialog>
 
-    <!-- 
-        put here content that will not change
-        between your pages, like <header> or <nav>
-    -->
-
-    <main data-spa="container" data-spa-namespace="entry">
-
-      <!-- put here the content you wish to change
-           between your pages, like your main content <h1> or <p> 
-      -->
-
-    </main>
-
-    <!-- 
-        put here content that will not change
-        between your pages, like <header> or <nav>
-    -->
-
-  </div>
-
-  <script type="module" src="./src/components/global/GlobalElement.ts"></script>
-  <global-element></global-element>
+    <body>
+        <div id="game-outlet" style="height: 100%;"></div>
+    </body>
 
 </body>
 
-<script type="module">
-
-  import { changeUrl } from './src/route';
-  import { init } from './index.ts';
-
-  init().then(() => {
-    changeUrl('/src/logo.html');
-    // changeUrl('/src/home.html')
-  });
-
-</script>
 
 </html>

@@ -8,7 +8,7 @@ const arg2 = process.argv[2];
 
 function bad() {
     console.log('Usage: shx-cli <type> <?base-dir>');
-    console.log('type: asset | story | world');
+    console.log('type: asset | story | world | use');
     exit(1);
 }
 

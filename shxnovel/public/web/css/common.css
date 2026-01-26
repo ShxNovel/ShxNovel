@@ -2,21 +2,21 @@
     font-family: 'JetBrains-mono';
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/JetBrainsMono-Regular.woff2");
+    src: url('../fonts/JetBrainsMono-Regular.woff2');
 }
 
 @font-face {
     font-family: 'AlimamaDongFangDaKai';
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/AlimamaDongFangDaKai-Regular.ttf");
+    src: url('../fonts/AlimamaDongFangDaKai-Regular.ttf');
 }
 
 @font-face {
     font-family: 'SarasaMonoSC';
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/SarasaMonoSC-Bold.ttf");
+    src: url('../fonts/SarasaMonoSC-Bold.ttf');
 }
 
 * {
@@ -37,6 +37,7 @@ a[href] {
 html {
     overflow: hidden;
     font-size: 16px;
+    font-size: 2em;
     /* cursor: url("../icon/c_default.png"), pointer; */
 }
 
@@ -64,7 +65,7 @@ main {
     margin-top: var(--var-imarginTop);
     margin-left: var(--var-imarginLeft);
     width: var(--var-iwidth);
-    height: var(--var-iheight)
+    height: var(--var-iheight);
 }
 
 canvas {
@@ -76,7 +77,7 @@ canvas {
     margin-top: var(--var-imarginTop);
     margin-left: var(--var-imarginLeft);
     width: var(--var-iwidth);
-    height: var(--var-iheight)
+    height: var(--var-iheight);
 }
 
 .block {

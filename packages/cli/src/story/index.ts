@@ -29,7 +29,7 @@ export async function storyCLI() {
 
     const { config, storyFiles } = await getConfig(dirFiles, inputPath);
 
-    console.log({ config, storyFiles });
+    // console.log({ config, storyFiles });
 
     for (const file of storyFiles) {
         const filePath = path.join(inputPath, file);
@@ -41,7 +41,7 @@ export async function storyCLI() {
         rewriteParser.solveOne(name, chapter);
     });
 
-    console.log(rewriteParser.cache);
+    // console.log(rewriteParser.cache);
 
     if (!rewriteParser.cache.has(config.entry)) {
         throw new Error(`Entry Chapter not found: ${config.entry}`);
@@ -63,6 +63,15 @@ export async function storyCLI() {
         });
         fs.writeFileSync(filePath, json);
     });
+
+    // write config
+
+    const configPath = path.join(outputPath, 'config.json');
+    const json = format(config, {
+        indent: 2,
+        maxLength: 120,
+    });
+    fs.writeFileSync(configPath, json);
 }
 
 async function getConfig(files: string[], inputPath: string) {

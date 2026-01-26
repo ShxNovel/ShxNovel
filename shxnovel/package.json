@@ -11,11 +11,6 @@
     },
     "packageManager": "pnpm@10.8.0",
     "dependencies": {
-        "@awesome.me/webawesome": "*",
-        "@barba/core": "*",
-        "@barba/prefetch": "*",
-        "@barba/router": "*",
-        "@shoelace-style/shoelace": "^2.20.1",
         "@shxnovel/rewrite": "workspace:*",
         "@shxnovel/world": "workspace:*",
         "@tauri-apps/api": "^2",
@@ -23,6 +18,8 @@
         "@tauri-apps/plugin-store": "^2.4.1",
         "gsap": "*",
         "lit": "*",
+        "@vaadin/router": "*",
+        "@lion/ui": "*",
         "stats.js": "*",
         "three": "*",
         "typewriter-effect": "*"
