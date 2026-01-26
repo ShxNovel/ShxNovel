@@ -35,8 +35,8 @@ export interface BranchUnit {
  *   error: () => {        // chapter logic
  *      text `something wrong`
  *   },
- *   // use `[[likely]]` to mark likely branch
- *   idle: ([[likely]]) => {},
+ *   // use `likely` to mark likely branch
+ *   idle: (likely) => {},
  * })
  * ```
  */

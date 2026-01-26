@@ -1,4 +1,4 @@
-import { VisualInstance } from './instance/visual';
+import { VisualHandle } from './instance/visual';
 // import type gsap from 'gsap';
 // import type * as THREE from 'three';
 
@@ -7,9 +7,24 @@ import { VisualInstance } from './instance/visual';
 // };
 // export type some = OmitFunctionsCompact<Parameters<typeof gsap.to>[1]>;
 
-// type EaseType = NonNullable<Parameters<typeof gsap.to>[1]>['ease'];
+// export type EaseType = NonNullable<Parameters<typeof gsap.to>[1]>['ease'];
 
-export type TargetAble = VisualInstance<any, any>;
+// prettier-ignore
+export type EaseStringLiteral =
+    | "none"
+    | "power1" | "power1.in" | "power1.out" | "power1.inOut"
+    | "power2" | "power2.in" | "power2.out" | "power2.inOut"
+    | "power3" | "power3.in" | "power3.out" | "power3.inOut"
+    | "power4" | "power4.in" | "power4.out" | "power4.inOut"
+    | "back" | "back.in" | "back.out" | "back.inOut"
+    | "bounce" | "bounce.in" | "bounce.out" | "bounce.inOut"
+    | "circ" | "circ.in" | "circ.out" | "circ.inOut"
+    | "elastic" | "elastic.in" | "elastic.out" | "elastic.inOut"
+    | "expo" | "expo.in" | "expo.out" | "expo.inOut"
+    | "sine" | "sine.in" | "sine.out" | "sine.inOut"
+    | (string & {});
+
+export type TargetAble = VisualHandle<any, any>;
 
 export interface AnimateUnit {
     type: 'animate';
@@ -27,20 +42,16 @@ export type RewriteAnimate = {
 
 export interface EntityRefKind {
     set: any;
-    from: any;
     to: any;
 
     enter: any;
     leave: any;
-
-    pose: any;
-    expression: any;
+    TWEEN: any;
 
     timelabel: any;
 }
-
 export interface AnimatePatchs {
-    opacity?: number;
+    alpha?: number;
     position?: Vector3;
     scale?: Vector3;
     rotation?: Vector3 | Quaternion;
