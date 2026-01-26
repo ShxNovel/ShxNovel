@@ -1,0 +1,10 @@
+{
+  "meta": {"version": "1.0", "engine": "ShxNovel"},
+  "resourceList": {
+    "screen": {"type": "rt", "path": "worldIR\\screen.ir.json"},
+    "co:main": {"type": "camera", "path": "worldIR\\co:main.ir.json"},
+    "scene:main": {"type": "scene", "path": "worldIR\\scene:main.ir.json"},
+    "b:school": {"type": "visual", "path": "worldIR\\b:school.ir.json"},
+    "s:Rinne": {"type": "visual", "path": "worldIR\\s:Rinne.ir.json"}
+  }
+}

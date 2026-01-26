@@ -2,6 +2,7 @@ import { exit } from 'process';
 import { assetCLI } from './asset';
 import { storyCLI } from './story';
 import { worldCLI } from './world';
+import { useCLI } from './use';
 
 const arg2 = process.argv[2];
 
@@ -24,6 +25,9 @@ switch (arg2) {
         break;
     case 'world':
         await worldCLI();
+        break;
+    case 'use':
+        await useCLI();
         break;
     default:
         bad();

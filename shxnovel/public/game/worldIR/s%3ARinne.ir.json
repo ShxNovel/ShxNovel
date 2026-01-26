@@ -1,0 +1,34 @@
+{
+  "name": "s:Rinne",
+  "kind": "stand",
+  "nodes": {
+    "body": {"parent": "root", "variants": {"normal": {}, "side": {}}},
+    "normal_eye": {"parent": "body", "variants": {"open": {}, "close": {}, "happy": {}}},
+    "side_eye": {"parent": "body", "variants": {"open": {}, "close": {}, "happy": {}}}
+  },
+  "poses": {
+    "base": {"body": {"x": 0, "y": 0}},
+    "front": {"$extends": "base", "normal_eye": {"x": -20, "y": 10}},
+    "side": {"$extends": "base", "side_eye": {"y": -10}}
+  },
+  "expressions": {
+    "body:normal": {"body": "normal"},
+    "body:side": {"body": "side"},
+    "#body": {"body": false},
+    "normal_eye:open": {"normal_eye": "open"},
+    "normal_eye:close": {"normal_eye": "close"},
+    "normal_eye:happy": {"normal_eye": "happy"},
+    "#normal_eye": {"normal_eye": false},
+    "side_eye:open": {"side_eye": "open"},
+    "side_eye:close": {"side_eye": "close"},
+    "side_eye:happy": {"side_eye": "happy"},
+    "#side_eye": {"side_eye": false},
+    "normal_happy": {"body": "normal", "normal_eye": "close"},
+    "side_shame": {
+      "body": "side",
+      "side_eye": "close",
+      "cheek": true,
+      "face": {"material": {"uniforms": {"blush": 0.8}}}
+    }
+  }
+}

@@ -1,43 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/styles.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri App</title>
-    <script type="module" src="/src/main.ts" defer></script>
-  </head>
 
-  <body>
-    <main class="container">
-      <h1>Welcome to Tauri</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>My Galgame</title>
+  <link rel="stylesheet" href="/web/css/media.css">
+  <link rel="stylesheet" href="/web/css/common.css">
+</head>
 
-      <div class="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/src/assets/vite.svg" class="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img
-            src="/src/assets/tauri.svg"
-            class="logo tauri"
-            alt="Tauri logo"
-          />
-        </a>
-        <a href="https://www.typescriptlang.org/docs" target="_blank">
-          <img
-            src="/src/assets/typescript.svg"
-            class="logo typescript"
-            alt="typescript logo"
-          />
-        </a>
-      </div>
-      <p>Click on the Tauri logo to learn more about the framework</p>
+<script type="module" src="./index.ts"></script>
 
-      <form class="row" id="greet-form">
-        <input id="greet-input" placeholder="Enter a name..." />
-        <button type="submit">Greet</button>
-      </form>
-      <p id="greet-msg"></p>
+<body>
+
+  <div class="innerBody" data-spa="wrapper">
+
+    <!-- 
+        put here content that will not change
+        between your pages, like <header> or <nav>
+    -->
+
+    <main data-spa="container" data-spa-namespace="entry">
+
+      <!-- put here the content you wish to change
+           between your pages, like your main content <h1> or <p> 
+      -->
+
     </main>
-  </body>
+
+    <!-- 
+        put here content that will not change
+        between your pages, like <header> or <nav>
+    -->
+
+  </div>
+
+  <script type="module" src="./src/components/global/GlobalElement.ts"></script>
+  <global-element></global-element>
+
+</body>
+
+<script type="module">
+
+  import { changeUrl } from './src/route';
+  import { init } from './index.ts';
+
+  init().then(() => {
+    changeUrl('/src/logo.html');
+    // changeUrl('/src/home.html')
+  });
+
+</script>
+
 </html>

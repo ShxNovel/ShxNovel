@@ -1,0 +1,13 @@
+{
+  "name": "b:school",
+  "kind": "bg",
+  "nodes": {"body": {"variants": {"bright": "a.jpg"}}},
+  "poses": {},
+  "expressions": {
+    "body:bright": {"body": "bright"},
+    "body:dark": {"body": "dark"},
+    "#body": {"body": false},
+    "dayLight": {"body": {"variant": "dark", "material": {"uniforms": {"lightMap": 1}}}},
+    "nightLight": {"body": {"variant": "dark", "material": {"uniforms": {"lightMap": 0.2}}}}
+  }
+}

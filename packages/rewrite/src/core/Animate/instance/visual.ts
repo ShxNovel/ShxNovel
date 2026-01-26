@@ -9,8 +9,8 @@ export interface VisualEnterBuilder<T extends Animate.VisualKey> {
 
     xy(x: number, y: number): this;
     alpha(a: number): this;
-    pose(name: Animate.VisualPoseName<T>): this;
-    expr(name: Animate.VisualExprName<T>): this;
+    pose(...names: Animate.VisualPoseName<T>[]): this;
+    expr(...names: Animate.VisualExprName<T>[]): this;
     set(props: AnimatePatchs): this;
 }
 
@@ -20,8 +20,8 @@ export interface VisualAnimateBuilder<T extends Animate.VisualKey> {
 
     to(props: AnimatePatchs): this;
 
-    pose(name: Animate.VisualPoseName<T>): this;
-    expr(name: Animate.VisualExprName<T>): this;
+    pose(...names: Animate.VisualPoseName<T>[]): this;
+    expr(...names: Animate.VisualExprName<T>[]): this;
 }
 
 export interface VisualHandle<T extends Animate.VisualKey, U extends string> {
@@ -31,8 +31,8 @@ export interface VisualHandle<T extends Animate.VisualKey, U extends string> {
 
     // instant setters
     set(props: AnimatePatchs): this;
-    pose(name: Animate.VisualPoseName<T>): this;
-    expr(name: Animate.VisualExprName<T>): this;
+    pose(...names: Animate.VisualPoseName<T>[]): this;
+    expr(...names: Animate.VisualExprName<T>[]): this;
 
     // Action Chains
     // enter(girl)...
@@ -66,20 +66,20 @@ class VisualHandleImpl<T extends Animate.VisualKey, U extends string> implements
         return this;
     };
 
-    pose = (name: Animate.VisualPoseName<T>) => {
+    pose = (...names: Animate.VisualPoseName<T>[]) => {
         // pushIR('SET_POSE', this.id, { value: name });
         rewriteContext.push({
             type: 'animate',
-            content: [{ kind: 'set', target: this.id, args: { pose: name } }],
+            content: [{ kind: 'set', target: this.id, args: { pose: names } }],
         });
         return this;
     };
 
-    expr = (name: Animate.VisualExprName<T>) => {
+    expr = (...names: Animate.VisualExprName<T>[]) => {
         // pushIR('SET_EXPR', this.id, { value: name });
         rewriteContext.push({
             type: 'animate',
-            content: [{ kind: 'set', target: this.id, args: { expr: name } }],
+            content: [{ kind: 'set', target: this.id, args: { expr: names } }],
         });
         return this;
     };
@@ -116,12 +116,12 @@ class VisualHandleImpl<T extends Animate.VisualKey, U extends string> implements
                 Object.assign(config.props, p);
                 return this;
             },
-            pose(name) {
-                config.props.pose = name;
+            pose(...names) {
+                config.props.pose = names;
                 return this;
             },
-            expr(name) {
-                config.props.expr = name;
+            expr(...names) {
+                config.props.expr = names;
                 return this;
             },
         };
@@ -162,12 +162,12 @@ class VisualHandleImpl<T extends Animate.VisualKey, U extends string> implements
                 Object.assign(config.props, props);
                 return this;
             },
-            pose(name) {
-                config.props.pose = name;
+            pose(...names) {
+                config.props.pose = names;
                 return this;
             },
-            expr(name) {
-                config.props.expr = name;
+            expr(...names) {
+                config.props.expr = names;
                 return this;
             },
         };

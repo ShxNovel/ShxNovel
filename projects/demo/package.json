@@ -10,6 +10,7 @@
         "build:story": "shx-cli story",
         "build:bound": "shx-cli bound",
         "build": "pnpm build:asset && pnpm build:world && pnpm build:story && pnpm build:bound",
+        "use": "shx-cli use",
         "init": "pnpm i"
     },
     "dependencies": {
