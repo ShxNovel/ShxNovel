@@ -7,12 +7,12 @@ import { CustomEase } from 'gsap/CustomEase';
 import { CustomBounce } from 'gsap/CustomBounce';
 
 // @ts-ignore
-import inlineStyles from './game-logo.css?inline';
+import inlineStyles from './logo-view.css?inline';
 
 gsap.registerPlugin(CustomEase, CustomBounce);
 
-@customElement('game-logo')
-export class GameLogo extends LitElement {
+@customElement('logo-view')
+export class LogoView extends LitElement {
     static styles = unsafeCSS(inlineStyles);
 
     firstUpdated() {

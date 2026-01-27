@@ -1,4 +1,4 @@
-import { ResizeInfoType, getMediaRotateSize, hookEvent } from './';
+import { ResizeInfo, getMediaRotateSize, hookEvent } from './';
 
 //
 // Note:
@@ -18,7 +18,7 @@ const W = 1920,
     H = 1080,
     A = W / H;
 
-function solveResize(data: ResizeInfoType = getMediaRotateSize()) {
+function solveResize(data: ResizeInfo = getMediaRotateSize()) {
     const { width, height, imarginTop, imarginLeft, iwidth, iheight } = data;
     const rootStyle = document.documentElement.style;
     const bodyStyle = document.getElementsByTagName('body')[0].style;
@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
     solveResize(getMediaRotateSize());
 });
 
-hookEvent('resize', (data: ResizeInfoType) => {
+hookEvent('resize', (data: ResizeInfo) => {
     solveResize(data);
 });
 

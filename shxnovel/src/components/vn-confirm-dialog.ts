@@ -9,10 +9,8 @@ import { initConfirmBox } from '../core/system';
 
 @customElement('vn-confirm-dialog')
 export class VnConfirmDialog extends LitElement {
-    // 使用 unsafeCSS 加载外部样式
     static styles = [
         unsafeCSS(logoStyles),
-        // 添加一些组件内部必须的微调样式
         css`
             :host {
                 display: block;

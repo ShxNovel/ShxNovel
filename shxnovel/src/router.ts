@@ -1,21 +1,17 @@
 import { Router, Commands } from '@vaadin/router';
 
-import './pages/game-logo';
-import './pages/main-menu';
-import './pages/game-setting';
-import './pages/not-found';
-
-// import './pages/game-layout';
-// import './pages/not-found.js';
+import './pages';
 
 const outlet = document.getElementById('game-outlet');
 
 export const router = new Router(outlet);
 
 router.setRoutes([
-    { path: '/', component: 'game-logo' },
+    { path: '/', component: 'logo-view' },
 
     { path: '/menu', component: 'main-menu' },
+
+    { path: '/game', component: 'game-view' },
 
     { path: '/setting', component: 'game-setting' },
 

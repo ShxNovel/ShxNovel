@@ -17,7 +17,7 @@ window.addEventListener('resize', () => {
     resizeTimeout = setTimeout(__solveResize, 30);
 });
 
-export type ResizeInfoType = {
+export type ResizeInfo = {
     width: number;
     height: number;
     imarginTop: number;
@@ -26,7 +26,7 @@ export type ResizeInfoType = {
     iheight: number;
 };
 
-const resizeInfo: ResizeInfoType = {
+const resizeInfo: ResizeInfo = {
     width: document.documentElement.clientWidth,
     height: document.documentElement.clientHeight,
     imarginTop: 0,

@@ -17,7 +17,6 @@ export function setConfirmBoxActiveStatus(ok = true) {
 }
 
 export async function tryExitGame() {
-    // console.log(comfirmBox);
     await appWebview.close();
 }
 
@@ -31,7 +30,7 @@ const unlisten = await appWebview.listen(TauriEvent.WINDOW_CLOSE_REQUESTED, asyn
 });
 
 export async function decideExitGame() {
-    await eventController.emitAsync('exit');
     unlisten();
+    await eventController.emitAsync('exit');
     await appWebview.destroy();
 }

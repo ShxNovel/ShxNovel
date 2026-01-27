@@ -8,7 +8,7 @@ import { VnConfirmDialog } from '../components/vn-confirm-dialog';
 
 // @ts-ignore
 import inlineStyles from './main-menu.css?inline';
-import { tryExitGame } from '../core/system';
+import { decideExitGame } from '../core/system';
 
 @customElement('main-menu')
 export class MainMenu extends LitElement {
@@ -19,17 +19,23 @@ export class MainMenu extends LitElement {
     confirmDialog!: VnConfirmDialog;
 
     async handleExit() {
-        // 像原生 confirm() 一样调用，但它是异步的
-        console.log(this.confirmDialog);
         const isConfirmed = await this.confirmDialog.ask('未保存的进度将会丢失，确定要退出吗？', '退出游戏');
 
         if (isConfirmed) {
-            console.log('执行退出逻辑...');
-            // decideExitGame();
+            await decideExitGame();
         } else {
-            console.log('用户取消了');
+            // cancel
         }
     }
+
+    continueGame = () => {
+        console.log(1);
+        Router.go('/game1');
+    };
+
+    startFromBeginning = () => {
+        Router.go('/game');
+    };
 
     render() {
         return html`<main>
@@ -40,11 +46,11 @@ export class MainMenu extends LitElement {
 
             <div class="container">
                 <div class="btn-rose-wrapper">
-                    <button class="btn-rose">继续追忆</button>
+                    <button class="btn-rose" @click=${this.continueGame}>继续追忆</button>
                 </div>
 
                 <div class="btn-amethyst-wrapper">
-                    <button class="btn-amethyst">从头开始</button>
+                    <button class="btn-amethyst" @click=${this.startFromBeginning}>从头开始</button>
                 </div>
 
                 <button class="btn-aqua">
@@ -73,8 +79,6 @@ export class MainMenu extends LitElement {
                     <button class="leave" @click=${this.handleExit}>${LeaveSvg}</button>
                 </div>
             </div>
-
-            <!-- <button @click=${() => Router.go('/')}>按钮</button> -->
         </main>`;
     }
 }
