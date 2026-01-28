@@ -22,7 +22,7 @@ export async function tryExitGame() {
 
 const unlisten = await appWebview.listen(TauriEvent.WINDOW_CLOSE_REQUESTED, async () => {
     if (comfirmBox && useConfirmBox) {
-        let res = await comfirmBox.ask("是否退出游戏?");
+        let res = await comfirmBox.ask('是否退出游戏?');
         if (res) await decideExitGame();
     } else {
         await decideExitGame();

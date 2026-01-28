@@ -13,7 +13,9 @@ export class GameView extends LitElement {
     render() {
         return html`
             <div class="body">
-                <button @click=${() => Router.go('/menu')}>back</button>
+                <!-- <button @click=${() => Router.go('/menu')}>back</button> -->
+
+                <game-top-menu></game-top-menu>
 
                 <div class="bottom">
                     <game-dialogue></game-dialogue>

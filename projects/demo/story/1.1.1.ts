@@ -1,4 +1,4 @@
-import { scene, useChapter } from '@shxnovel/rewrite';
+import { scene } from '@shxnovel/rewrite';
 
 const { character, flag, visual, timelabel, system } = useChapter('1.1.1');
 

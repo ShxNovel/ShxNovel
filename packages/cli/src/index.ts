@@ -4,6 +4,8 @@ import { storyCLI } from './story';
 import { worldCLI } from './world';
 import { useCLI } from './use';
 
+export * from './types'; // hack
+
 const arg2 = process.argv[2];
 
 function bad() {

@@ -155,12 +155,12 @@ p.version {
 
 .btn-rose-wrapper {
     /* 阴影颜色改为同色系的浑浊粉色，不再是黑色，减少攻击性 */
-    filter: drop-shadow(0px 5px 0px #b5838d);
+    filter: drop-shadow(0px 0.3rem 0px #b5838d);
     transition: filter 0.3s;
 }
 
 .btn-rose-wrapper:hover {
-    filter: drop-shadow(0px 8px 0px #b5838d);
+    filter: drop-shadow(0px 0.4rem 0px #b5838d);
 }
 
 .btn-rose-wrapper:hover .btn-rose {
@@ -187,7 +187,7 @@ p.version {
     padding: 0.8rem 2.5rem;
     /* min-width: 220px; */
     cursor: pointer;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
     transition: all 0.3s ease;
 }
@@ -205,12 +205,12 @@ p.version {
 }
 
 .btn-amethyst-wrapper {
-    filter: drop-shadow(0px 5px 0px #a48bb5); /* 紫色阴影 */
+    filter: drop-shadow(0px 0.3rem 0px #a48bb5); /* 紫色阴影 */
     transition: filter 0.3s;
 }
 
 .btn-amethyst-wrapper:hover {
-    filter: drop-shadow(0px 7px 0px #a48bb5);
+    filter: drop-shadow(0px 0.4rem 0px #a48bb5);
 }
 
 .btn-amethyst-wrapper:hover .btn-amethyst {

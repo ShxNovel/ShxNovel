@@ -19,7 +19,8 @@ export class MainMenu extends LitElement {
     confirmDialog!: VnConfirmDialog;
 
     async handleExit() {
-        const isConfirmed = await this.confirmDialog.ask('未保存的进度将会丢失，确定要退出吗？', '退出游戏');
+        // '未保存的进度将会丢失，确定要退出吗？', '退出游戏'
+        const isConfirmed = await this.confirmDialog.ask("是否退出游戏");
 
         if (isConfirmed) {
             await decideExitGame();

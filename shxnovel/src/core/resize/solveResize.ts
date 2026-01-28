@@ -47,7 +47,9 @@ function solveResize(data: ResizeInfo = getMediaRotateSize()) {
     rootStyle.setProperty('--var-imarginLeft', `${imarginLeft}px`);
     rootStyle.setProperty('--var-iwidth', `${iwidth}px`);
     rootStyle.setProperty('--var-iheight', `${iheight}px`);
-    rootStyle.setProperty('font-size', `${(24 * iwidth) / 1920}px`);
+
+    const FontSize = (24 * iwidth) / 1920;
+    rootStyle.setProperty('font-size', `${FontSize}px`);
 }
 
 solveResize(getMediaRotateSize());
