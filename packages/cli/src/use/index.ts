@@ -1,37 +1,50 @@
 // import * as fs from 'fs';
 import * as path from 'path';
+import { logger } from '../utils/logger';
+import { progress } from '../utils/progress';
 import { createDirectoryLink } from './createDirectoryLink';
 
-export async function useCLI() {
-    const from = process.argv[3] ? process.argv[3] : '';
-    const to = process.argv[4] ? process.argv[4] : '../../shxnovel/public';
+export async function useCLI(from: string = '', to: string = '../../shxnovel/public') {
+    const spinner = progress.start('Creating directory links...');
 
-    function solveVN() {
-        const fromPath = path.resolve(process.cwd(), from, './.vn');
-        const toPath = path.resolve(process.cwd(), to, './game');
+    try {
+        logger.debug(`Source: ${from}`);
+        logger.debug(`Target: ${to}`);
 
-        try {
-            createDirectoryLink(fromPath, toPath);
-            console.log('目录链接创建完成！');
-        } catch (error) {
-            console.error('错误:', error);
-            process.exit(1);
+        function solveVN() {
+            const fromPath = path.resolve(process.cwd(), from, './.vn');
+            const toPath = path.resolve(process.cwd(), to, './game');
+
+            logger.debug(`Creating link: ${fromPath} -> ${toPath}`);
+
+            try {
+                createDirectoryLink(fromPath, toPath);
+                logger.success('VN directory link created');
+            } catch (error) {
+                throw new Error(`Failed to create VN link: ${error}`);
+            }
         }
-    }
 
-    function solveAssets() {
-        const fromPath = path.resolve(process.cwd(), from, './assets');
-        const toPath = path.resolve(process.cwd(), to, './assets');
+        function solveAssets() {
+            const fromPath = path.resolve(process.cwd(), from, './assets');
+            const toPath = path.resolve(process.cwd(), to, './assets');
 
-        try {
-            createDirectoryLink(fromPath, toPath);
-            console.log('资源目录链接创建完成！');
-        } catch (error) {
-            console.error('错误:', error);
-            process.exit(1);
+            logger.debug(`Creating link: ${fromPath} -> ${toPath}`);
+
+            try {
+                createDirectoryLink(fromPath, toPath);
+                logger.success('Assets directory link created');
+            } catch (error) {
+                throw new Error(`Failed to create assets link: ${error}`);
+            }
         }
-    }
 
-    solveVN();
-    solveAssets();
+        solveVN();
+        solveAssets();
+
+        progress.succeed(spinner, 'Directory links created successfully');
+    } catch (error) {
+        progress.fail(spinner, 'Failed to create directory links');
+        throw error;
+    }
 }

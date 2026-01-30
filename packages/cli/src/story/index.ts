@@ -2,6 +2,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import format from 'json-stringify-pretty-compact';
 import { fileImport, libImport } from '../tools';
+import { logger } from '../utils/logger';
+import { progress } from '../utils/progress';
+import { FileNotFoundError, ConfigError } from '../utils/errors';
+import { ensureDirectory } from '../utils/config';
+import { getConfig as loadConfig } from '../utils/shared';
 
 const { rewriteContext, rewriteParser, useChapter } =
     // sync with user runtime
@@ -11,91 +16,89 @@ function inject() {
     (global as any).useChapter = useChapter;
 }
 
-export async function storyCLI() {
-    inject();
+export async function storyCLI(baseDir: string = '', outputDir?: string, watch: boolean = false) {
+    const spinner = progress.start('Processing stories...');
 
-    const arg = process.argv[3] ? process.argv[3] : '';
+    try {
+        inject();
 
-    const inputPath = path.resolve(process.cwd(), arg, './story');
-    const outputPath = path.resolve(process.cwd(), arg, './.vn', './storyIR');
+        const inputPath = path.resolve(process.cwd(), baseDir, './story');
+        const outputPath = outputDir
+            ? path.join(outputDir, './storyIR')
+            : path.resolve(process.cwd(), baseDir, './.vn', './storyIR');
 
-    // set env
-    // remove when vite production
-    process.env.RewriteInputPath = inputPath;
+        // set env
+        // remove when vite production
+        process.env.RewriteInputPath = inputPath;
 
-    console.log(`story: ${outputPath}`);
+        logger.debug(`Input path: ${inputPath}`);
+        logger.debug(`Output path: ${outputPath}`);
+        logger.debug(`Watch mode: ${watch}`);
 
-    const dirFiles = fs.readdirSync(inputPath);
+        // Validate input path
+        if (!fs.existsSync(inputPath)) {
+            throw new FileNotFoundError(inputPath);
+        }
 
-    const { config, storyFiles } = await getConfig(dirFiles, inputPath);
+        spinner.text = 'Loading configuration...';
+        const { config, files: storyFiles } = await loadConfig(inputPath);
 
-    // console.log({ config, storyFiles });
+        logger.debug(`Found ${storyFiles.length} story files`);
 
-    for (const file of storyFiles) {
-        const filePath = path.join(inputPath, file);
-        await fileImport(filePath);
-    }
+        // Validate config
+        if (!config.entry) {
+            throw new ConfigError('Entry chapter not specified in config');
+        }
 
-    // solve chapters
-    rewriteContext.chapters.forEach((chapter, name) => {
-        rewriteParser.solveOne(name, chapter);
-    });
+        // Load story files
+        spinner.text = 'Loading story files...';
+        for (const file of storyFiles) {
+            const filePath = path.join(inputPath, file);
+            await fileImport(filePath);
+        }
 
-    // console.log(rewriteParser.cache);
+        // Solve chapters
+        spinner.text = 'Processing chapters...';
+        rewriteContext.chapters.forEach((chapter, name) => {
+            rewriteParser.solveOne(name, chapter);
+        });
 
-    if (!rewriteParser.cache.has(config.entry)) {
-        throw new Error(`Entry Chapter not found: ${config.entry}`);
-    }
+        // Validate entry chapter
+        if (!rewriteParser.cache.has(config.entry)) {
+            throw new ConfigError(`Entry chapter not found: ${config.entry}`);
+        }
 
-    /**
-     * Write output to file
-     */
+        // Ensure output directory exists
+        ensureDirectory(outputPath);
 
-    if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath);
-    }
+        // Write IR files
+        spinner.text = 'Writing output files...';
+        rewriteParser.cache.forEach((irs, name) => {
+            const filePath = path.join(outputPath, encodeURIComponent(`${name}.ir.json`));
+            const json = format(irs, {
+                indent: 2,
+                maxLength: 120,
+            });
+            fs.writeFileSync(filePath, json);
+        });
 
-    rewriteParser.cache.forEach((irs, name) => {
-        const filePath = path.join(outputPath, encodeURIComponent(`${name}.ir.json`));
-        const json = format(irs, {
+        // Write config
+        const configPath = path.join(outputPath, 'config.json');
+        const configJson = format(config, {
             indent: 2,
             maxLength: 120,
         });
-        fs.writeFileSync(filePath, json);
-    });
+        fs.writeFileSync(configPath, configJson);
 
-    // write config
+        progress.succeed(spinner, 'Stories processed successfully');
+        logger.info(`Output written to: ${outputPath}`);
 
-    const configPath = path.join(outputPath, 'config.json');
-    const json = format(config, {
-        indent: 2,
-        maxLength: 120,
-    });
-    fs.writeFileSync(configPath, json);
-}
-
-async function getConfig(files: string[], inputPath: string) {
-    const config = {
-        entry: '',
-    };
-
-    const storyFiles: string[] = [];
-
-    for (const file of files) {
-        const fileName = file.replace(/\.[^.]+$/, '');
-
-        if (fileName === 'config') {
-            const arg_path = path.join(inputPath, file);
-            const result = (await fileImport(arg_path)) as { default: any };
-            Object.assign(config, result.default);
-            continue;
+        // Watch mode (placeholder - implement file watching)
+        if (watch) {
+            logger.warn('Watch mode not yet implemented');
         }
-
-        // ts 和 js 文件
-        if (file.endsWith('.ts') || file.endsWith('.js')) {
-            storyFiles.push(file);
-        }
+    } catch (error) {
+        progress.fail(spinner, 'Failed to process stories');
+        throw error;
     }
-
-    return { config, storyFiles };
 }

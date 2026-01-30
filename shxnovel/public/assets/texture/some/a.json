@@ -1,0 +1,10 @@
+{
+    "name": "hero_face",
+    "type": "texture",
+    "variants": {
+        "png": { "src": "a.png" },
+        "jpg": { "src": "a.jpg" }
+    },
+    "srgb": true,
+    "mipmap": true
+}

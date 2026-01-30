@@ -2,7 +2,7 @@ useBg('school')
     .nodes({
         body: {
             variants: {
-                bright: 'a.jpg',
+                bright: '104786518_p0',
                 dark: undefined,
             },
         },

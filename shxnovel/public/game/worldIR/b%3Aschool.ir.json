@@ -1,7 +1,7 @@
 {
   "name": "b:school",
   "kind": "bg",
-  "nodes": {"body": {"variants": {"bright": "a.jpg"}}},
+  "nodes": {"body": {"variants": {"bright": "104786518_p0"}}},
   "poses": {},
   "expressions": {
     "body:bright": {"body": "bright"},

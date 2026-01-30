@@ -2,6 +2,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import format from 'json-stringify-pretty-compact';
 import { fileImport, libImport } from '../tools';
+import { logger } from '../utils/logger';
+import { progress } from '../utils/progress';
+import { FileNotFoundError } from '../utils/errors';
+import { ensureDirectory } from '../utils/config';
+import { getConfig as loadConfig } from '../utils/shared';
 import { solveDeclare } from './solveAnimate';
 import { solveList } from './solveList';
 
@@ -16,62 +21,65 @@ function inject() {
     (global as any).useStand = useStand;
 }
 
-/** @todo */
-export async function worldCLI() {
-    inject();
+export async function worldCLI(baseDir: string = '', outputDir?: string) {
+    const spinner = progress.start('Processing world...');
 
-    const arg = process.argv[3] ? process.argv[3] : '';
+    try {
+        inject();
 
-    const inputPath = path.resolve(process.cwd(), arg, './world');
-    const dtsPath = path.resolve(process.cwd(), arg, './.vn');
-    const worldIRPath = path.resolve(process.cwd(), arg, './.vn', './worldIR');
+        const inputPath = path.resolve(process.cwd(), baseDir, './world');
+        const dtsPath = outputDir || path.resolve(process.cwd(), baseDir, './.vn');
+        const worldIRPath = path.join(dtsPath, './worldIR');
 
-    // const outputPath = path.resolve(process.cwd(), arg, './.vn', './worldIR');
+        logger.debug(`Input path: ${inputPath}`);
+        logger.debug(`Output path: ${dtsPath}`);
+        logger.debug(`World IR path: ${worldIRPath}`);
 
-    console.log(`world: ${dtsPath}`);
+        // Validate input path
+        if (!fs.existsSync(inputPath)) {
+            throw new FileNotFoundError(inputPath);
+        }
 
-    const dirFiles = fs.readdirSync(inputPath);
+        // Load world files
+        spinner.text = 'Loading world files...';
+        const { files: worldFiles } = await loadConfig(inputPath);
 
-    const { worldFiles } = await getConfig(dirFiles, inputPath);
+        logger.debug(`Found ${worldFiles.length} world files`);
 
-    // console.log({ config, worldFiles });
+        for (const file of worldFiles) {
+            const filePath = path.join(inputPath, file);
+            await fileImport(filePath);
+        }
 
-    for (const file of worldFiles) {
-        const filePath = path.join(inputPath, file);
-        await fileImport(filePath);
+        // Part 1: Generate type declarations
+        spinner.text = 'Generating type declarations...';
+        const declareOutput = solveDeclare();
+
+        ensureDirectory(dtsPath);
+        fs.writeFileSync(path.join(dtsPath, './world.d.ts'), declareOutput);
+
+        // Part 2: Create world IR
+        spinner.text = 'Processing world definitions...';
+        const resourceList = solveList(registry);
+
+        ensureDirectory(worldIRPath);
+        const worldIR = createWorldIR(resourceList, worldIRPath);
+
+        // Part 3: Create manifest
+        spinner.text = 'Creating manifest...';
+        const manifest = createManifest(worldIR);
+        const manifestJson = format(manifest, {
+            indent: 2,
+            maxLength: 120,
+        });
+        fs.writeFileSync(path.join(dtsPath, './manifest.json'), manifestJson);
+
+        progress.succeed(spinner, 'World processed successfully');
+        logger.info(`Output written to: ${dtsPath}`);
+    } catch (error) {
+        progress.fail(spinner, 'Failed to process world');
+        throw error;
     }
-
-    // part 1
-
-    const DecleareOutput = solveDeclare();
-
-    /**
-     * Write output to file
-     */
-
-    if (!fs.existsSync(dtsPath)) {
-        fs.mkdirSync(dtsPath);
-    }
-
-    fs.writeFileSync(path.join(dtsPath, './world.d.ts'), DecleareOutput);
-
-    // part 2
-
-    const resourceList = solveList(registry);
-
-    if (!fs.existsSync(worldIRPath)) {
-        fs.mkdirSync(worldIRPath);
-    }
-
-    const worldIR = createWorldIR(resourceList, worldIRPath);
-
-    // part 3
-    const manifest = createManifest(worldIR);
-    const manifestJson = format(manifest, {
-        indent: 2,
-        maxLength: 120,
-    });
-    fs.writeFileSync(path.join(dtsPath, './manifest.json'), manifestJson);
 }
 
 function createWorldIR(some: ReturnType<typeof solveList>, worldIRPath: string) {
@@ -86,6 +94,7 @@ function createWorldIR(some: ReturnType<typeof solveList>, worldIRPath: string) 
         fs.writeFileSync(outPath, json);
         result[name] = { type: 'rt', path: path.join('worldIR', `${name}.ir.json`) };
     });
+
     Object.entries(some.camera).forEach(([name, item]) => {
         const outPath = path.join(worldIRPath, encodeURIComponent(`${name}.ir.json`));
         const json = format(item, {
@@ -128,26 +137,3 @@ function createManifest(resourceList: ReturnType<typeof createWorldIR>) {
     return manifest;
 }
 
-async function getConfig(files: string[], inputPath: string) {
-    const config = {};
-
-    const worldFiles: string[] = [];
-
-    for (const file of files) {
-        const fileName = file.replace(/\.[^.]+$/, '');
-
-        if (fileName === 'config') {
-            const arg_path = path.join(inputPath, file);
-            const result = (await fileImport(arg_path)) as { default: any };
-            Object.assign(config, result.default);
-            continue;
-        }
-
-        // ts 和 js 文件
-        if (file.endsWith('.ts') || file.endsWith('.js')) {
-            worldFiles.push(file);
-        }
-    }
-
-    return { config, worldFiles };
-}

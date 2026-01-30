@@ -90,15 +90,15 @@ function solveRT(context: ReturnType<typeof registry.RTCtx.finish>) {
 function solveVisual(context: Map<string, VisualIR>) {
     const formatType = (item: VisualIR): string => {
         const poseKeys = Object.keys(item.poses || {});
-        const expressionKeys = Object.keys(item.expressions || {});
+        const exprKeys = Object.keys(item.expressions || {});
 
         const PoseUnionType = poseKeys.length === 0 ? 'never' : poseKeys.map((k) => `'${k}'`).join(' | ');
-        const ExprUnionType = expressionKeys.length === 0 ? 'never' : expressionKeys.map((k) => `'${k}'`).join(' | ');
+        const ExprUnionType = exprKeys.length === 0 ? 'never' : exprKeys.map((k) => `'${k}'`).join(' | ');
 
         return (
             `      '${item.name}': {\n` +
             `        pose: ${PoseUnionType};\n` +
-            `        expression: ${ExprUnionType};\n` +
+            `        expr: ${ExprUnionType};\n` +
             `      };\n`
         );
     };

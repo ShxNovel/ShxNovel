@@ -27,6 +27,9 @@ export default defineConfig({
             output: {
                 manualChunks: {
                     // 'json-to-ts': ['json-to-ts'],
+                    chalk: ['chalk'],
+                    commander: ['commander'],
+                    ora: ['ora'],
                 },
             },
             external: [

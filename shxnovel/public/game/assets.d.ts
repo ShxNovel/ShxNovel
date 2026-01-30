@@ -5,7 +5,9 @@ declare module "@shxnovel/world" {
 
     namespace Texture {
       interface Key {
-        'a.jpg': never;
+        'hero_face': never;
+        '104786518_p0': never;
+        'some/b': never;
       }
     }
 

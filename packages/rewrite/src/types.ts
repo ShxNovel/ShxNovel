@@ -16,12 +16,12 @@ export declare namespace Animate {
     interface VisualMap {
         test: {
             pose: 'enter' | 'leave';
-            expression: 'epxr1' | 'expr2';
+            expr: 'epxr1' | 'expr2';
         };
     }
     type VisualKey = keyof VisualMap;
     type VisualPoseName<T> = T extends keyof VisualMap ? VisualMap[T]['pose'] : never;
-    type VisualExprName<T> = T extends keyof VisualMap ? VisualMap[T]['expression'] : never;
+    type VisualExprName<T> = T extends keyof VisualMap ? VisualMap[T]['expr'] : never;
 
     interface VisualPositionMap {}
     type VisualPositionKey = keyof VisualPositionMap;
