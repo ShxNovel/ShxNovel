@@ -18,18 +18,18 @@ export default defineConfig({
         },
         rollupOptions: {
             external: ['gsap', 'three', 'stats.js'],
-            output: {
-                inlineDynamicImports: false,
-                preserveModules: true,
-                entryFileNames: ({ name: fileName }) => {
-                    return `${fileName}.js`;
-                },
-                globals: {
-                    gsap: 'gsap',
-                    three: 'THREE',
-                    stats: 'Stats',
-                },
-            },
+            // output: {
+            //     inlineDynamicImports: false,
+            //     preserveModules: true,
+            //     entryFileNames: ({ name: fileName }) => {
+            //         return `${fileName}.js`;
+            //     },
+            //     globals: {
+            //         gsap: 'gsap',
+            //         three: 'THREE',
+            //         stats: 'Stats',
+            //     },
+            // },
         },
     },
 });

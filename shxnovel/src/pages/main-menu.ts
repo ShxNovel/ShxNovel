@@ -1,6 +1,7 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { Router } from '@vaadin/router';
+import { GameLauncher } from '@shxnovel/canoe';
 
 // @ts-ignore
 import '../components/vn-confirm-dialog';
@@ -20,7 +21,7 @@ export class MainMenu extends LitElement {
 
     async handleExit() {
         // '未保存的进度将会丢失，确定要退出吗？', '退出游戏'
-        const isConfirmed = await this.confirmDialog.ask("是否退出游戏");
+        const isConfirmed = await this.confirmDialog.ask('是否退出游戏');
 
         if (isConfirmed) {
             await decideExitGame();
@@ -30,11 +31,12 @@ export class MainMenu extends LitElement {
     }
 
     continueGame = () => {
-        console.log(1);
-        Router.go('/game1');
+        GameLauncher.launch({ type: 'continue' });
+        Router.go('/game');
     };
 
     startFromBeginning = () => {
+        GameLauncher.launch({ type: 'new' });
         Router.go('/game');
     };
 

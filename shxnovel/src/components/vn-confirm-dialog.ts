@@ -25,10 +25,6 @@ export class VnConfirmDialog extends LitElement {
 
     @state() private _message = '';
 
-    private _dialogConfig = {
-        hasBackdrop: false,
-    };
-
     private _resolve: ((value: boolean) => void) | null = null;
 
     async ask(message: string, title?: string): Promise<boolean> {
@@ -91,7 +87,8 @@ export class VnConfirmDialog extends LitElement {
         }
     }
 
-    protected firstUpdated(_changedProperties: PropertyValues): void {
+    connectedCallback(): void {
+        super.connectedCallback();
         initConfirmBox(this);
     }
 
@@ -104,7 +101,7 @@ export class VnConfirmDialog extends LitElement {
         };
 
         return html`
-            <lion-dialog .opened=${this._open} .config=${this._dialogConfig} @opened-changed=${this._onOpenedChanged}>
+            <lion-dialog .opened=${this._open} @opened-changed=${this._onOpenedChanged}>
                 <div slot="content" class=${classMap(wrapperClasses)}>
                     <div class="custom-backdrop" @click=${this._handleCancel}></div>
 

@@ -22,7 +22,15 @@ export async function tryExitGame() {
 
 const unlisten = await appWebview.listen(TauriEvent.WINDOW_CLOSE_REQUESTED, async () => {
     if (comfirmBox && useConfirmBox) {
-        let res = await comfirmBox.ask('是否退出游戏?');
+        // lion bug
+        const dialog = document.querySelector('vn-confirm-dialog') as any;
+
+        if (!dialog) {
+            console.error('no confirm dialog found');
+            return;
+        }
+
+        let res = await dialog.ask('是否退出游戏?');
         if (res) await decideExitGame();
     } else {
         await decideExitGame();

@@ -25,7 +25,7 @@
     /* 3. 关键：用 gap 控制间距，不要用 margin */
     /* 定义变量方便计算：线条高度 2px，间距 8px */
     --bar-h: 0.3rem;
-    --bar-gap: 0.5rem;
+    --bar-gap: 0.4rem;
     gap: var(--bar-gap);
 
     /* 4. 样式 */
@@ -45,6 +45,7 @@
 /* 如果它是内部那个用来关闭的按钮，背景透明 */
 .bars.change {
     background-color: transparent;
+    /* transform: rotate(90deg); */
 }
 
 .bars.change:hover {
@@ -188,7 +189,13 @@
     margin: 1.5rem 0;
 }
 
-a.menu-item {
+button {
+    background-color: transparent;
+    border: none;
+    /* outline: none; */
+}
+
+.menu-item {
     color: rgba(255, 255, 255, 0.7);
     font-size: 1.6rem;
     font-family: 'Segoe UI', sans-serif;
@@ -199,7 +206,7 @@ a.menu-item {
     transition: all 0.3s;
 }
 
-a.menu-item:hover {
+.menu-item:hover {
     color: white;
     border-left-color: #f44336;
     padding-left: 1.5rem;

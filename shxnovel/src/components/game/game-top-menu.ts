@@ -33,18 +33,18 @@ export class GameTopMenu extends LitElement {
 
         return html`
             <lion-dialog @opened-changed=${this._onOpenedChanged}>
-                <vn-button slot="invoker" class=${classMap(outerBarsClasses)}>
-                    <div class=${classMap(outerBarsClasses)}>
+                <div slot="invoker">
+                    <button class=${classMap(outerBarsClasses)}>
                         <div class="bar" id="bar-1"></div>
                         <div class="bar" id="bar-2"></div>
                         <div class="bar" id="bar-3"></div>
-                    </div>
-                </vn-button>
+                    </button>
+                </div>
 
                 <div slot="content" class="menu-content-wrapper">
                     <div id="menu-bg" class=${classMap(bgClasses)}></div>
 
-                    <button style="border: none;" class=${classMap(innerBarsClasses)} @click=${this._closeDialog}>
+                    <button class=${classMap(innerBarsClasses)} @click=${this._closeDialog}>
                         <div class="bar" id="bar-1" @click=${this._closeDialog}></div>
                         <div class="bar" id="bar-2" @click=${this._closeDialog}></div>
                         <div class="bar" id="bar-3" @click=${this._closeDialog}></div>
@@ -52,10 +52,10 @@ export class GameTopMenu extends LitElement {
 
                     <nav class=${classMap(navClasses)}>
                         <ul>
-                            <li><a class="menu-item" href="./options.html">选项菜单</a></li>
-                            <li><a class="menu-item" href="#">游戏存档</a></li>
-                            <li><a class="menu-item" href="./gallery.html">鉴赏系统</a></li>
-                            <li><a class="menu-item" @click=${() => Router.go('/menu')}>标题界面</a></li>
+                            <li><button autofocus class="menu-item" href="./options.html">选项菜单</button></li>
+                            <li><button class="menu-item" href="#">游戏存档</button></li>
+                            <li><button class="menu-item" href="./gallery.html">鉴赏系统</button></li>
+                            <li><button class="menu-item" @click=${() => Router.go('/menu')}>标题界面</button></li>
                         </ul>
                     </nav>
                 </div>

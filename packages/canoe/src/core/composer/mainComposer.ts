@@ -12,6 +12,7 @@ const fixedHeight = 1080;
 const renderTarget = new THREE.WebGLRenderTarget(fixedWidth, fixedHeight);
 
 const copyScene = new THREE.Scene();
+// @ts-ignore
 const copyCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1); // 永远铺满 [-1, 1] 空间
 
 const planeGeometry = new THREE.PlaneGeometry(2, 2);
@@ -22,5 +23,5 @@ const planeMaterial = new THREE.MeshBasicMaterial({
 });
 const copyMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 copyScene.add(copyMesh);
-
+// @ts-ignore
 const mainCamera = new THREE.PerspectiveCamera(60, fixedWidth / fixedHeight, 0.1, 1000);
