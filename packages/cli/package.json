@@ -35,6 +35,7 @@
         "vitest": "*"
     },
     "peerDependencies": {
+        "@shxnovel/art": "workspace:*",
         "@shxnovel/cli": "workspace:*",
         "@shxnovel/rewrite": "workspace:*",
         "@shxnovel/world": "workspace:*",

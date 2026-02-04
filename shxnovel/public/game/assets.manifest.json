@@ -17,14 +17,43 @@
       "src": "104786518_p0.png",
       "type": "image"
     },
+    "p0": {
+      "src": "p0.png",
+      "type": "image"
+    },
+    "p1": {
+      "src": "p1.png",
+      "type": "image"
+    },
+    "p2": {
+      "src": "p2.png",
+      "type": "image"
+    },
+    "p3": {
+      "src": "p3.png",
+      "type": "image"
+    },
     "some/b": {
       "src": "some/b.png",
       "type": "image"
+    },
+    "some/more/c": {
+      "src": "some/more/c.jpg",
+      "type": "image"
     }
   },
-  "audio": {},
+  "audio": {
+    "a": {
+      "src": "a.mp3",
+      "type": "audio"
+    },
+    "some/b": {
+      "src": "some/b.mp3",
+      "type": "audio"
+    }
+  },
   "meta": {
     "version": "1.0",
-    "generatedAt": "2026-01-30T09:47:51.138Z"
+    "generatedAt": "2026-02-04T02:42:52.558Z"
   }
 }

@@ -1,8 +1,9 @@
 packages:
-  - packages/cli
-  - packages/canoe
+  - packages/art
   - packages/rewrite
   - packages/world
+  - packages/canoe
+  - packages/cli
 
   - shxnovel
   - projects/*

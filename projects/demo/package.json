@@ -14,9 +14,10 @@
         "init": "pnpm i"
     },
     "dependencies": {
-        "@shxnovel/cli": "workspace:*",
+        "@shxnovel/art": "workspace:*",
         "@shxnovel/rewrite": "workspace:*",
         "@shxnovel/world": "workspace:*",
+        "@shxnovel/cli": "workspace:*",
         "json-to-ts": "*",
         "tsx": "*"
     },
