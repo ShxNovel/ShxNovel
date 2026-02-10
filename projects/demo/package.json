@@ -1,0 +1,25 @@
+{
+    "name": "demo",
+    "private": true,
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build:asset": "shx-cli asset",
+        "build:world": "shx-cli world",
+        "build:story": "shx-cli story",
+        "build:bound": "shx-cli bound",
+        "build": "pnpm build:asset && pnpm build:world && pnpm build:story && pnpm build:bound",
+        "use": "shx-cli use",
+        "init": "pnpm i"
+    },
+    "dependencies": {
+        "@shxnovel/rewrite": "workspace:*",
+        "@shxnovel/world": "workspace:*",
+        "@shxnovel/cli": "workspace:*",
+        "json-to-ts": "*",
+        "tsx": "*"
+    },
+    "keywords": [],
+    "packageManager": "pnpm@10.8.0"
+}

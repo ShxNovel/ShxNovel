@@ -1,0 +1,11 @@
+packages:
+    - packages/canoe
+    - packages/cli
+    - packages/rewrite
+    - packages/world
+
+    - shxnovel
+    - projects/*
+
+ignoredBuiltDependencies:
+    - esbuild

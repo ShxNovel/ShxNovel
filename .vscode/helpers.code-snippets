@@ -1,0 +1,13 @@
+// {
+//   "Stand Function Template": {
+//     "scope": "typescript,typescriptreact,javascript,javascriptreact",
+//     "prefix": "useChapter",
+//     "body": [
+//       // "useChapter('${1:name}', {",
+//       // "    slots: {},",
+//       // "    presets: {},",
+//       // "});$0"
+//       // "const { } = useChapter('${1:name}');$0"
+//     ],
+//   }
+// }

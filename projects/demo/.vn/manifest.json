@@ -1,0 +1,13 @@
+{
+  "meta": {"version": "1.0", "engine": "ShxNovel"},
+  "resourceList": {
+    "tex_p0": {"type": "texture", "path": "worldIR/tex_p0.ir.json"},
+    "tex_p1": {"type": "texture", "path": "worldIR/tex_p1.ir.json"},
+    "tex_p2": {"type": "texture", "path": "worldIR/tex_p2.ir.json"},
+    "tex_p3": {"type": "texture", "path": "worldIR/tex_p3.ir.json"},
+    "RT_screen": {"type": "rt", "path": "worldIR/RT_screen.ir.json"},
+    "co_main": {"type": "camera", "path": "worldIR/co_main.ir.json"},
+    "sn_main": {"type": "scene", "path": "worldIR/sn_main.ir.json"},
+    "v_bg": {"type": "visual", "path": "worldIR/v_bg.ir.json"}
+  }
+}

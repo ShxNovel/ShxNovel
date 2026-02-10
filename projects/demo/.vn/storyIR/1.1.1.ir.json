@@ -1,0 +1,47 @@
+[
+  {"type": "flag", "name": "start", "meta": {"debug": "1.1.1.ts:11:1"}},
+  {
+    "type": "tick",
+    "text": [],
+    "animate": [
+      {
+        "type": "animate",
+        "content": [
+          {"kind": "enter", "target": "bg", "args": {"into": {"type": "scene", "name": "main"}, "expr": ["body:p0"]}}
+        ]
+      }
+    ],
+    "system": [],
+    "meta": {}
+  },
+  {
+    "type": "tick",
+    "text": [
+      {
+        "type": "text",
+        "name": null,
+        "quote": false,
+        "content": ["你好!", {"kind": "pause", "args": {"ms": 2000}}, "罚抄", {"kind": "fast", "args": {"str": "!!!"}}],
+        "meta": {"debug": "1.1.1.ts:5:15"}
+      }
+    ],
+    "animate": [{"type": "animate", "content": [{"kind": "animate", "target": "bg", "args": {"expr": ["body:p1"]}}]}],
+    "system": [],
+    "meta": {}
+  },
+  {
+    "type": "tick",
+    "text": [
+      {
+        "type": "text",
+        "name": "卡咖喱",
+        "quote": true,
+        "content": ["今天为什么罚抄？", {"kind": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"],
+        "meta": {"debug": "1.1.1.ts:6:12"}
+      }
+    ],
+    "animate": [{"type": "animate", "content": [{"kind": "leave", "target": "bg"}]}],
+    "system": [],
+    "meta": {}
+  }
+]

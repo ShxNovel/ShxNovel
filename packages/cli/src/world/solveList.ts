@@ -1,0 +1,31 @@
+export function solveList(registry: typeof import('@shxnovel/world').registry) {
+    const result = {
+        texture: {} as Record<string, any>,
+        rt: {} as Record<string, any>,
+        camera: {} as Record<string, any>,
+        scene: {} as Record<string, any>,
+        visual: {} as Record<string, any>,
+    };
+
+    registry.TextureRegistry.finish().forEach((item, name) => {
+        result.texture[name] = item;
+    });
+
+    registry.RTRegistry.finish().forEach((item, name) => {
+        result.rt[name] = item;
+    });
+
+    registry.CameraRegistry.finish().forEach((item, name) => {
+        result.camera[name] = item;
+    });
+
+    registry.SceneRegistry.finish().forEach((item, name) => {
+        result.scene[name] = item;
+    });
+
+    registry.VisualRegistry.finish().forEach((item, name) => {
+        result.visual[name] = item;
+    });
+
+    return result;
+}

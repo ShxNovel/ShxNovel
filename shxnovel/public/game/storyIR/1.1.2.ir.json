@@ -1,0 +1,33 @@
+[
+  {"type": "flag", "name": "start2", "meta": {"debug": "1.1.2.ts:10:1"}},
+  {
+    "type": "tick",
+    "text": [
+      {
+        "type": "text",
+        "name": null,
+        "quote": false,
+        "content": ["你好! 罚抄!", {"kind": "fast", "args": {"str": "!!!"}}],
+        "meta": {"debug": "1.1.2.ts:14:19"}
+      }
+    ],
+    "animate": [],
+    "system": [],
+    "meta": {}
+  },
+  {
+    "type": "tick",
+    "text": [
+      {
+        "type": "text",
+        "name": "卡咖喱2",
+        "quote": true,
+        "content": ["今天为什么罚抄？", {"kind": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"],
+        "meta": {"debug": "1.1.2.ts:15:16"}
+      }
+    ],
+    "animate": [],
+    "system": [],
+    "meta": {}
+  }
+]

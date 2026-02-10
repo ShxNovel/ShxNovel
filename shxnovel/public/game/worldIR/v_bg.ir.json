@@ -1,0 +1,26 @@
+{
+  "name": "v_bg",
+  "kind": "visual",
+  "nodes": {
+    "body": {
+      "variants": {
+        "p0": {"kind": "texture", "name": "p0"},
+        "p1": {"kind": "texture", "name": "p1"},
+        "p2": {"kind": "texture", "name": "p2"},
+        "p3": {"kind": "texture", "name": "p3"}
+      }
+    }
+  },
+  "expressions": {
+    "body:p0": {"target": "body", "variant": "p0"},
+    "body:p1": {"target": "body", "variant": "p1"},
+    "body:p2": {"target": "body", "variant": "p2"},
+    "body:p3": {"target": "body", "variant": "p3"},
+    "v#body": {"target": "body", "visible": true},
+    "u#body": {"target": "body", "visible": false},
+    "1#body": {"target": "body", "uniforms": {"uBaseAlpha": 1}},
+    "0#body": {"target": "body", "uniforms": {"uBaseAlpha": 0}},
+    "1#self": {"target": "self", "uniforms": {"uGroupAlpha": 1}},
+    "0#self": {"target": "self", "uniforms": {"uGroupAlpha": 0}}
+  }
+}
