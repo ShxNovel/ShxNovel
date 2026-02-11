@@ -226,9 +226,9 @@ export function camera<N extends Animate.CameraKey>(name: N): OtrhCameraHandle<N
 }
 
 function isOrthName(name: Animate.CameraKey): name is Animate.OrthCameraKey {
-    return name.startsWith('co:');
+    return (name as string).startsWith('co:');
 }
 
 function isPersName(name: Animate.CameraKey): name is Animate.PersCameraKey {
-    return name.startsWith('cp:');
+    return (name as string).startsWith('cp:');
 }
