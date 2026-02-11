@@ -1,0 +1,114 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`parser solveOne ( with SceneBoundary ) 1`] = `
+Map {
+  "1.1.1" => [
+    SceneBlock {
+      "animate": [
+        {
+          "content": [
+            {
+              "kind": "timelabel",
+              "target": "a",
+            },
+          ],
+          "type": "animate",
+        },
+      ],
+      "meta": {},
+      "system": [],
+      "text": [
+        {
+          "content": [
+            "say",
+            {
+              "args": {
+                "ms": 1000,
+              },
+              "kind": "pause",
+            },
+            "aside",
+          ],
+          "name": null,
+          "quote": false,
+          "type": "text",
+        },
+      ],
+      "type": "tick",
+    },
+    SceneBlock {
+      "animate": [],
+      "meta": {},
+      "system": [
+        {
+          "content": [
+            {
+              "args": {
+                "pipeline": "test",
+              },
+              "kind": "usePipeline",
+            },
+          ],
+          "type": "system",
+        },
+      ],
+      "text": [
+        {
+          "content": [
+            "say me",
+          ],
+          "name": "me",
+          "quote": true,
+          "type": "text",
+        },
+      ],
+      "type": "tick",
+    },
+    SceneBlock {
+      "animate": [
+        {
+          "content": [
+            {
+              "kind": "timelabel",
+              "target": "a",
+            },
+          ],
+          "type": "animate",
+        },
+      ],
+      "meta": {},
+      "system": [
+        {
+          "content": [
+            {
+              "args": {
+                "pipeline": "test2",
+              },
+              "kind": "usePipeline",
+            },
+          ],
+          "type": "system",
+        },
+      ],
+      "text": [],
+      "type": "tick",
+    },
+    SceneBlock {
+      "animate": [],
+      "meta": {},
+      "system": [],
+      "text": [
+        {
+          "content": [
+            "more",
+          ],
+          "name": null,
+          "quote": false,
+          "type": "text",
+        },
+      ],
+      "type": "tick",
+    },
+  ],
+}
+`;

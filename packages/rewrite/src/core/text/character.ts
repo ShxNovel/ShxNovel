@@ -18,10 +18,14 @@ export type LinkText = CleanFunction<_LinkText>;
 type _LinkTextFn = (some?: TemplateStringsArray, ...values: RewriteText[]) => LinkText;
 type _LinkText = _LinkTextFn & TextMethod;
 export interface TextMethod {
-    /** @param ms The duration of the pause in milliseconds */
+    /**
+     * @param ms The duration of the pause in milliseconds
+     */
     pause(ms: number): LinkText;
 
-    /** @param str The string content to be displayed */
+    /**
+     * @param str The string content to be displayed
+     */
     fast(str: string): LinkText;
 }
 

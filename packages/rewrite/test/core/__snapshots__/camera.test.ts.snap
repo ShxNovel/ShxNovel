@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plain patch 1`] = `
+{
+  "cache": Map {
+    "1.1.1" => [
+      {
+        "content": [
+          "say aside",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "kind": "timelabel",
+            "target": "a",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "duration": 1000,
+              "ease": "sine",
+              "zoom": 10,
+            },
+            "kind": "animate",
+            "target": "co:main",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "position": {
+                "x": 10,
+                "y": 10,
+              },
+              "rotation": {
+                "x": 2,
+                "y": 3,
+                "z": 10,
+              },
+              "timelabel": "a",
+            },
+            "kind": "instant",
+            "target": "co:main",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          "say me",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+    ],
+  },
+  "name": "1.1.1",
+}
+`;

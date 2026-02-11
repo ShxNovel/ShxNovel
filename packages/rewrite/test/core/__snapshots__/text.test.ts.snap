@@ -1,0 +1,221 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`multiple character 1`] = `
+{
+  "cache": Map {
+    "1.1.1" => [
+      {
+        "content": [
+          "11",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          "aa",
+          "bb",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          "22",
+          {
+            "args": {
+              "str": "xxxx",
+            },
+            "kind": "fast",
+          },
+          "33",
+          {
+            "args": {
+              "ms": 1000,
+            },
+            "kind": "pause",
+          },
+          "44",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "str": "yyyy",
+            },
+            "kind": "fast",
+          },
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          "",
+          {
+            "args": {
+              "ms": 1000,
+            },
+            "kind": "pause",
+          },
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+    ],
+    "1.1.2" => [
+      {
+        "content": [
+          "11",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          "aa",
+          "bb",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          "22",
+          {
+            "args": {
+              "str": "xxxx",
+            },
+            "kind": "fast",
+          },
+          "33",
+          {
+            "args": {
+              "ms": 1000,
+            },
+            "kind": "pause",
+          },
+          "44",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "str": "yyyy",
+            },
+            "kind": "fast",
+          },
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          "",
+          {
+            "args": {
+              "ms": 1000,
+            },
+            "kind": "pause",
+          },
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+    ],
+  },
+  "name": "1.1.2",
+}
+`;
+
+exports[`plain character 1`] = `
+{
+  "cache": Map {
+    "1.1.1" => [
+      {
+        "content": [
+          "11",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          "aa",
+          "bb",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          "22",
+          {
+            "args": {
+              "str": "xxxx",
+            },
+            "kind": "fast",
+          },
+          "33",
+          {
+            "args": {
+              "ms": 1000,
+            },
+            "kind": "pause",
+          },
+          "44",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "str": "yyyy",
+            },
+            "kind": "fast",
+          },
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          "",
+          {
+            "args": {
+              "ms": 1000,
+            },
+            "kind": "pause",
+          },
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+    ],
+  },
+  "name": "1.1.1",
+}
+`;

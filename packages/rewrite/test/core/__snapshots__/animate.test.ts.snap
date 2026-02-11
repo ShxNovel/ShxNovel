@@ -1,0 +1,107 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plain patch 1`] = `
+{
+  "cache": Map {
+    "1.1.1" => [
+      {
+        "content": [
+          "say aside",
+        ],
+        "name": null,
+        "quote": false,
+        "type": "text",
+      },
+      {
+        "content": [
+          {
+            "kind": "timelabel",
+            "target": "a",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "expr": [],
+              "position": {
+                "x": 10,
+                "y": 10,
+              },
+              "rotation": {
+                "x": 2,
+                "y": 3,
+                "z": 10,
+              },
+              "scale": {
+                "x": 1,
+                "y": 10,
+                "z": 2,
+              },
+            },
+            "kind": "enter",
+            "target": "stand:sofa",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "expr": [],
+              "position": {
+                "z": 10,
+              },
+              "timelabel": "a",
+            },
+            "kind": "instant",
+            "target": "stand:sofa",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          {
+            "args": {
+              "duration": 1000,
+              "ease": "sine",
+              "expr": [
+                "a",
+                "b",
+                "a",
+                "d",
+              ],
+              "renderOrder": 114,
+            },
+            "kind": "animate",
+            "target": "stand:sofa",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          {
+            "kind": "leave",
+            "target": "stand:sofa",
+          },
+        ],
+        "type": "animate",
+      },
+      {
+        "content": [
+          "say me",
+        ],
+        "name": "me",
+        "quote": true,
+        "type": "text",
+      },
+    ],
+  },
+  "name": "1.1.1",
+}
+`;
