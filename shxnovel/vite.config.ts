@@ -28,6 +28,10 @@ export default defineConfig(async () => ({
     },
   },
 
+  define: {
+    isTauri: !!process.env.TAURI_ENV_PLATFORM
+  },
+
   build: {
     rollupOptions: {
       output: {
