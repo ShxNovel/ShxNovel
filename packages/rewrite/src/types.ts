@@ -40,18 +40,23 @@ export declare namespace Animate {
 
     /* camera */
     interface CameraMap {
-        'co:main': 'o';
-        'co:some1': 'o';
-        'cp:some2': 'p';
+        // 'co:main': 'o';
+        // 'co:some1': 'o';
+        // 'cp:some2': 'p';
     }
     type CameraKey = PersCameraKey | OrthCameraKey;
     type PersCameraKey = KeysOfValue<CameraMap, 'p'>;
     type OrthCameraKey = KeysOfValue<CameraMap, 'o'>;
 
     interface RTMap {
-        screen: any;
+        // screen: any;
     }
     type RTKey = keyof RTMap;
+
+    interface PipelineMap {
+        // main: any;
+    }
+    type PipelineKey = keyof PipelineMap;
 }
 
 // | (string /* magic */ & {});

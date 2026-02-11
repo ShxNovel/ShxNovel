@@ -30,6 +30,7 @@ export function solveDeclare(): string {
     const SceneSections = solveScene(registry.SceneRegistry.finish());
     const RTSections = solveRT(registry.RTRegistry.finish());
     const CameraSections = solveCamera(registry.CameraRegistry.finish());
+    const PipelineSections = solvePipeline(registry.PipelineRegistry.finish());
 
     const gameDataSections = solveG(registry.InGameData, registry.GlobalData);
 
@@ -49,12 +50,25 @@ export function solveDeclare(): string {
         `    interface RTMap {\n` +
         `${RTSections.join('\n')}\n` +
         `    }\n\n` +
+        `    interface PipelineMap {\n` +
+        `${PipelineSections.join('\n')}\n` +
+        `    }\n\n` +
         `  }\n\n` +
         `  namespace GameData {\n` +
         `${gameDataSections.join('\n\n')}\n` +
         `  }\n` +
         `}\n`
     );
+}
+
+function solvePipeline(context: ReturnType<typeof registry.PipelineRegistry.finish>) {
+    const sections: string[] = [];
+
+    context.forEach((_item, name) => {
+        sections.push(`      "${name}": any;`);
+    });
+
+    return sections;
 }
 
 function solveCamera(context: ReturnType<typeof registry.CameraRegistry.finish>) {

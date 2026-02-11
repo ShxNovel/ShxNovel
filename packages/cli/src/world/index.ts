@@ -140,6 +140,16 @@ function createWorldIR(some: ReturnType<typeof solveList>, worldIRPath: string) 
         result[name] = { type: 'visual', path: path.join('worldIR', `${name}.ir.json`).replace(/\\/g, '/') };
     });
 
+    Object.entries(some.pipleline).forEach(([name, item]) => {
+        const outPath = path.join(worldIRPath, encodeURIComponent(`${name}.ir.json`));
+        const json = format(item, {
+            indent: 2,
+            maxLength: 120,
+        });
+        fs.writeFileSync(outPath, json);
+        result[name] = { type: 'pipleline', path: path.join('worldIR', `${name}.ir.json`).replace(/\\/g, '/') };
+    });
+
     return result;
 }
 

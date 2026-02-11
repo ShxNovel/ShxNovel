@@ -1,3 +1,4 @@
+import { Animate } from '../../types';
 import { rewriteContext } from '../RewriteContext';
 
 export interface SystemUnit {
@@ -16,12 +17,12 @@ export type RewriteSystem = {
  */
 
 export interface SysInterface {
-    cut(): this;
+    usePipeline(pipeline: Animate.PipelineKey): this;
 }
 
 export class SysImpl implements SysInterface {
-    cut() {
-        rewriteContext.push({ type: 'system', content: [{ kind: 'cut' }] });
+    usePipeline(pipeline: Animate.PipelineKey) {
+        rewriteContext.push({ type: 'system', content: [{ kind: 'usePipeline', args: { pipeline } }] });
         return this;
     }
 }
