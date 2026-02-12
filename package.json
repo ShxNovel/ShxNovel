@@ -35,9 +35,11 @@
     "devDependencies": {
         "@types/node": "^22",
         "@types/three": "^0.182.0",
-        "typescript": "^5.9.3",
-        "vite": "^7",
-        "vitest": "^4",
-        "rimraf": "^6.1.2"
+        "@shxnovel/cli": "workspace:*",
+        "tsx": "*",
+        "typescript": "*",
+        "vite": "*",
+        "vitest": "*",
+        "rimraf": "*"
     }
 }

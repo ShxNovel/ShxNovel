@@ -1,11 +1,11 @@
-import { useInGameData, useGlobalData } from '@shxnovel/world';
+import { useInGameData, useGlobalData } from "@shxnovel/world";
 
 useInGameData({
-    a: 1,
-    b: 2,
+  a: 1,
+  b: 2,
 });
 
 useGlobalData({
-    c: 3,
-    d: 4,
+  c: 3,
+  d: 4,
 });
