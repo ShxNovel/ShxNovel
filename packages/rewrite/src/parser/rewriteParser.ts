@@ -11,9 +11,9 @@ type Nodefn<T = any> = (this: RewriteParser, unit: ChapterUnit & { type: T }) =>
 
 type NodeType = ChapterUnit['type'];
 
-type IRNode = SceneBlock | BranchUnit | ChoiceUnit | FlagUnit | JumpUnit;
+export type IRNode = SceneBlock | BranchUnit | ChoiceUnit | FlagUnit | JumpUnit;
 
-class SceneBlock {
+export class SceneBlock {
     type: 'tick' = 'tick';
     text: TextUnit[] = [];
     animate: AnimateUnit[] = [];

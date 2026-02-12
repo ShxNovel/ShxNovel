@@ -20,12 +20,16 @@ export class GameDialogue extends LitElement {
 
     instance?: TypewriterClass;
     plainText = '';
+    public isTyping = false;
 
     init() {
         if (this.instance) {
             this.instance.stop();
             this.instance = undefined;
         }
+
+        this.plainText = '';
+        this.isTyping = false;
 
         const one = new Typewriter(this.contentElement, {
             cursor: '...',
@@ -47,7 +51,6 @@ export class GameDialogue extends LitElement {
 
         if (this.useQuote) {
             this.addText('「 ');
-            this.plainText += '「 ';
         }
 
         return one;
@@ -56,9 +59,10 @@ export class GameDialogue extends LitElement {
     play() {
         if (!this.instance) return;
 
+        this.isTyping = true;
+
         if (this.useQuote) {
             this.addText(' 」');
-            this.plainText += ' 」';
         }
 
         this.instance.callFunction(() => {
@@ -67,7 +71,7 @@ export class GameDialogue extends LitElement {
         });
 
         this.instance.callFunction(() => {
-            // this.complete = true;
+            this.isTyping = false;
         });
 
         this.instance.start();
@@ -75,11 +79,55 @@ export class GameDialogue extends LitElement {
 
     stop() {
         this.instance?.stop();
+        this.isTyping = false;
+    }
+
+    finish() {
+        if (!this.isTyping) return;
+
+        this.stop(); // Stop the typewriter
+
+        // Manually render the full text
+        if (this.contentElement) {
+            this.contentElement.innerHTML = ''; // Clear partial text
+
+            // Reconstruct the HTML structure
+            const wrapper = document.createElement('span');
+            wrapper.className = 'content_html';
+
+            for (const char of this.plainText) {
+                if (char === '\n') {
+                    wrapper.appendChild(document.createElement('br'));
+                } else {
+                    const el = document.createElement('span');
+                    el.innerHTML = char;
+                    el.className = 'contentFadeIn';
+                    // Force animation to finish immediately or just remove it?
+                    // Let's keep the class for styling but maybe override animation?
+                    // Actually, if we just append them, they will play the fade-in animation (0.3s).
+                    // That looks nice (rapid cascade) or we can set opacity: 1 directly.
+                    // Let's stick to the class for now, it's fast enough.
+                    el.style.animation = 'none';
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                    wrapper.appendChild(el);
+                }
+            }
+            this.contentElement.appendChild(wrapper);
+        }
+
+        // Show cursor
+        if (this.cursorElement) {
+            this.cursorElement.style.display = 'block';
+        }
+
+        this.isTyping = false;
     }
 
     addText(s: string) {
         if (!this.instance) return;
         this.instance.typeString(s);
+        this.plainText += s;
     }
 
     addInstantText(s: string) {
