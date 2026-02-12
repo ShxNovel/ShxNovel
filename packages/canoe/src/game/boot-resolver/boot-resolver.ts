@@ -70,23 +70,24 @@ class SaveManager {
 
 export class BootResolver {
     static async resolve(intent: BootIntent): Promise<BootContext> {
-        if (intent.type == 'new') {
-            // new game
-            const save = await SaveManager.newGame();
-            return this.createNewContext(save);
-        } else if (intent.type == 'continue') {
-            // continue
-            const save = await SaveManager.loadLatest();
-            return this.fromSave(save);
-        } else if (intent.type == 'load') {
-            // load
-            const save = await SaveManager.load(intent.saveId);
-            return this.fromSave(save);
-        } else if (intent.type == 'debug') {
-            // debug
-            return this.fromChapter(intent.chapterId);
-        } else {
-            throw new Error(`Unknown intent type: ${(intent as any).type}`);
+        switch (intent.type) {
+            case 'new':
+                const save_new = await SaveManager.newGame();
+                return this.createNewContext(save_new);
+
+            case 'continue':
+                const save_latest = await SaveManager.loadLatest();
+                return this.fromSave(save_latest);
+
+            case 'load':
+                const save_load = await SaveManager.load(intent.saveId);
+                return this.fromSave(save_load);
+
+            case 'debug':
+                return this.fromChapter(intent.chapterId);
+
+            default:
+                throw new Error(`Unknown intent type: ${(intent as any).type}`);
         }
     }
 
