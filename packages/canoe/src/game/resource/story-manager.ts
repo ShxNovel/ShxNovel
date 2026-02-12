@@ -14,7 +14,7 @@ export class StoryManager {
      * "ensure" is an idempotent operation.
      * @example
      * this.base = '/game/storyIR';
-     * this.ensure('1.json'); // => ensure /game/storyIR/1.json
+     * this.ensure('1'); // => ensure /game/storyIR/1.ir.json
      */
     static ensure(key: string): void {
         if (this.pool.has(key)) {
@@ -43,7 +43,7 @@ export class StoryManager {
      * @returns Promise of IR nodes
      * @example
      * this.base = '/game/storyIR';
-     * this.get('1.json'); // => get /game/storyIR/1.json
+     * this.get('1'); // => get /game/storyIR/1.ir.json
      */
     static async get(key: string): Promise<IRNodes> {
         // defensive ensure
