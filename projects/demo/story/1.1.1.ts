@@ -23,3 +23,5 @@ flag('start');
 
     school.leave();
 }
+
+jump("start2");

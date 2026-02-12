@@ -1,5 +1,5 @@
 [
-  {"type": "flag", "name": "start", "meta": {"debug": "1.1.1.ts:11:1"}},
+  {"type": "flag", "name": "start"},
   {
     "type": "tick",
     "text": [],
@@ -7,7 +7,11 @@
       {
         "type": "animate",
         "content": [
-          {"kind": "enter", "target": "bg", "args": {"into": {"type": "scene", "name": "main"}, "expr": ["body:p0"]}}
+          {
+            "kind": "enter",
+            "target": "v_bg",
+            "args": {"expr": ["body:p0"], "into": {"type": "scene", "name": "sn_main"}}
+          }
         ]
       }
     ],
@@ -21,11 +25,10 @@
         "type": "text",
         "name": null,
         "quote": false,
-        "content": ["你好!", {"kind": "pause", "args": {"ms": 2000}}, "罚抄", {"kind": "fast", "args": {"str": "!!!"}}],
-        "meta": {"debug": "1.1.1.ts:5:15"}
+        "content": ["你好!", {"kind": "pause", "args": {"ms": 2000}}, "罚抄", {"kind": "fast", "args": {"str": "!!!"}}]
       }
     ],
-    "animate": [{"type": "animate", "content": [{"kind": "animate", "target": "bg", "args": {"expr": ["body:p1"]}}]}],
+    "animate": [{"type": "animate", "content": [{"kind": "animate", "target": "v_bg", "args": {"expr": ["body:p1"]}}]}],
     "system": [],
     "meta": {}
   },
@@ -36,12 +39,12 @@
         "type": "text",
         "name": "卡咖喱",
         "quote": true,
-        "content": ["今天为什么罚抄？", {"kind": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"],
-        "meta": {"debug": "1.1.1.ts:6:12"}
+        "content": ["今天为什么罚抄？", {"kind": "pause", "args": {"ms": 1000}}, "是不是因为上课没听讲？"]
       }
     ],
-    "animate": [{"type": "animate", "content": [{"kind": "leave", "target": "bg"}]}],
+    "animate": [{"type": "animate", "content": [{"kind": "leave", "target": "v_bg"}]}],
     "system": [],
     "meta": {}
-  }
+  },
+  {"type": "jump", "target": "start2"}
 ]
