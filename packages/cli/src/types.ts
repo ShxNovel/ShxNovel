@@ -1,4 +1,4 @@
-import {
+import type {
     useChapter as _useChapter,
     system as _system,
     character as _character,
@@ -10,6 +10,7 @@ import {
 
     //
     scene as _scene,
+    camera as _camera,
     visual as _visual,
     timelabel as _timelabel,
 } from '@shxnovel/rewrite';
@@ -36,12 +37,12 @@ declare global {
     const directive: typeof _directive;
 
     // @todo
-    // rt
-    // camera
+    // rt ??
+    const camera: typeof _camera;
     const scene: typeof _scene;
 }
 
-import {
+import type {
     regTexture as _regTexture,
     regVisual as _regVisual,
     regCamera as _regCamera,

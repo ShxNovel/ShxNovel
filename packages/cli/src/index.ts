@@ -9,6 +9,7 @@ import { assetCLI } from './asset';
 import { worldCLI } from './world';
 import { storyCLI } from './story';
 import { useCLI } from './use';
+import { createCLI } from './create';
 
 const program = new Command();
 
@@ -112,6 +113,32 @@ program
             }
 
             await useCLI(from, to);
+        } catch (error) {
+            handleError(error);
+        }
+    });
+
+// Create command
+program
+    .command('create')
+    .description('Create a new ShxNovel project')
+    .argument('[directory]', 'target directory path')
+    .option('-n, --name <name>', 'project name', 'my-game')
+    .option('-f, --force', 'force create even if directory exists')
+    .action(async (directory, options) => {
+        try {
+            if (program.opts().verbose) {
+                logger.setVerbose(true);
+            }
+
+            if (program.opts().dryRun) {
+                logger.info('Dry run mode enabled - no files will be created');
+            }
+
+            await createCLI(directory, {
+                name: options.name,
+                force: options.force,
+            });
         } catch (error) {
             handleError(error);
         }

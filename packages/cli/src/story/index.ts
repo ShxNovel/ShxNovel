@@ -22,7 +22,7 @@ const {
     flag,
     directive,
     // rt
-    // camera
+    camera,
     scene,
 } =
     // sync with user runtime
@@ -42,8 +42,8 @@ function inject() {
     (global as any).jump = jump;
     (global as any).flag = flag;
     (global as any).directive = directive;
-    // rt
-    // camera
+    // rt ??
+    (global as any).camera = camera;
     (global as any).scene = scene;
 }
 
