@@ -15,7 +15,7 @@ class defaultPipeline implements PipelineIR {
 
     kind: PipelineIR['kind'] = 'pipeline';
 
-    content = [];
+    steps = [];
 }
 
 type PipelineConfigArgs = {
@@ -80,7 +80,7 @@ export type PipelineHandler<T extends string> = {
 export function regPipeline<T extends string>(name: T, config?: (t: PipelineConfig) => void): PipelineHandler<T> {
     const item = new defaultPipeline(name);
 
-    if (config) config(new PipelineConfig(item.content));
+    if (config) config(new PipelineConfig(item.steps));
 
     let Ex_name: PipelineHandler<T>['name'];
 

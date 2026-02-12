@@ -3,7 +3,7 @@ useChapter("1.1.1");
 const aside = character(null);
 const me = character("卡咖喱");
 
-const stage = scene("sn_main");
+const stage = scene("s_main");
 const school = visual("v_bg");
 
 flag("start");

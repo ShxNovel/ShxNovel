@@ -17,7 +17,7 @@
           {
             "kind": "enter",
             "target": "v_bg",
-            "args": {"expr": ["body:p0"], "into": {"type": "scene", "name": "sn_main"}}
+            "args": {"expr": ["body:p0"], "into": {"type": "scene", "name": "s_main"}}
           }
         ]
       },

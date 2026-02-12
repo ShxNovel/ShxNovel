@@ -1,10 +1,10 @@
 {
   "name": "main",
   "kind": "pipeline",
-  "content": [
+  "steps": [
     {
       "scene": "s_main",
-      "camera": "c_main",
+      "camera": "co_main",
       "output": "rt_screen",
       "clear": true,
       "clearColor": "#000000",

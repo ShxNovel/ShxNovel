@@ -2,7 +2,7 @@ export interface PipelineIR {
     name: string;
     kind: 'pipeline';
 
-    content: PipelineContent[];
+    steps: PipelineContent[];
 }
 
 type Vector4 = [number, number, number, number];

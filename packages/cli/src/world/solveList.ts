@@ -5,7 +5,7 @@ export function solveList(registry: typeof import('@shxnovel/world').registry) {
         camera: {} as Record<string, any>,
         scene: {} as Record<string, any>,
         visual: {} as Record<string, any>,
-        pipleline: {} as Record<string, any>,
+        pipeline: {} as Record<string, any>,
     };
 
     registry.TextureRegistry.finish().forEach((item, name) => {
@@ -29,7 +29,7 @@ export function solveList(registry: typeof import('@shxnovel/world').registry) {
     });
 
     registry.PipelineRegistry.finish().forEach((item, name) => {
-        result.pipleline[name] = item;
+        result.pipeline[name] = item;
     });
 
     return result;

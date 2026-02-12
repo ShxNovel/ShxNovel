@@ -16,7 +16,7 @@ declare module "@shxnovel/rewrite" {
     }
 
     interface CameraMap {
-      "c_main": "o";
+      "co_main": "o";
     }
 
     interface RTMap {
