@@ -82,48 +82,44 @@ export class GameDialogue extends LitElement {
         this.isTyping = false;
     }
 
-    finish() {
-        if (!this.isTyping) return;
-
-        this.stop(); // Stop the typewriter
-
-        // Manually render the full text
-        if (this.contentElement) {
-            this.contentElement.innerHTML = ''; // Clear partial text
-
-            // Reconstruct the HTML structure
-            const wrapper = document.createElement('span');
-            wrapper.className = 'content_html';
-
-            for (const char of this.plainText) {
-                if (char === '\n') {
-                    wrapper.appendChild(document.createElement('br'));
-                } else {
-                    const el = document.createElement('span');
-                    el.innerHTML = char;
-                    el.className = 'contentFadeIn';
-                    // Force animation to finish immediately or just remove it?
-                    // Let's keep the class for styling but maybe override animation?
-                    // Actually, if we just append them, they will play the fade-in animation (0.3s).
-                    // That looks nice (rapid cascade) or we can set opacity: 1 directly.
-                    // Let's stick to the class for now, it's fast enough.
-                    el.style.animation = 'none';
-                    el.style.opacity = '1';
-                    el.style.transform = 'none';
-                    wrapper.appendChild(el);
+        finish() {
+            if (!this.isTyping) return;
+            
+            this.stop(); // Stop the typewriter
+            
+            // Manually render the full text
+            if (this.contentElement) {
+                this.contentElement.innerHTML = ''; // Clear partial text
+                
+                // Reconstruct the HTML structure
+                const wrapper = document.createElement('span');
+                wrapper.className = 'content_html';
+                
+                for (const char of this.plainText) {
+                    if (char === '\n') {
+                        wrapper.appendChild(document.createElement('br'));
+                    } else {
+                        const el = document.createElement('span');
+                        el.innerHTML = char;
+                        el.className = 'contentFadeIn';
+                        el.style.animation = 'none';
+                        el.style.opacity = '1';
+                        el.style.transform = 'none';
+                        wrapper.appendChild(el);
+                    }
                 }
+                this.contentElement.appendChild(wrapper);
+    
+                // Recreate the cursor element since we wiped the innerHTML
+                const cursor = document.createElement('span');
+                cursor.className = 'content_cursor';
+                cursor.innerHTML = '...';
+                cursor.style.display = 'block';
+                this.contentElement.appendChild(cursor);
             }
-            this.contentElement.appendChild(wrapper);
+            
+            this.isTyping = false;
         }
-
-        // Show cursor
-        if (this.cursorElement) {
-            this.cursorElement.style.display = 'block';
-        }
-
-        this.isTyping = false;
-    }
-
     addText(s: string) {
         if (!this.instance) return;
         this.instance.typeString(s);

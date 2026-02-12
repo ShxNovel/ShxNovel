@@ -12,15 +12,19 @@ declare module "@shxnovel/rewrite" {
     }
 
     interface SceneMap {
-      "sn_main": any;
+      "s_main": any;
     }
 
     interface CameraMap {
-      "co_main": any;
+      "c_main": "o";
     }
 
     interface RTMap {
-      "RT_screen": any;
+      "rt_screen": any;
+    }
+
+    interface PipelineMap {
+      "pipe_main": any;
     }
 
   }

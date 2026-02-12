@@ -24,7 +24,7 @@ button {
 
 .tool_btn {
     cursor: url('../icon/c_mouse.png'), pointer;
-    height: fit-content !important;
+    /* height: fit-content !important; */
     width: fit-content;
     text-align: center;
 

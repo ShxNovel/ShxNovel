@@ -12,6 +12,7 @@
     "packageManager": "pnpm@10.8.0",
     "dependencies": {
         "@lion/ui": "*",
+        "@lit/context": "^1.1.6",
         "@shxnovel/canoe": "workspace:*",
         "@shxnovel/rewrite": "workspace:*",
         "@shxnovel/world": "workspace:*",

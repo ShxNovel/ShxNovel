@@ -2,7 +2,14 @@
   {"type": "flag", "name": "start"},
   {
     "type": "tick",
-    "text": [],
+    "text": [
+      {
+        "type": "text",
+        "name": null,
+        "quote": false,
+        "content": ["你好!", {"kind": "pause", "args": {"ms": 2000}}, "罚抄", {"kind": "fast", "args": {"str": "!!!"}}]
+      }
+    ],
     "animate": [
       {
         "type": "animate",
@@ -13,22 +20,9 @@
             "args": {"expr": ["body:p0"], "into": {"type": "scene", "name": "sn_main"}}
           }
         ]
-      }
+      },
+      {"type": "animate", "content": [{"kind": "animate", "target": "v_bg", "args": {"expr": ["body:p1"]}}]}
     ],
-    "system": [],
-    "meta": {}
-  },
-  {
-    "type": "tick",
-    "text": [
-      {
-        "type": "text",
-        "name": null,
-        "quote": false,
-        "content": ["你好!", {"kind": "pause", "args": {"ms": 2000}}, "罚抄", {"kind": "fast", "args": {"str": "!!!"}}]
-      }
-    ],
-    "animate": [{"type": "animate", "content": [{"kind": "animate", "target": "v_bg", "args": {"expr": ["body:p1"]}}]}],
     "system": [],
     "meta": {}
   },

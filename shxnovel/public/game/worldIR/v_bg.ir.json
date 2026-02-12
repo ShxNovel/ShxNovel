@@ -4,11 +4,12 @@
   "nodes": {
     "body": {
       "variants": {
-        "p0": {"kind": "texture", "name": "p0"},
-        "p1": {"kind": "texture", "name": "p1"},
-        "p2": {"kind": "texture", "name": "p2"},
-        "p3": {"kind": "texture", "name": "p3"}
-      }
+        "p0": {"kind": "texture", "name": "tex_p0"},
+        "p1": {"kind": "texture", "name": "tex_p1"},
+        "p2": {"kind": "texture", "name": "tex_p2"},
+        "p3": {"kind": "texture", "name": "tex_p3"}
+      },
+      "pos": [1, 1, 1]
     }
   },
   "expressions": {

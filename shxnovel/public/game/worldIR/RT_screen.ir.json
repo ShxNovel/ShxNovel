@@ -1,11 +1,1 @@
-{
-  "name": "RT_screen",
-  "kind": "RT",
-  "width": 1920,
-  "height": 1080,
-  "depth": 1,
-  "scissorTest": false,
-  "scissor": {"x": 0, "y": 0, "z": 0, "w": 0},
-  "viewport": {"x": 0, "y": 0, "z": 0, "w": 0},
-  "samples": 0
-}
+{"name": "rt_screen", "kind": "RT", "width": 1920, "height": 1080, "depth": 1, "samples": 0}

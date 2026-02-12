@@ -1,13 +1,19 @@
 import { LitElement, html, css, unsafeCSS, CSSResultGroup } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { consume } from '@lit/context';
 
 // @ts-ignore
 import inlineStyles from './game-bottom-tool.css?inline';
+import { gameContext, GameContextType } from '../../context/game-context';
 
 @customElement('game-bottom-tool')
 export class GameBottomTool extends LitElement {
     static styles = unsafeCSS(inlineStyles);
+
+    @consume({ context: gameContext, subscribe: true })
+    @state()
+    private _gameContext!: GameContextType;
 
     _hook_replay = () => {
         this.dispatchEvent(new CustomEvent('replay'));
@@ -18,17 +24,40 @@ export class GameBottomTool extends LitElement {
     };
 
     _hook_toggle = () => {
-        this.dispatchEvent(new CustomEvent('toggle'));
+        this.dispatchEvent(new CustomEvent('toggle', { bubbles: true, composed: true }));
     };
 
+    _hook_auto = () => {
+        this.dispatchEvent(new CustomEvent('auto'));
+    }
+
+    _hook_fast = () => {
+        this.dispatchEvent(new CustomEvent('fast'));
+    }
+
+    _hook_qsave = () => {
+        this.dispatchEvent(new CustomEvent('qsave'));
+    }
+
+    _hook_save = () => {
+        this.dispatchEvent(new CustomEvent('save'));
+    }
+
     render() {
+        // Fallback if context is not yet available (though it should be)
+        const isAuto = this._gameContext?.isAuto || false;
+        const isFast = this._gameContext?.isFast || false;
+
+        const autoClasses = { tool_btn: true, active: isAuto };
+        const fastClasses = { tool_btn: true, active: isFast };
+
         return html` <div class="tools">
-            <button class="tool_btn" id="btn_auto">${AutoSvg}Auto</button>
-            <button class="tool_btn" id="btn_fast">${FastSvg}Fast</button>
+            <button class=${classMap(autoClasses)} id="btn_auto" @click=${this._hook_auto}>${AutoSvg}Auto</button>
+            <button class=${classMap(fastClasses)} id="btn_fast" @click=${this._hook_fast}>${FastSvg}Fast</button>
             <button class="tool_btn" id="btn_replay" @click=${this._hook_replay}>Replay</button>
             <button class="tool_btn" id="btn_backlog" @click=${this._hook_backlog}>${ResetSvg}Backlog</button>
-            <button class="tool_btn" id="btn_q_save">Q.save</button>
-            <button class="tool_btn" id="btn_save">${QSaveSvg}Save</button>
+            <button class="tool_btn" id="btn_q_save" @click=${this._hook_qsave}>Q.save</button>
+            <button class="tool_btn" id="btn_save" @click=${this._hook_save}>${QSaveSvg}Save</button>
             <button class="tool_btn" id="btn_hide" @click=${this._hook_toggle}>${HideSvg}</button>
         </div>`;
     }

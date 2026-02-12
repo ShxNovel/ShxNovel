@@ -1,5 +1,5 @@
 .content {
-    position: absolute;
+    /* position: absolute; */
     display: inline-block;
     width: 70%;
     word-break: break-all;
@@ -29,8 +29,8 @@
 
 .content_cursor {
     position: absolute;
-    right: 2.26rem;
-    bottom: -1rem;
+    right: 5rem;
+    bottom: 5rem;
     color: black;
     display: none;
     animation: content_cursor 1s infinite;

@@ -99,37 +99,38 @@ export class Runtime {
      * Resume execution
      * Flow: ready || paused → running → tick()
      */
-    async resume(): Promise<void> {
-        if (this.state !== 'ready' && this.state !== 'paused') {
-            throw new Error(`Cannot resume in state '${this.state}', expected 'ready' or 'paused'`);
+        async resume(): Promise<void> {
+            if (this.state !== 'ready' && this.state !== 'paused') {
+                throw new Error(`Cannot resume in state '${this.state}', expected 'ready' or 'paused'`);
+            }
+    
+            // Debug 模式：只展示场景，不执行脚本
+            if (this.context?.meta?.isDebug) {
+                logger.info('Debug mode: scene restored, not executing script');
+                return;
+            }
+    
+            // Editor 模式：只展示世界状态
+            if (this.context?.meta?.isEditor) {
+                logger.info('Editor mode: world state displayed, not executing script');
+                return;
+            }
+    
+            // 智能判断是否需要跳过当前指令
+            // Paused: 说明上一条指令执行完毕并阻塞了（如 tick），现在需要继续，所以跳过当前 (stepOver=true)
+            // Ready: 说明刚初始化，PC 指向的是即将执行的第一条指令，所以不跳过 (stepOver=false)
+            const shouldStepOver = this.state === 'paused';
+    
+            this.emitStateChange('running');
+    
+            try {
+                 await this.executeLoop(shouldStepOver);
+            } catch (error) {
+                logger.error('Resume failed', error);
+                this.emitStateChange('error');
+                throw error;
+            }
         }
-
-        // Debug 模式：只展示场景，不执行脚本
-        if (this.context?.meta?.isDebug) {
-            logger.info('Debug mode: scene restored, not executing script');
-            return;
-        }
-
-        // Editor 模式：只展示世界状态
-        if (this.context?.meta?.isEditor) {
-            logger.info('Editor mode: world state displayed, not executing script');
-            return;
-        }
-
-        this.emitStateChange('running');
-
-        try {
-            // 如果是从 paused 恢复 (用户点击)，我们需要先跳过当前的 blocking instruction (tick)
-            // 也就是 pc++，然后继续执行
-            // 注意：executeLoop 的 stepOverCurrent 参数负责这个逻辑
-            await this.executeLoop(true);
-        } catch (error) {
-            logger.error('Resume failed', error);
-            this.emitStateChange('error');
-            throw error;
-        }
-    }
-
     /**
      * Pause execution
      * Flow: running → paused
