@@ -10,6 +10,7 @@ export default defineConfig({
         },
     },
     build: {
+        sourcemap: true,
         lib: {
             entry: './src/index.ts',
             name: 'canoe',
@@ -17,19 +18,20 @@ export default defineConfig({
             formats: ['es'],
         },
         rollupOptions: {
-            external: ['gsap', 'three', 'stats.js'],
-            // output: {
-            //     inlineDynamicImports: false,
-            //     preserveModules: true,
-            //     entryFileNames: ({ name: fileName }) => {
-            //         return `${fileName}.js`;
-            //     },
-            //     globals: {
-            //         gsap: 'gsap',
-            //         three: 'THREE',
-            //         stats: 'Stats',
-            //     },
-            // },
+            external: ['gsap', 'three', /^three(\/.*)?$/, 'stats.js'],
+            output: {
+                // inlineDynamicImports: false,
+                // preserveModules: true,
+                // entryFileNames: ({ name: fileName }) => {
+                //     return `${fileName}.js`;
+                // },
+                globals: (id) => {
+                    if (id === 'three' || id.startsWith('three/addon')) return 'THREE';
+                    if (id === 'gsap') return 'gsap';
+                    if (id === 'stats.js') return 'Stats';
+                    return '';
+                },
+            },
         },
     },
 });
